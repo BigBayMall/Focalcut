@@ -612,7 +612,7 @@
   modal.addEventListener('click', e => { if (e.target===modal) { modal.classList.remove('open'); frame.src=''; } });
 
   // Contact form -> your Apps Script (branded email via Resend)
-  const API_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+  const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
   document.getElementById('contactForm').addEventListener('submit', async e => {
     e.preventDefault();
     const btn = document.getElementById('contactBtn');
