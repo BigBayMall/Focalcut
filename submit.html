@@ -13,7 +13,6 @@
   .header-inner { display: flex; justify-content: space-between; align-items: center; }
   .logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
   .logo-link img { height: 32px; width: auto; }
-  .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
   .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 60px; text-align: center; color: var(--muted); font-size: 13px; }
 
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin: 40px 0; }
@@ -42,31 +41,47 @@
   }
   .choice input:checked + .choice-box { background: rgba(163, 230, 53, 0.1); border-color: var(--accent); color: var(--accent); }
   .choice:hover .choice-box { border-color: var(--muted); }
-  .btn { background: var(--accent); color: #0A0A0A; padding: 16px; border-radius: 8px; font-weight: 600; width: 100%; border: none; cursor: pointer; font-size: 16px; font-family: 'Inter'; margin-top: 8px; transition: all 0.2s; }
+  .btn { background: var(--accent); color: #0A0A0A; padding: 16px; border-radius: 8px; font-weight: 600; width: 100%; border: none; cursor: pointer; font-size: 16px; font-family: 'Inter'; margin-top: 8px; transition: all 0.2s; text-align: center; text-decoration: none; display: block; box-sizing: border-box;}
   .btn:hover { background: #BEF264; transform: translateY(-2px); }
-  .btn:disabled { background: #262626; color: #737373; cursor: not-allowed; transform: none; }
-  .success-msg { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: #22C55E; padding: 16px; border-radius: 8px; text-align: center; margin-top: 16px; display: none; }
-  .error-msg { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #EF4444; padding: 16px; border-radius: 8px; text-align: center; margin-top: 16px; display: none; }
+  .btn-ghost { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+  .btn-ghost:hover { background: rgba(163, 230, 53, 0.1); transform: none; }
+  
+  .no-credits { text-align: center; padding: 40px 20px; }
+  .no-credits h2 { color: var(--accent); margin-bottom: 16px; }
+  .no-credits p { color: var(--muted); margin-bottom: 30px; font-size: 16px; line-height: 1.6; }
 </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="portal.html" class="logo-link">
+      <a href="index.html" class="logo-link">
         <img src="logo.png" alt="FocalCut">
       </a>
+      <a href="portal.html" style="color:var(--muted); text-decoration:none; font-size:14px;">← Back to Dashboard</a each="container">
     </div>
   </header>
 
   <div class="container">
-    <div class="card">
+    <div class="card" id="loadingCard" style="text-align:center; padding:60px 20px;">
+      <p style="color:var(--muted);">Checking your account credits...</p>
+    </div>
+
+    <div class="card hidden" id="noCreditsCard">
+      <div class="no-credits">
+        <h2>0 Credits Remaining</h2>
+        <p>You have used all the videos in your current package. To continue submitting new footage, please purchase a new package.</p>
+        <a href="index.html#pricing" class="btn">View Pricing & Purchase More</a>
+        <a href="portal.html" class="btn btn-ghost" style="margin-top:16px;">Return to Dashboard</a>
+      </div>
+    </div>
+
+    <div class="card hidden" id="submitFormCard">
       <h1>📽️ Creative Brief</h1>
       <p class="subtitle">Tell us about your video in 2 minutes. The more specific, the better the edit.</p>
       
       <form id="submitForm">
         <div class="section">
           <div class="section-title">1. Project Basics</div>
-          <div class="section-desc">What are we making?</div>
           <div class="field">
             <label>Project Title <span style="color:var(--accent)">*</span></label>
             <input type="text" id="title" placeholder="e.g., Podcast Ep 14 - Hook Focus" required>
@@ -75,7 +90,7 @@
             <label>Video Type <span style="color:var(--accent)">*</span></label>
             <div class="choice-grid">
               <label class="choice"><input type="radio" name="videoType" value="TikTok/Reel" checked><span class="choice-box">📱 TikTok / Reel</span></label>
-              <label class="a choice"><input type="radio" name="videoType" value="YouTube Short"><span class="choice-box">▶️ YouTube Short</span></label>
+              <label class="choice"><input type="radio" name="videoType" value="YouTube Short"><span class="choice-box">▶️ YouTube Short</span></label>
               <label class="choice"><input type="radio" name="videoType" value="Ad"><span class="choice-box">💰 Ad / Promo</span></label>
               <label class="choice"><input type="radio" name="videoType" value="Educational"><span class="choice-box">🎓 Educational</span></label>
             </div>
@@ -84,7 +99,6 @@
 
         <div class="section">
           <div class="section-title">2. Creative Direction</div>
-          <div class="section-desc">Pick the vibe you want.</div>
           <div class="field">
             <label>Hook Style</label>
             <div class="choice-grid">
@@ -106,7 +120,6 @@
 
         <div class="section">
           <div class="section-title">3. Footage & Details</div>
-          <div class="section-desc">Where's your raw video and what's the message?</div>
           <div class="field">
             <label>Raw Footage Link <span style="color:var(--accent)">*</span> <span class="hint">(Google Drive, Dropbox, or Frame.io)</span></label>
             <input type="url" id="footageLink" placeholder="https://drive.google.com/..." required>
@@ -126,20 +139,17 @@
         </div>
 
         <button type="submit" class="btn" id="submitBtn">Submit Project →</button>
-        <div class="success-msg" id="successMsg">✓ Project submitted successfully! Redirecting to dashboard...</div>
-        <div class="error-msg" id="errorMsg"></div>
+        <div class="success-msg" id="successMsg" style="background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); color:#22C55E; padding:16px; border-radius:8px; text-align:center; margin-top:16px; display:none;">✓ Project submitted successfully! Redirecting to dashboard...</div>
       </form>
     </div>
   </div>
 
   <footer class="site-footer">
-    <div class="container">
-      © 2026 Big Bay Mall LLC · FocalCut is a brand of Big Bay Mall LLC · <a href="https://focalcut.com" style="color:var(--accent);">focalcut.com</a>
-    </div>
+    <div class="container">© 2026 Big Bay Mall LLC · FocalCut is a brand of Big Bay Mall LLC · <a href="https://focalcut.com" style="color:var(--accent);">focalcut.com</a></div>
   </footer>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
+    const API_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
     const cid = localStorage.getItem('focalcut_cid');
     const token = localStorage.getItem('focalcut_token');
     
@@ -147,14 +157,33 @@
       window.location.href = 'portal.html';
     }
 
+    // CHECK CREDITS ON LOAD
+    fetch(`${API_URL}?action=getPortalData&clientId=${cid}&token=${token}`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('loadingCard').classList.add('hidden');
+        if (data.error) { window.location.href = 'portal.html'; return; }
+
+        let totalRemaining = 0;
+        data.packages.forEach(pkg => {
+          if (pkg.status === 'Active') {
+            totalRemaining += (pkg.total - pkg.used);
+          }
+        });
+
+        if (totalRemaining === 0) {
+          document.getElementById('noCreditsCard').classList.remove('hidden');
+        } else {
+          document.getElementById('submitFormCard').classList.remove('hidden');
+        }
+      });
+
     document.getElementById('submitForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
       const successMsg = document.getElementById('successMsg');
-      const errorMsg = document.getElementById('errorMsg');
       
       btn.disabled = true; btn.innerText = 'Submitting...';
-      errorMsg.style.display = 'none';
 
       const hooks = Array.from(document.querySelectorAll('input[name="hooks"]:checked')).map(cb => cb.value);
       const pacing = document.querySelector('input[name="pacing"]:checked').value;
@@ -179,24 +208,18 @@
       };
 
       try {
-        const res = await fetch(API_URL, {
+        await fetch(API_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(payload)
         });
-        
-        // Since mode is no-cors, we assume success if no network error, but backend will block if credits are 0
-        // To properly catch the "Credit limit reached" error, we'd need CORS, but for now, we show success 
-        // and the backend will simply not create the project and will email the admin about the block.
-        // Actually, let's just show success and let the backend handle the logic cleanly.
         successMsg.style.display = 'block';
         btn.style.display = 'none';
         setTimeout(() => { window.location.href = 'portal.html'; }, 2000);
       } catch (err) {
         btn.disabled = false; btn.innerText = 'Submit Project →';
-        errorMsg.innerText = 'Error submitting. Please try again or contact support.';
-        errorMsg.style.display = 'block';
+        alert('Error submitting. Please try again or contact support.');
       }
     });
   </script>
