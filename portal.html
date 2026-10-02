@@ -24,6 +24,8 @@
   .btn-small { padding: 8px 16px; font-size: 12px; }
   .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+  .btn-approve { background: #22C55E; color: white; }
+  .btn-approve:hover { background: #16A34A; }
   .btn-disabled { background: #262626; color: #737373; cursor: not-allowed; border: 1px solid var(--border); }
   .btn-disabled:hover { background: #262626; color: #737373; transform: none; }
   
@@ -32,7 +34,6 @@
   .pkg-name { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
   .pkg-credits { font-family: 'Space Grotesk'; font-size: 24px; font-weight: 700; color: var(--text); }
   .pkg-credits span { font-size: 13px; color: var(--muted); font-weight: 400; }
-  .pkg-revisions { font-size: 12px; color: var(--muted); margin-top: 8px; }
   .progress-bar { width: 100%; height: 6px; background: #262626; border-radius: 3px; margin-top: 16px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--accent); transition: width 0.3s ease; }
   
@@ -53,7 +54,6 @@
   .spinner-text { margin-top: 20px; color: var(--muted); font-size: 14px; letter-spacing: 0.05em; }
   @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-  /* REVISION MODAL */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
   .modal-content { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 30px; max-width: 500px; width: 100%; }
   .modal-content h3 { margin-bottom: 10px; }
@@ -101,11 +101,10 @@
     </div>
   </div>
 
-  <!-- REVISION MODAL -->
   <div id="revisionModal" class="modal-overlay hidden">
     <div class="modal-content">
       <h3>Request Revision</h3>
-      <p>Please describe the changes you need. Be as specific as possible (e.g., "Change caption at 0:15", "Use faster pacing").</p>
+      <p>Please describe the changes you need. Be as specific as possible.</p>
       <textarea id="revisionNotes" placeholder="Type your revision notes here..."></textarea>
       <div class="modal-actions">
         <button onclick="closeModal()" class="btn btn-ghost">Cancel</button>
@@ -124,7 +123,6 @@
     let cid = urlParams.get('cid') || localStorage.getItem('focalcut_cid');
     let token = urlParams.get('token') || localStorage.getItem('focalcut_token');
     let currentProjectId = '';
-    let currentPkgId = '';
 
     if (cid && token) {
       localStorage.setItem('focalcut_cid', cid);
@@ -164,27 +162,21 @@
           document.getElementById('logoutBtn').classList.remove('hidden');
           document.getElementById('clientName').innerText = data.name;
 
-          // Render Packages (with revision info)
           const pkgGrid = document.getElementById('pkgGrid');
           pkgGrid.innerHTML = '';
           data.packages.forEach(pkg => {
             if (pkg.status === 'Active') {
               const remaining = pkg.total - pkg.used;
               const pct = (pkg.used / pkg.total) * 100;
-              const revRemaining = pkg.revisionRounds - pkg.revisionsUsed;
-              const revText = pkg.revisionRounds === 0 ? 'No revisions included' : `${revRemaining} / ${pkg.revisionRounds} Revisions Remaining`;
-              
               pkgGrid.innerHTML += `
                 <div class="pkg-card">
                   <div class="pkg-name">${pkg.name}</div>
                   <div class="pkg-credits">${pkg.used} / ${pkg.total} Used <span>(${remaining} Remaining)</span></div>
-                  <div class="pkg-revisions">🔄 ${revText}</div>
                   <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
                 </div>`;
             }
           });
 
-          // Render Projects (with Revision Buttons)
           const projList = document.getElementById('projectsList');
           projList.innerHTML = '';
           if (data.projects.length === 0) {
@@ -196,26 +188,25 @@
               if (p.status === 'Approved') badgeClass = 'status-approved';
               if (p.status === 'Revision Requested') badgeClass = 'status-revision';
               
-              // Find package for this project to check revision limits
-              const pkg = data.packages.find(pkg => pkg.pkgId === p.pkgId);
-              let revisionBtn = '';
+              let actionBtns = '';
               
-              if (p.status === 'Ready for Review' && pkg) {
-                const revRemaining = pkg.revisionRounds - pkg.revisionsUsed;
+              if (p.status === 'Ready for Review') {
+                if (p.deliveryLink) actionBtns += `<a href="${p.deliveryLink}" target="_blank" class="btn btn-small">Watch Video</a>`;
+                
+                const revRemaining = p.revRounds - p.revUsed;
                 if (revRemaining > 0) {
-                  revisionBtn = `<button onclick="openRevisionModal('${p.projectId}', '${p.pkgId}')" class="btn btn-ghost btn-small">Request Revision (${revRemaining} left)</button>`;
+                  actionBtns += `<button onclick="openRevisionModal('${p.projectId}')" class="btn btn-ghost btn-small">Request Revision (${revRemaining} left)</button>`;
+                  actionBtns += `<button onclick="approveProject('${p.projectId}')" class="btn btn-approve btn-small">Approve</button>`;
                 } else {
-                  revisionBtn = `<button class="btn btn-disabled btn-small" disabled>Revisions Complete</button>`;
+                  actionBtns += `<button class="btn btn-disabled btn-small" disabled>Revisions Complete</button>`;
+                  actionBtns += `<button onclick="approveProject('${p.projectId}')" class="btn btn-approve btn-small">Approve Final</button>`;
                 }
               } else if (p.status === 'Revision Requested') {
-                revisionBtn = `<span class="btn btn-disabled btn-small" style="cursor:default;">Awaiting Admin Update</span>`;
+                actionBtns += `<span class="btn btn-disabled btn-small" style="cursor:default;">Awaiting Admin Update</span>`;
+              } else if (p.status === 'Approved') {
+                if (p.deliveryLink) actionBtns += `<a href="${p.deliveryLink}" target="_blank" class="btn btn-small">Watch Final</a>`;
               }
 
-              let action = `<span class="status-badge ${badgeClass}">${p.status}</span>`;
-              if (p.status === 'Ready for Review' && p.deliveryLink) {
-                action = `<a href="${p.deliveryLink}" target="_blank" class="btn btn-small">Watch Video</a>`;
-              }
-              
               const etaDate = new Date(p.eta);
               const etaString = etaDate.toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'medium', timeStyle: 'short' });
               
@@ -224,10 +215,10 @@
                   <div class="project-info">
                     <div style="font-weight:600; font-size:16px;">${p.title}</div>
                     <div class="eta-text">Estimated Delivery: ${etaString} (ET)</div>
-                    ${action}
+                    <span class="status-badge ${badgeClass}">${p.status}</span>
                   </div>
                   <div class="project-actions">
-                    ${revisionBtn}
+                    ${actionBtns}
                   </div>
                 </div>`;
             });
@@ -235,10 +226,8 @@
         });
     }
 
-    // Revision Modal Logic
-    function openRevisionModal(projectId, pkgId) {
+    function openRevisionModal(projectId) {
       currentProjectId = projectId;
-      currentPkgId = pkgId;
       document.getElementById('revisionNotes').value = '';
       document.getElementById('revisionModal').classList.remove('hidden');
     }
@@ -254,7 +243,7 @@
       const btn = document.querySelector('#revisionModal .btn:last-child');
       btn.disabled = true; btn.innerText = 'Sending...';
 
-      const payload = { action: 'requestRevision', projectId: currentProjectId, pkgId: currentPkgId, notes: notes };
+      const payload = { action: 'requestRevision', projectId: currentProjectId, notes: notes };
       
       fetch(API_URL, {
         method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -262,10 +251,25 @@
       }).then(() => {
         closeModal();
         btn.disabled = false; btn.innerText = 'Submit Request';
-        login(); // Refresh dashboard
+        login();
       }).catch(err => {
         alert('Error submitting revision.');
         btn.disabled = false; btn.innerText = 'Submit Request';
+      });
+    }
+
+    function approveProject(projectId) {
+      if (!confirm('Are you sure you want to approve this video? This will finalize the project.')) return;
+      
+      const payload = { action: 'approveProject', projectId: projectId };
+      
+      fetch(API_URL, {
+        method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        login();
+      }).catch(err => {
+        alert('Error approving project.');
       });
     }
 
