@@ -21,11 +21,10 @@
   .section { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
   .section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .section-title { font-family: 'Space Grotesk'; font-size: 18px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
-  .section-desc { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
   .field { margin-bottom: 20px; }
   label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
   .hint { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 4px; }
-  input[type="text"], input[type="url"], input[type="date"], select, textarea {
+  input[type="text"], input[type="url"], select, textarea {
     width: 100%; padding: 13px 15px; background: var(--elevated); border: 1px solid var(--border); 
     color: white; border-radius: 8px; box-sizing: border-box; font-family: 'Inter'; font-size: 14px; transition: all 0.2s;
   }
@@ -40,7 +39,6 @@
     display: flex; align-items: center; justify-content: center; text-align: center;
   }
   .choice input:checked + .choice-box { background: rgba(163, 230, 53, 0.1); border-color: var(--accent); color: var(--accent); }
-  .choice:hover .choice-box { border-color: var(--muted); }
   .btn { background: var(--accent); color: #0A0A0A; padding: 16px; border-radius: 8px; font-weight: 600; width: 100%; border: none; cursor: pointer; font-size: 16px; font-family: 'Inter'; margin-top: 8px; transition: all 0.2s; text-align: center; text-decoration: none; display: block; box-sizing: border-box;}
   .btn:hover { background: #BEF264; transform: translateY(-2px); }
   .btn-ghost { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
@@ -49,6 +47,7 @@
   .no-credits { text-align: center; padding: 40px 20px; }
   .no-credits h2 { color: var(--accent); margin-bottom: 16px; }
   .no-credits p { color: var(--muted); margin-bottom: 30px; font-size: 16px; line-height: 1.6; }
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
@@ -57,12 +56,12 @@
       <a href="index.html" class="logo-link">
         <img src="logo.png" alt="FocalCut">
       </a>
-      <a href="portal.html" style="color:var(--muted); text-decoration:none; font-size:14px;">← Back to Dashboard</a each="container">
+      <a href="portal.html" style="color:var(--muted); text-decoration:none; font-size:14px;">← Back to Dashboard</a>
     </div>
   </header>
 
   <div class="container">
-    <div class="card" id="loadingCard" style="text-align:center; padding:60px 20px;">
+    <div class="card hidden" id="loadingCard" style="text-align:center; padding:60px 20px;">
       <p style="color:var(--muted);">Checking your account credits...</p>
     </div>
 
@@ -92,7 +91,7 @@
               <label class="choice"><input type="radio" name="videoType" value="TikTok/Reel" checked><span class="choice-box">📱 TikTok / Reel</span></label>
               <label class="choice"><input type="radio" name="videoType" value="YouTube Short"><span class="choice-box">▶️ YouTube Short</span></label>
               <label class="choice"><input type="radio" name="videoType" value="Ad"><span class="choice-box">💰 Ad / Promo</span></label>
-              <label class="choice"><input type="radio" name="videoType" value="Educational"><span class="choice-box">🎓 Educational</span></label>
+              <label class="choice"><input type="radio" name="videoType" value="Educational"><span class="choice-box"> Educational</span></label>
             </div>
           </div>
         </div>
@@ -139,7 +138,7 @@
         </div>
 
         <button type="submit" class="btn" id="submitBtn">Submit Project →</button>
-        <div class="success-msg" id="successMsg" style="background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); color:#22C55E; padding:16px; border-radius:8px; text-align:center; margin-top:16px; display:none;">✓ Project submitted successfully! Redirecting to dashboard...</div>
+        <div id="successMsg" style="background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); color:#22C55E; padding:16px; border-radius:8px; text-align:center; margin-top:16px; display:none;">✓ Project submitted successfully! Redirecting to dashboard...</div>
       </form>
     </div>
   </div>
@@ -149,7 +148,7 @@
   </footer>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec'; // <-- ENSURE THIS IS CORRECT
     const cid = localStorage.getItem('focalcut_cid');
     const token = localStorage.getItem('focalcut_token');
     
@@ -157,11 +156,14 @@
       window.location.href = 'portal.html';
     }
 
+    // Show loading first
+    document.getElementById('loadingCard').classList.remove('hidden');
+
     // CHECK CREDITS ON LOAD
     fetch(`${API_URL}?action=getPortalData&clientId=${cid}&token=${token}`)
       .then(res => res.json())
       .then(data => {
-        document.getElementById('loadingCard').classList.add('hidden');
+        document.getElementById('loadingCard').classList.add('hidden'); // Hide loading
         if (data.error) { window.location.href = 'portal.html'; return; }
 
         let totalRemaining = 0;
@@ -171,11 +173,19 @@
           }
         });
 
+        // FIX: Explicitly hide/show the correct cards so they never overlap
         if (totalRemaining === 0) {
           document.getElementById('noCreditsCard').classList.remove('hidden');
+          document.getElementById('submitFormCard').classList.add('hidden');
         } else {
+          document.getElementById('noCreditsCard').classList.add('hidden');
           document.getElementById('submitFormCard').classList.remove('hidden');
         }
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('loadingCard').classList.add('hidden');
+        document.getElementById('noCreditsCard').classList.remove('hidden');
       });
 
     document.getElementById('submitForm').addEventListener('submit', async (e) => {
