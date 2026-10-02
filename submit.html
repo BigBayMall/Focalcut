@@ -44,10 +44,48 @@
   .btn-ghost { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
   .btn-ghost:hover { background: rgba(163, 230, 53, 0.1); transform: none; }
   
-  .no-credits { text-align: center; padding: 40px 20px; }
-  .no-credits h2 { color: var(--accent); margin-bottom: 16px; }
-  .no-credits p { color: var(--muted); margin-bottom: 30px; font-size: 16px; line-height: 1.6; }
   .hidden { display: none !important; }
+
+  /* ANIMATIONS & NO CREDITS STYLES */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulseGlow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(163, 230, 53, 0)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(163, 230, 53, 0.4)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(163, 230, 53, 0)); }
+  }
+  
+  .animated-card {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  .no-credits { text-align: center; padding: 20px; }
+  .no-credits h2 { color: var(--text); margin-bottom: 16px; font-size: 28px; }
+  .no-credits p { color: var(--muted); margin-bottom: 30px; font-size: 16px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto; }
+  
+  .icon-container {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+  }
+  .icon-pulse {
+    animation: pulseGlow 2.5s infinite ease-in-out;
+  }
+  
+  /* LOADING SPINNER (Consistent with Portal) */
+  .spinner-container {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 60px 20px;
+  }
+  .spinner {
+    width: 40px; height: 40px; border: 3px solid var(--border);
+    border-top: 3px solid var(--accent); border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  .spinner-text { margin-top: 20px; color: var(--muted); font-size: 14px; letter-spacing: 0.05em; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -61,19 +99,38 @@
   </header>
 
   <div class="container">
-    <div class="card hidden" id="loadingCard" style="text-align:center; padding:60px 20px;">
-      <p style="color:var(--muted);">Checking your account credits...</p>
+    <!-- STATE 1: CHECKING CREDITS -->
+    <div class="card" id="loadingCard">
+      <div class="spinner-container">
+        <div class="spinner"></div>
+        <div class="spinner-text">CHECKING ACCOUNT CREDITS...</div>
+      </div>
     </div>
 
-    <div class="card hidden" id="noCreditsCard">
+    <!-- STATE 2: 0 CREDITS (ANIMATED) -->
+    <div class="card hidden animated-card" id="noCreditsCard">
       <div class="no-credits">
-        <h2>0 Credits Remaining</h2>
-        <p>You have used all the videos in your current package. To continue submitting new footage, please purchase a new package.</p>
+        <div class="icon-container">
+          <!-- Sleek Film Strip Icon -->
+          <svg class="icon-pulse" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+            <line x1="7" y1="2" x2="7" y2="22"></line>
+            <line x1="17" y1="2" x2="17" y2="22"></line>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <line x1="2" y1="7" x2="7" y2="7"></line>
+            <line x1="2" y1="17" x2="7" y2="17"></line>
+            <line x1="17" y1="17" x2="22" y2="17"></line>
+            <line x1="17" y1="7" x2="22" y2="7"></line>
+          </svg>
+        </div>
+        <h2>Package Complete</h2>
+        <p>You have successfully used all the video credits in your current package. To continue submitting new footage and keep your content flowing, please purchase a new package.</p>
         <a href="index.html#pricing" class="btn">View Pricing & Purchase More</a>
         <a href="portal.html" class="btn btn-ghost" style="margin-top:16px;">Return to Dashboard</a>
       </div>
     </div>
 
+    <!-- STATE 3: SUBMIT FORM -->
     <div class="card hidden" id="submitFormCard">
       <h1>📽️ Creative Brief</h1>
       <p class="subtitle">Tell us about your video in 2 minutes. The more specific, the better the edit.</p>
@@ -91,7 +148,7 @@
               <label class="choice"><input type="radio" name="videoType" value="TikTok/Reel" checked><span class="choice-box">📱 TikTok / Reel</span></label>
               <label class="choice"><input type="radio" name="videoType" value="YouTube Short"><span class="choice-box">▶️ YouTube Short</span></label>
               <label class="choice"><input type="radio" name="videoType" value="Ad"><span class="choice-box">💰 Ad / Promo</span></label>
-              <label class="choice"><input type="radio" name="videoType" value="Educational"><span class="choice-box"> Educational</span></label>
+              <label class="choice"><input type="radio" name="videoType" value="Educational"><span class="choice-box">🎓 Educational</span></label>
             </div>
           </div>
         </div>
@@ -102,15 +159,15 @@
             <label>Hook Style</label>
             <div class="choice-grid">
               <label class="choice"><input type="checkbox" name="hooks" value="Bold Claim"><span class="choice-box">💥 Bold Claim</span></label>
-              <label class="choice"><input type="checkbox" name="hooks" value="Shocking"><span class="choice-box">😱 Shocking</span></label>
-              <label class="choice"><input type="checkbox" name="hooks" value="Question"><span class="choice-box">❓ Question</span></label>
+              <label class="choice"><input type="checkbox" name="hooks" value="Shocking"><span class="choice-box"> Shocking</span></label>
+              <label class="choice"><input type="checkbox" name="hooks" value="Question"><span class="choice-box"> Question</span></label>
               <label class="choice"><input type="checkbox" name="hooks" value="Editor's Choice" checked><span class="choice-box">✨ Editor's Choice</span></label>
             </div>
           </div>
           <div class="field">
             <label>Pacing / Vibe</label>
             <div class="choice-grid">
-              <label class="choice"><input type="radio" name="pacing" value="Fast & Punchy" checked><span class="choice-box">⚡ Fast & Punchy</span></label>
+              <label class="choice"><input type="radio" name="pacing" value="Fast & Punchy" checked><span class="choice-box"> Fast & Punchy</span></label>
               <label class="choice"><input type="radio" name="pacing" value="Cinematic"><span class="choice-box">🎬 Cinematic</span></label>
               <label class="choice"><input type="radio" name="pacing" value="Professional"><span class="choice-box">💼 Professional</span></label>
             </div>
@@ -156,14 +213,13 @@
       window.location.href = 'portal.html';
     }
 
-    // Show loading first
-    document.getElementById('loadingCard').classList.remove('hidden');
-
     // CHECK CREDITS ON LOAD
     fetch(`${API_URL}?action=getPortalData&clientId=${cid}&token=${token}`)
       .then(res => res.json())
       .then(data => {
-        document.getElementById('loadingCard').classList.add('hidden'); // Hide loading
+        // Hide loading state
+        document.getElementById('loadingCard').classList.add('hidden');
+        
         if (data.error) { window.location.href = 'portal.html'; return; }
 
         let totalRemaining = 0;
@@ -173,7 +229,7 @@
           }
         });
 
-        // FIX: Explicitly hide/show the correct cards so they never overlap
+        // Smoothly toggle the correct state
         if (totalRemaining === 0) {
           document.getElementById('noCreditsCard').classList.remove('hidden');
           document.getElementById('submitFormCard').classList.add('hidden');
