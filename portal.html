@@ -37,7 +37,7 @@
   .eta-text { color: var(--muted); font-size: 13px; margin-top: 4px; }
   .hidden { display: none !important; }
   
-  /* LOADING ANIMATION */
+  /* LOADING & DEBUG STYLES */
   #loadingSpinner {
     position: fixed; inset: 0; background: var(--bg); z-index: 999;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -49,6 +49,12 @@
   }
   .spinner-text { margin-top: 20px; color: var(--muted); font-size: 14px; letter-spacing: 0.05em; }
   @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  
+  .debug-box {
+    background: #1a1a1a; border: 1px solid #EF4444; color: #EF4444;
+    padding: 20px; border-radius: 8px; margin-top: 20px; font-family: monospace; font-size: 12px;
+    white-space: pre-wrap; word-break: break-all;
+  }
 </style>
 </head>
 <body>
@@ -73,12 +79,16 @@
       <input type="text" id="clientIdInput" placeholder="Client ID (e.g., FC-1234)" style="width:100%; padding:14px; margin-bottom:16px; background:#1A1A1A; border:1px solid var(--border); color:white; border-radius:8px; box-sizing:border-box;">
       <input type="text" id="tokenInput" placeholder="Access Token" style="width:100%; padding:14px; margin-bottom:16px; background:#1A1A1A; border:1px solid var(--border); color:white; border-radius:8px; box-sizing:border-box;">
       <button onclick="manualLogin()" class="btn" style="width:100%;">Access Dashboard</button>
-      <p id="errorMsg" style="color:#EF4444; margin-top:16px; display:none;">Invalid credentials. Please check your email.</p
+      <p id="errorMsg" style="color:#EF4444; margin-top:16px; display:none;">Invalid credentials. Please check your email.</p>
     </div>
 
     <div id="dashboardView" class="hidden">
       <h1>Welcome back, <span id="clientName">Client</span> 👋</h1>
       <p style="color:var(--muted); margin-bottom:32px;">Manage your packages and submit new footage below.</p>
+      
+      <!-- DEBUG BOX: Will show data if packages are empty -->
+      <div id="debugBox" class="debug-box hidden"></div>
+
       <div class="pkg-grid" id="pkgGrid"></div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
@@ -94,7 +104,9 @@
   </footer>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
+    // ⚠️ CRITICAL: Ensure this URL is EXACTLY your deployed Web App URL
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec'; 
+    
     const urlParams = new URLSearchParams(window.location.search);
     let cid = urlParams.get('cid') || localStorage.getItem('focalcut_cid');
     let token = urlParams.get('token') || localStorage.getItem('focalcut_token');
@@ -119,40 +131,59 @@
     }
 
     function login() {
+      console.log('Fetching data for:', cid, token);
+      console.log('Using API URL:', API_URL);
+      
       fetch(`${API_URL}?action=getPortalData&clientId=${cid}&token=${token}`)
-        .then(res => res.json())
+        .then(res => {
+          console.log('Response status:', res.status);
+          return res.json();
+        })
         .then(data => {
+          console.log('Data received:', data); // <-- Check browser console (F12) to see this
           document.getElementById('loadingSpinner').classList.add('hidden');
+          
           if (data.error) { 
+            console.error('API Error:', data.error);
             localStorage.clear();
             document.getElementById('loginView').classList.remove('hidden');
             document.getElementById('dashboardView').classList.add('hidden');
             document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('errorMsg').innerText = 'Error: ' + data.error;
             return; 
           }
+          
           document.getElementById('loginView').classList.add('hidden');
           document.getElementById('dashboardView').classList.remove('hidden');
           document.getElementById('logoutBtn').classList.remove('hidden');
-          document.getElementById('clientName').innerText = data.name;
+          document.getElementById('clientName').innerText = data.name || 'Client';
 
           const pkgGrid = document.getElementById('pkgGrid');
           pkgGrid.innerHTML = '';
-          data.packages.forEach(pkg => {
-            if (pkg.status === 'Active') {
-              const remaining = pkg.total - pkg.used;
-              const pct = (pkg.used / pkg.total) * 100;
-              pkgGrid.innerHTML += `
-                <div class="pkg-card">
-                  <div class="pkg-name">${pkg.name}</div>
-                  <div class="pkg-credits">${pkg.used} / ${pkg.total} Used <span>(${remaining} Remaining)</span></div>
-                  <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-                </div>`;
-            }
-          });
+          
+          // DEBUG: If no packages found, show debug info
+          if (!data.packages || data.packages.length === 0) {
+            document.getElementById('debugBox').classList.remove('hidden');
+            document.getElementById('debugBox').innerText = 'DEBUG: No packages found for this Client ID.\nClient ID: ' + cid + '\nToken: ' + token + '\n\nRaw Data: ' + JSON.stringify(data, null, 2);
+          } else {
+            document.getElementById('debugBox').classList.add('hidden');
+            data.packages.forEach(pkg => {
+              if (pkg.status === 'Active') {
+                const remaining = pkg.total - pkg.used;
+                const pct = (pkg.used / pkg.total) * 100;
+                pkgGrid.innerHTML += `
+                  <div class="pkg-card">
+                    <div class="pkg-name">${pkg.name}</div>
+                    <div class="pkg-credits">${pkg.used} / ${pkg.total} Used <span>(${remaining} Remaining)</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+                  </div>`;
+              }
+            });
+          }
 
           const projList = document.getElementById('projectsList');
           projList.innerHTML = '';
-          if (data.projects.length === 0) {
+          if (!data.projects || data.projects.length === 0) {
             projList.innerHTML = '<p style="color:var(--muted); text-align:center; padding:20px;">No active projects. Submit your first footage!</p>';
           } else {
             data.projects.forEach(p => {
@@ -175,6 +206,13 @@
                 </div>`;
             });
           }
+        })
+        .catch(err => {
+          console.error('Fetch failed:', err);
+          document.getElementById('loadingSpinner').classList.add('hidden');
+          document.getElementById('debugBox').classList.remove('hidden');
+          document.getElementById('debugBox').innerText = 'CONNECTION ERROR: Could not reach Apps Script.\n\n1. Check that API_URL in portal.html is correct.\n2. Ensure you deployed a "New Version" in Apps Script.\n3. Check browser console (F12) for details.\n\nError: ' + err.toString();
+          document.getElementById('dashboardView').classList.remove('hidden');
         });
     }
 
