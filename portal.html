@@ -9,12 +9,10 @@
   body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.6; }
   .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
   
-  /* Header & Footer */
   .site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
   .header-inner { display: flex; justify-content: space-between; align-items: center; }
   .logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
   .logo-link img { height: 32px; width: auto; }
-  .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
   .btn-logout { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: 'Inter'; font-size: 13px; transition: all 0.2s; }
   .btn-logout:hover { border-color: var(--accent); color: var(--accent); }
   .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 60px; text-align: center; color: var(--muted); font-size: 13px; }
@@ -23,7 +21,6 @@
   h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; margin: 0 0 16px 0; }
   .btn { background: var(--accent); color: #0A0A0A; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; border: none; cursor: pointer; font-family: 'Inter'; }
   .btn:hover { background: #BEF264; }
-  .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
   .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 32px; }
   .pkg-card { background: #1A1A1A; border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
   .pkg-name { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
@@ -39,11 +36,27 @@
   .status-approved { background: rgba(34, 197, 94, 0.15); color: #22C55E; }
   .eta-text { color: var(--muted); font-size: 13px; margin-top: 4px; }
   .hidden { display: none !important; }
-  .login-form { max-width: 400px; margin: 80px auto; text-align: center; }
-  .login-form input { width: 100%; padding: 14px; margin-bottom: 16px; background: #1A1A1A; border: 1px solid var(--border); color: white; border-radius: 8px; box-sizing: border-box; font-family: 'Inter'; }
+  
+  /* LOADING ANIMATION */
+  #loadingSpinner {
+    position: fixed; inset: 0; background: var(--bg); z-index: 999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .spinner {
+    width: 50px; height: 50px; border: 3px solid var(--border);
+    border-top: 3px solid var(--accent); border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  .spinner-text { margin-top: 20px; color: var(--muted); font-size: 14px; letter-spacing: 0.05em; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
+  <div id="loadingSpinner">
+    <div class="spinner"></div>
+    <div class="spinner-text">LOADING PORTAL...</div>
+  </div>
+
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo-link">
@@ -54,13 +67,13 @@
   </header>
 
   <div class="container" style="padding-top: 40px;">
-    <div id="loginView" class="login-form card hidden">
+    <div id="loginView" class="card hidden" style="max-width: 400px; margin: 80px auto; text-align: center;">
       <h2>Client Portal</h2>
       <p style="color:var(--muted); margin-bottom:24px;">Enter the credentials from your welcome email.</p>
-      <input type="text" id="clientIdInput" placeholder="Client ID (e.g., FC-1234)">
-      <input type="text" id="tokenInput" placeholder="Access Token">
+      <input type="text" id="clientIdInput" placeholder="Client ID (e.g., FC-1234)" style="width:100%; padding:14px; margin-bottom:16px; background:#1A1A1A; border:1px solid var(--border); color:white; border-radius:8px; box-sizing:border-box;">
+      <input type="text" id="tokenInput" placeholder="Access Token" style="width:100%; padding:14px; margin-bottom:16px; background:#1A1A1A; border:1px solid var(--border); color:white; border-radius:8px; box-sizing:border-box;">
       <button onclick="manualLogin()" class="btn" style="width:100%;">Access Dashboard</button>
-      <p id="errorMsg" style="color:#EF4444; margin-top:16px; display:none;">Invalid credentials. Please check your email.</p>
+      <p id="errorMsg" style="color:#EF4444; margin-top:16px; display:none;">Invalid credentials. Please check your email.</p
     </div>
 
     <div id="dashboardView" class="hidden">
@@ -77,16 +90,12 @@
   </div>
 
   <footer class="site-footer">
-    <div class="container">
-      © 2026 Big Bay Mall LLC · FocalCut is a brand of Big Bay Mall LLC · <a href="https://focalcut.com" style="color:var(--accent);">focalcut.com</a>
-    </div>
+    <div class="container">© 2026 Big Bay Mall LLC · FocalCut is a brand of Big Bay Mall LLC · <a href="https://focalcut.com" style="color:var(--accent);">focalcut.com</a></div>
   </footer>
 
   <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
     const urlParams = new URLSearchParams(window.location.search);
-    
-    // LocalStorage Auto-Login Magic
     let cid = urlParams.get('cid') || localStorage.getItem('focalcut_cid');
     let token = urlParams.get('token') || localStorage.getItem('focalcut_token');
 
@@ -95,6 +104,7 @@
       localStorage.setItem('focalcut_token', token);
       login();
     } else {
+      document.getElementById('loadingSpinner').classList.add('hidden');
       document.getElementById('loginView').classList.remove('hidden');
     }
 
@@ -112,6 +122,7 @@
       fetch(`${API_URL}?action=getPortalData&clientId=${cid}&token=${token}`)
         .then(res => res.json())
         .then(data => {
+          document.getElementById('loadingSpinner').classList.add('hidden');
           if (data.error) { 
             localStorage.clear();
             document.getElementById('loginView').classList.remove('hidden');
@@ -119,7 +130,6 @@
             document.getElementById('errorMsg').style.display = 'block';
             return; 
           }
-          
           document.getElementById('loginView').classList.add('hidden');
           document.getElementById('dashboardView').classList.remove('hidden');
           document.getElementById('logoutBtn').classList.remove('hidden');
@@ -149,15 +159,12 @@
               let badgeClass = 'status-editing';
               if (p.status.includes('Review')) badgeClass = 'status-review';
               if (p.status.includes('Approved')) badgeClass = 'status-approved';
-              
               let action = `<span class="status-badge ${badgeClass}">${p.status}</span>`;
               if (p.status === 'Ready for Review' && p.deliveryLink) {
                 action = `<a href="${p.deliveryLink}" target="_blank" class="btn" style="font-size:12px; padding:8px 16px;">Watch Video</a>`;
               }
-              
               const etaDate = new Date(p.eta);
               const etaString = etaDate.toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'medium', timeStyle: 'short' });
-              
               projList.innerHTML += `
                 <div class="project-item">
                   <div>
@@ -174,7 +181,7 @@
     function logout() {
       localStorage.removeItem('focalcut_cid');
       localStorage.removeItem('focalcut_token');
-      window.location.href = 'portal.html';
+      window.location.href = 'index.html';
     }
   </script>
 </body>
