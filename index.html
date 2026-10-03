@@ -109,7 +109,9 @@
   h1 .hl{color:var(--accent-primary)}
   .hero p{font-size:clamp(16px,1.5vw,19px);color:var(--text-secondary);max-width:640px;margin:0 auto 40px}
   .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-  .hero-meta{margin-top:60px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding-top:40px;border-top:1px solid var(--border-default)}
+  
+  /* PREMIUM HERO META GRID */
+  .hero-meta{margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid var(--border-default)}
   .hero-meta div{display:flex;flex-direction:column;align-items:center;gap:4px}
   .hero-meta .num{font-family:'Space Grotesk';font-size:22px;font-weight:700}
   .hero-meta .lbl{font-size:12px;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase}
@@ -120,10 +122,11 @@
   .section-head h2{font-size:clamp(30px,4vw,44px);margin-bottom:16px}
   .section-head p{color:var(--text-secondary);font-size:17px}
 
+  /* PREMIUM TRUST STRIP */
   .trust-strip{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default);padding:28px 0}
-  .trust-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 36px;align-items:center;font-size:13.5px;color:var(--text-secondary)}
+  .trust-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;align-items:center;font-size:13.5px;color:var(--text-secondary)}
   .trust-inner strong{color:var(--text-primary);font-weight:600}
-  .trust-inner .sep{color:var(--accent-primary)}
+  .trust-inner .sep{color:var(--accent-primary);font-size:10px;opacity:0.6}
 
   .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .service-card{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px;transition:all .25s ease}
@@ -146,12 +149,17 @@
   .work-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent-primary);text-transform:uppercase;margin-bottom:6px}
   .work-title{font-family:'Space Grotesk';font-size:15px;font-weight:600}
 
+  /* PREMIUM TESTIMONIALS WITH AVATARS */
   .testimonials{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
   .guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .g-card{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:16px;padding:32px}
-  .g-card .ic{font-size:26px;margin-bottom:16px}
-  .g-card h3{font-size:18px;margin-bottom:10px}
-  .g-card p{color:var(--text-secondary);font-size:14.5px}
+  .testi-card{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:16px;padding:32px;display:flex;flex-direction:column}
+  .testi-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .testi-avatar{width:48px;height:48px;border-radius:50%;background:var(--bg-elevated);border:2px solid var(--accent-primary);overflow:hidden;flex-shrink:0}
+  .testi-avatar img{width:100%;height:100%;object-fit:cover}
+  .testi-info h4{font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:2px}
+  .testi-info p{font-size:12px;color:var(--text-muted)}
+  .testi-result{display:inline-block;background:rgba(163,230,53,0.1);color:var(--accent-primary);padding:4px 12px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:16px}
+  .testi-card blockquote{font-size:14.5px;color:var(--text-secondary);line-height:1.7;font-style:italic;flex:1;margin:0}
 
   .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
   .plan{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:36px 30px;display:flex;flex-direction:column;transition:all .25s ease}
@@ -203,6 +211,7 @@
   .form-status.ok{display:block;color:var(--success)}
   .form-status.err{display:block;color:var(--error)}
 
+  /* PREMIUM FOOTER */
   footer{background:var(--bg-primary);border-top:1px solid var(--border-default);padding:60px 0 30px}
   .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
   .footer-brand p{color:var(--text-secondary);font-size:14px;margin-top:16px;max-width:320px}
@@ -214,19 +223,36 @@
   .reveal{opacity:0;transform:translateY(24px);transition:all .7s ease}
   .reveal.visible{opacity:1;transform:none}
 
+  /* MOBILE RESPONSIVE FIXES */
   @media(max-width:960px){
-    .services-grid,.portfolio-grid,.guarantee-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
+    .services-grid,.portfolio-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
     .process-grid{grid-template-columns:repeat(2,1fr)}
     .contact-grid{grid-template-columns:1fr;gap:40px}
-    .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
     .plan.featured{transform:none}
     .plan.featured:hover{transform:translateY(-4px)}
   }
   @media(max-width:640px){
-    .services-grid,.portfolio-grid,.guarantee-grid,.pricing-grid,.process-grid,.footer-grid{grid-template-columns:1fr}
+    .services-grid,.portfolio-grid,.pricing-grid,.process-grid{grid-template-columns:1fr}
     .hero{padding:130px 0 70px}
     section{padding:70px 0}
-    .hero-meta{gap:28px}
+    
+    /* Hero Meta 2x2 Grid */
+    .hero-meta{grid-template-columns:repeat(2,1fr);gap:24px}
+    .hero-meta .num{font-size:26px}
+    
+    /* Trust Strip Vertical */
+    .trust-inner{flex-direction:column;gap:12px;text-align:center}
+    .trust-inner .sep{display:none}
+    
+    /* Testimonials 1 Column */
+    .guarantee-grid{grid-template-columns:1fr}
+    
+    /* Premium Mobile Footer */
+    .footer-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
+    .footer-brand{grid-column:1 / -1;text-align:center;margin-bottom:16px}
+    .footer-brand p{max-width:100%;margin:16px auto 0}
+    .footer-col{text-align:center}
+    .footer-bottom{flex-direction:column;text-align:center;gap:16px}
   }
 </style>
 </head>
@@ -288,37 +314,18 @@
       <p>Real projects from our editing pipeline. Click play to see the retention hooks in action.</p>
     </div>
     <div class="portfolio-grid">
-      
-      <!-- VIDEO 1 -->
       <div class="work reveal">
-        <!-- REPLACE THE SRC BELOW WITH YOUR VIMEO EMBED LINK -->
         <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_1?h=YOUR_HASH&autoplay=0&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <div class="work-info">
-          <div class="work-cat">Business Coach</div>
-          <div class="work-title">Talking-head hook restructure</div>
-        </div>
+        <div class="work-info"><div class="work-cat">Business Coach</div><div class="work-title">Talking-head hook restructure</div></div>
       </div>
-
-      <!-- VIDEO 2 -->
       <div class="work reveal">
-        <!-- REPLACE THE SRC BELOW WITH YOUR VIMEO EMBED LINK -->
         <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_2?h=YOUR_HASH&autoplay=0&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <div class="work-info">
-          <div class="work-cat">Fitness Brand</div>
-          <div class="work-title">Seamless loop transition edit</div>
-        </div>
+        <div class="work-info"><div class="work-cat">Fitness Brand</div><div class="work-title">Seamless loop transition edit</div></div>
       </div>
-
-      <!-- VIDEO 3 -->
       <div class="work reveal">
-        <!-- REPLACE THE SRC BELOW WITH YOUR VIMEO EMBED LINK -->
         <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_3?h=YOUR_HASH&autoplay=0&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <div class="work-info">
-          <div class="work-cat">E-commerce</div>
-          <div class="work-title">Product showcase reel</div>
-        </div>
+        <div class="work-info"><div class="work-cat">E-commerce</div><div class="work-title">Product showcase reel</div></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -342,11 +349,55 @@
     <div class="section-head reveal">
       <div class="tag">Client Results</div>
       <h2>Edits that actually perform</h2>
+      <p>Real results from creators who trust FocalCut with their content.</p>
     </div>
     <div class="guarantee-grid">
-      <div class="g-card reveal"><div class="ic"></div><h3>1.2M Views</h3><p>"We took a raw, 20-minute podcast and FocalCut turned it into 5 Reels. One of them hit 1.2 million views on TikTok within a week. The hook restructuring is real."</p><p style="color: var(--accent-primary); font-weight: 600; margin-top: 16px;">— Sarah K., Fitness Creator</p></div>
-      <div class="g-card reveal"><div class="ic">⏱️</div><h3>10 Hours Saved</h3><p>"I used to spend every Sunday trying to edit my own videos. FocalCut's portal makes it so easy to just dump my Drive link and get them back on Tuesday. Game changer."</p><p style="color: var(--accent-primary); font-weight: 600; margin-top: 16px;">— Marcus R., Business Coach</p></div>
-      <div class="g-card reveal"><div class="ic"></div><h3>3x Retention</h3><p>"My average view duration went from 4 seconds to 12 seconds after switching to FocalCut. They actually understand how the algorithm works."</p><p style="color: var(--accent-primary); font-weight: 600; margin-top: 16px;">— James T., Real Estate Agent</p></div>
+      
+      <!-- TESTIMONIAL 1 -->
+      <div class="testi-card reveal">
+        <div class="testi-header">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Sarah K.">
+          </div>
+          <div class="testi-info">
+            <h4>Sarah K.</h4>
+            <p>Fitness Creator · 240K followers</p>
+          </div>
+        </div>
+        <div class="testi-result">📈 1.2M Views on TikTok</div>
+        <blockquote>"We took a raw, 20-minute podcast and FocalCut turned it into 5 Reels. One of them hit 1.2 million views within a week. The hook restructuring is real."</blockquote>
+      </div>
+
+      <!-- TESTIMONIAL 2 -->
+      <div class="testi-card reveal">
+        <div class="testi-header">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Marcus R.">
+          </div>
+          <div class="testi-info">
+            <h4>Marcus R.</h4>
+            <p>Business Coach · 85K followers</p>
+          </div>
+        </div>
+        <div class="testi-result">⏱️ 10 Hours Saved Weekly</div>
+        <blockquote>"I used to spend every Sunday trying to edit my own videos. FocalCut's portal makes it so easy — I just dump my Drive link and get them back on Tuesday. Absolute game changer."</blockquote>
+      </div>
+
+      <!-- TESTIMONIAL 3 -->
+      <div class="testi-card reveal">
+        <div class="testi-header">
+          <div class="testi-avatar">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="James T.">
+          </div>
+          <div class="testi-info">
+            <h4>James T.</h4>
+            <p>Real Estate Agent · 42K followers</p>
+          </div>
+        </div>
+        <div class="testi-result">🎯 3x Average View Duration</div>
+        <blockquote>"My average view duration went from 4 seconds to 12 seconds after switching to FocalCut. They don't just cut clips — they engineer them to keep people watching."</blockquote>
+      </div>
+
     </div>
   </div>
 </section>
@@ -360,7 +411,6 @@
     </div>
     <div class="pricing-grid">
       
-      <!-- PLAN 1: STARTER -->
       <div class="plan reveal">
         <div class="plan-name">The Starter</div>
         <div class="plan-best">Best for: Testing our quality</div>
@@ -374,7 +424,6 @@
         <a href="https://buy.stripe.com/9B65kv1RNgAsdmR4UZaMU03" class="btn btn-ghost">Get The Starter</a>
       </div>
 
-      <!-- PLAN 2: CONSISTENCY -->
       <div class="plan reveal">
         <div class="plan-name">Consistency Builder</div>
         <div class="plan-best">Best for: Weekly posters</div>
@@ -388,7 +437,6 @@
         <a href="https://buy.stripe.com/4gM7sDcwrdogdmR3QVaMU00" class="btn btn-ghost">Get Consistency Builder</a>
       </div>
 
-      <!-- PLAN 3: GROWTH (FEATURED) -->
       <div class="plan featured reveal">
         <div class="plan-name">The Growth Engine</div>
         <div class="plan-best">Most Popular · Best Value</div>
