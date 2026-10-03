@@ -197,7 +197,7 @@
               if (p.status === 'Ready for Review') {
                 const revRemaining = p.revRounds - p.revUsed;
                 
-                // PROFESSIONAL LOGIC: If revisions are exhausted, clicking "Watch Final" auto-approves the project
+                // PROFESSIONAL LOGIC: If revisions are exhausted, clicking "Watch Final" auto-approves
                 if (revRemaining <= 0) {
                   actionBtns += `<button onclick="watchAndAutoApprove('${p.projectId}', '${p.deliveryLink}')" class="btn btn-approve btn-small">Watch Final Video</button>`;
                 } else {
@@ -206,7 +206,6 @@
                   actionBtns += `<button onclick="approveProject('${p.projectId}')" class="btn btn-approve btn-small">Approve</button>`;
                 }
               } else if (p.status === 'Revision Requested') {
-                // UPDATED TEXT: More professional than "Awaiting Admin Update"
                 actionBtns += `<span class="btn btn-disabled btn-small" style="cursor:default;">Editor Updating</span>`;
               } else if (p.status === 'Approved') {
                 if (p.deliveryLink) actionBtns += `<a href="${p.deliveryLink}" target="_blank" class="btn btn-small">Watch Final</a>`;
@@ -236,12 +235,13 @@
     function watchAndAutoApprove(projectId, link) {
       if (link) window.open(link, '_blank');
       
-      const payload = { action: 'approveProject', projectId: projectId };
+      // Send autoApproved flag so backend sends the "Final Video Delivered" email
+      const payload = { action: 'approveProject', projectId: projectId, autoApproved: true };
+      
       fetch(API_URL, {
         method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       }).then(() => {
-        // Refresh the dashboard after a short delay to show the "Approved" status
         setTimeout(() => { login(); }, 1000);
       });
     }
