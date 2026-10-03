@@ -62,7 +62,6 @@
   .modal-content textarea:focus { outline: none; border-color: var(--accent); }
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 
-  /* Mini Spinner for Buttons */
   .btn-spinner { width: 14px; height: 14px; border: 2px solid rgba(0,0,0,0.3); border-top: 2px solid #0A0A0A; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; }
   .btn-ghost .btn-spinner { border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid #fff; }
   .btn-approve .btn-spinner { border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid #fff; }
@@ -196,20 +195,22 @@
               let actionBtns = '';
               
               if (p.status === 'Ready for Review') {
-                if (p.deliveryLink) actionBtns += `<a href="${p.deliveryLink}" target="_blank" class="btn btn-small">Watch Video</a>`;
-                
                 const revRemaining = p.revRounds - p.revUsed;
-                if (revRemaining > 0) {
+                
+                // PROFESSIONAL LOGIC: If revisions are exhausted, clicking "Watch Final" auto-approves the project
+                if (revRemaining <= 0) {
+                  actionBtns += `<button onclick="watchAndAutoApprove('${p.projectId}', '${p.deliveryLink}')" class="btn btn-approve btn-small">Watch Final Video</button>`;
+                } else {
+                  if (p.deliveryLink) actionBtns += `<a href="${p.deliveryLink}" target="_blank" class="btn btn-small">Watch Draft</a>`;
                   actionBtns += `<button onclick="openRevisionModal('${p.projectId}')" class="btn btn-ghost btn-small">Request Revision (${revRemaining} left)</button>`;
                   actionBtns += `<button onclick="approveProject('${p.projectId}')" class="btn btn-approve btn-small">Approve</button>`;
-                } else {
-                  actionBtns += `<button class="btn btn-disabled btn-small" disabled>Revisions Complete</button>`;
-                  actionBtns += `<button onclick="approveProject('${p.projectId}')" class="btn btn-approve btn-small">Approve Final</button>`;
                 }
               } else if (p.status === 'Revision Requested') {
-                actionBtns += `<span class="btn btn-disabled btn-small" style="cursor:default;">Awaiting Admin Update</span>`;
+                // UPDATED TEXT: More professional than "Awaiting Admin Update"
+                actionBtns += `<span class="btn btn-disabled btn-small" style="cursor:default;">Editor Updating</span>`;
               } else if (p.status === 'Approved') {
                 if (p.deliveryLink) actionBtns += `<a href="${p.deliveryLink}" target="_blank" class="btn btn-small">Watch Final</a>`;
+                actionBtns += `<span class="btn btn-disabled btn-small" style="cursor:default;">Completed</span>`;
               }
 
               const etaDate = new Date(p.eta);
@@ -231,6 +232,20 @@
         });
     }
 
+    // NEW FUNCTION: Opens video AND silently approves it in the database
+    function watchAndAutoApprove(projectId, link) {
+      if (link) window.open(link, '_blank');
+      
+      const payload = { action: 'approveProject', projectId: projectId };
+      fetch(API_URL, {
+        method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        // Refresh the dashboard after a short delay to show the "Approved" status
+        setTimeout(() => { login(); }, 1000);
+      });
+    }
+
     function openRevisionModal(projectId) {
       currentProjectId = projectId;
       document.getElementById('revisionNotes').value = '';
@@ -246,7 +261,6 @@
       if (!notes) { alert('Please enter your revision notes.'); return; }
       
       const btn = document.getElementById('modalSubmitBtn');
-      // LOCK BUTTON
       btn.disabled = true;
       btn.innerHTML = '<span class="btn-spinner"></span> Sending...';
 
@@ -257,7 +271,6 @@
         body: JSON.stringify(payload)
       }).then(() => {
         closeModal();
-        // UNLOCK BUTTON
         btn.disabled = false;
         btn.innerHTML = 'Submit Request';
         login();
@@ -271,7 +284,6 @@
     function approveProject(projectId) {
       if (!confirm('Are you sure you want to approve this video? This will finalize the project.')) return;
       
-      // Find the specific button clicked and lock it
       const allBtns = document.querySelectorAll('.project-actions button');
       allBtns.forEach(btn => {
         if (btn.innerText.includes('Approve')) {
@@ -286,14 +298,13 @@
         method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       }).then(() => {
-        login(); // Refresh will naturally reset buttons
+        login();
       }).catch(err => {
         alert('Error approving project.');
-        // Reset buttons on error
         allBtns.forEach(btn => {
           if (btn.innerHTML.includes('Approving')) {
             btn.disabled = false;
-            btn.innerHTML = btn.innerText.includes('Final') ? 'Approve Final' : 'Approve';
+            btn.innerHTML = 'Approve';
           }
         });
       });
