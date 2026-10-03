@@ -55,20 +55,7 @@
       "url":"https://focalcut.com/",
       "description":"Short-form video editing service: hook optimization, retention pacing, captions, sound design and brand-consistent motion for TikTok, Instagram Reels and YouTube Shorts.",
       "areaServed":"Worldwide",
-      "priceRange":"$149 - $399",
-      "makesOffer":[
-        {"@type":"Offer","name":"The Starter","price":"149.00","priceCurrency":"USD","description":"4 short-form videos, one-time purchase."},
-        {"@type":"Offer","name":"Consistency Builder","price":"299.00","priceCurrency":"USD","description":"10 short-form videos, one-time purchase."},
-        {"@type":"Offer","name":"The Growth Engine","price":"399.00","priceCurrency":"USD","description":"15 short-form videos, one-time purchase."}
-      ]
-    },
-    {
-      "@type":"FAQPage",
-      "mainEntity":[
-        {"@type":"Question","name":"Is this a monthly subscription?","acceptedAnswer":{"@type":"Answer","text":"No. All FocalCut packages are one-time purchases. You buy a bundle of video credits and submit footage whenever you are ready."}},
-        {"@type":"Question","name":"What does 24-48 hour turnaround mean?","acceptedAnswer":{"@type":"Answer","text":"Turnaround is measured from the moment we receive complete footage, instructions and references, to delivery of the first draft. Growth Engine first drafts arrive within 24 hours; other packages within 48 hours."}},
-        {"@type":"Question","name":"What counts as a revision?","acceptedAnswer":{"@type":"Answer","text":"A revision is a change to an existing edit based on the original brief. A new concept, new footage or a substantially different creative direction is treated as a new edit."}}
-      ]
+      "priceRange":"$149 - $399"
     }
   ]
 }
@@ -145,38 +132,33 @@
   .service-card h3{font-size:19px;margin-bottom:10px}
   .service-card p{color:var(--text-secondary);font-size:14.5px}
 
-  .system{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
-  .system-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:sys}
+  .process{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
+  .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:sys}
   .sys{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:16px;padding:26px 22px;counter-increment:sys}
   .sys::before{content:"0" counter(sys);font-family:'Space Grotesk';font-size:13px;font-weight:700;color:var(--accent-primary);display:block;margin-bottom:12px}
   .sys h4{font-size:16px;margin-bottom:8px}
   .sys p{color:var(--text-secondary);font-size:13.5px}
 
-  .portfolio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .work{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid var(--border-default);background:var(--bg-surface)}
-  .work .thumb{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease}
-  .work::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,10,10,.95) 100%)}
-  .work-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .work{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid var(--border-default);background:#000}
+  .work iframe{width:100%;height:100%;border:none}
+  .work-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2;background:linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%)}
   .work-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent-primary);text-transform:uppercase;margin-bottom:6px}
   .work-title{font-family:'Space Grotesk';font-size:15px;font-weight:600}
-  .work-badge{position:absolute;top:12px;left:12px;z-index:2;background:rgba(10,10,10,.7);border:1px solid var(--border-default);border-radius:100px;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-secondary);text-transform:uppercase}
-  .work.clickable{cursor:pointer}
-  .work.clickable:hover .thumb{transform:scale(1.05)}
-  .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:rgba(10,10,10,.6);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.1);display:none;align-items:center;justify-content:center;z-index:3}
-  .work.clickable .play-btn{display:flex}
-  .play-btn::after{content:"";width:0;height:0;border-left:12px solid var(--accent-primary);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
-  .portfolio-note{text-align:center;color:var(--text-muted);font-size:13px;margin-top:28px}
 
-  .modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
-  .modal.open{display:flex}
-  .modal iframe{width:min(420px,90vw);aspect-ratio:9/16;border:0;border-radius:12px}
-  .modal-close{position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:30px;cursor:pointer}
+  .testimonials{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
+  .guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .g-card{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:16px;padding:32px}
+  .g-card .ic{font-size:26px;margin-bottom:16px}
+  .g-card h3{font-size:18px;margin-bottom:10px}
+  .g-card p{color:var(--text-secondary);font-size:14.5px}
 
   .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
   .plan{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:36px 30px;display:flex;flex-direction:column;transition:all .25s ease}
   .plan:hover{transform:translateY(-4px)}
-  .plan.featured{border-color:var(--accent-primary);background:linear-gradient(180deg,rgba(163,230,53,.04),var(--bg-surface));position:relative}
-  .plan.featured::before{content:"FLAGSHIP PACKAGE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent-primary);color:var(--accent-text);padding:5px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.1em}
+  .plan.featured{border-color:var(--accent-primary);background:linear-gradient(180deg,rgba(163,230,53,.04),var(--bg-surface));position:relative;transform:scale(1.05);z-index:2}
+  .plan.featured:hover{transform:scale(1.05) translateY(-4px)}
+  .plan.featured::before{content:"MOST POPULAR";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent-primary);color:var(--accent-text);padding:5px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.1em}
   .plan-name{color:var(--text-secondary);font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
   .plan-best{color:var(--accent-primary);font-size:12.5px;font-weight:600;margin-bottom:16px}
   .plan-price{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
@@ -188,19 +170,6 @@
   .plan li::before{content:"";width:18px;height:18px;flex-shrink:0;margin-top:2px;background:var(--accent-primary);mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.4-1.4z'/></svg>");-webkit-mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.4-1.4z'/></svg>");mask-size:contain}
   .plan .btn{width:100%}
   .pricing-notes{max-width:760px;margin:36px auto 0;color:var(--text-muted);font-size:13px;line-height:1.7;text-align:center}
-
-  .after{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
-  .after-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;counter-reset:af}
-  .af{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:14px;padding:20px 16px;text-align:center;counter-increment:af}
-  .af::before{content:counter(af,decimal-leading-zero);font-family:'Space Grotesk';font-size:12px;font-weight:700;color:var(--accent-primary);display:block;margin-bottom:10px}
-  .af h4{font-size:13.5px;margin-bottom:6px}
-  .af p{color:var(--text-muted);font-size:12px}
-
-  .guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .g-card{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px}
-  .g-card .ic{font-size:26px;margin-bottom:16px}
-  .g-card h3{font-size:18px;margin-bottom:10px}
-  .g-card p{color:var(--text-secondary);font-size:14.5px}
 
   .faq-list{max-width:720px;margin:0 auto}
   .faq-item{border-bottom:1px solid var(--border-default)}
@@ -230,7 +199,6 @@
   .field textarea{resize:vertical;min-height:100px}
   .field input::placeholder,.field textarea::placeholder{color:var(--text-muted)}
   .form .btn{width:100%;margin-top:8px}
-  .hp-field{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
   .form-status{margin-top:14px;font-size:14px;display:none}
   .form-status.ok{display:block;color:var(--success)}
   .form-status.err{display:block;color:var(--error)}
@@ -248,13 +216,14 @@
 
   @media(max-width:960px){
     .services-grid,.portfolio-grid,.guarantee-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
-    .system-grid{grid-template-columns:repeat(2,1fr)}
-    .after-grid{grid-template-columns:repeat(2,1fr)}
+    .process-grid{grid-template-columns:repeat(2,1fr)}
     .contact-grid{grid-template-columns:1fr;gap:40px}
     .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+    .plan.featured{transform:none}
+    .plan.featured:hover{transform:translateY(-4px)}
   }
   @media(max-width:640px){
-    .services-grid,.portfolio-grid,.guarantee-grid,.pricing-grid,.system-grid,.after-grid,.footer-grid{grid-template-columns:1fr}
+    .services-grid,.portfolio-grid,.guarantee-grid,.pricing-grid,.process-grid,.footer-grid{grid-template-columns:1fr}
     .hero{padding:130px 0 70px}
     section{padding:70px 0}
     .hero-meta{gap:28px}
@@ -269,13 +238,12 @@
       <img src="logo.png" alt="FocalCut">
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#services">Services</a>
-      <a href="#system">Our System</a>
       <a href="#work">Work</a>
+      <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="portal.html" class="portal-link">Client Portal</a>
-      <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary">Get Started →</a>
+      <a href="portal.html" class="portal-link">Login</a>
+      <a href="#pricing" class="btn btn-primary">Get Started →</a>
     </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
   </div>
@@ -285,11 +253,14 @@
   <div class="container hero-inner">
     <div class="eyebrow"><span class="dot"></span> Accepting new clients for Q4</div>
     <h1>Transform Raw Footage Into <span class="hl">Content That Converts.</span></h1>
-    <p>FocalCut is a specialist short-form editing studio. We restructure hooks, tighten pacing, and design captions and sound around one goal: keeping viewers watching until the last frame.</p>
+    <p>Send us your raw footage via Drive or Dropbox. Get ready-to-post, retention-engineered Reels delivered in 24–48 hours.</p>
     <div class="hero-cta">
-      <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary btn-lg">Get 15 Videos for $399 →</a>
+      <a href="#pricing" class="btn btn-primary btn-lg">View Packages & Pricing →</a>
       <a href="#work" class="btn btn-ghost btn-lg">See Recent Work</a>
     </div>
+    <p style="margin-top: 20px; font-size: 13px; color: var(--text-muted);">
+      🛡️ <strong style="color: var(--text-secondary);">100% Brief-Match Guarantee:</strong> If your first draft misses the mark, we re-edit it for free.
+    </p>
     <div class="hero-meta">
       <div><span class="num">15</span><span class="lbl">Videos / flagship package</span></div>
       <div><span class="num">24–48h</span><span class="lbl">First-draft turnaround</span></div>
@@ -301,7 +272,7 @@
 
 <div class="trust-strip">
   <div class="container trust-inner">
-    <span><strong>Built for</strong> TikTok · Instagram Reels · YouTube Shorts</span>
+    <span><strong>Built for</strong> TikTok • Instagram Reels • YouTube Shorts</span>
     <span class="sep">•</span><span>No long-term contracts</span>
     <span class="sep">•</span><span>Clear revision policy</span>
     <span class="sep">•</span><span>Secure Stripe checkout</span>
@@ -309,83 +280,76 @@
   </div>
 </div>
 
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="tag">What We Do</div>
-      <h2>Editing engineered for retention</h2>
-      <p>We don't just cut clips. We build watch time.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal"><div class="service-icon">🪝</div><h3>Hook Optimization</h3><p>The first 3 seconds decide everything. We restructure your opening so viewers stop scrolling and start watching.</p></div>
-      <div class="service-card reveal"><div class="service-icon">🔁</div><h3>Pacing & Retention</h3><p>Tight jump cuts, pattern interrupts and visual progression designed to hold attention through the final frame.</p></div>
-      <div class="service-card reveal"><div class="service-icon">⚡</div><h3>Dynamic Captions</h3><p>Brand-aligned caption systems that emphasize key phrases and keep sound-off viewers engaged.</p></div>
-      <div class="service-card reveal"><div class="service-icon">🎵</div><h3>Sound Design</h3><p>SFX, music beds and audio accents that support the message instead of competing with it.</p></div>
-      <div class="service-card reveal"><div class="service-icon">🎨</div><h3>Brand Styling</h3><p>Your fonts, colors and motion language applied consistently across every deliverable.</p></div>
-      <div class="service-card reveal"><div class="service-icon">📱</div><h3>Platform-Native Export</h3><p>Correct 9:16 framing, safe zones and bitrate for TikTok, Reels and Shorts on delivery.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="system" id="system">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="tag">Methodology</div>
-      <h2>The FocalCut Editing System</h2>
-      <p>Every video passes through the same five-stage process. No guesswork.</p>
-    </div>
-    <div class="system-grid">
-      <div class="sys reveal"><h4>Hook</h4><p>We identify and rebuild your strongest opening moment.</p></div>
-      <div class="sys reveal"><h4>Retention</h4><p>We remove friction, tighten pacing and build visual progression.</p></div>
-      <div class="sys reveal"><h4>Sound</h4><p>SFX and music support the edit rather than distract from it.</p></div>
-      <div class="sys reveal"><h4>Brand</h4><p>Typography, color, captions and motion stay consistent.</p></div>
-      <div class="sys reveal"><h4>Final Polish</h4><p>Every export is checked for framing, captions, audio and platform specs.</p></div>
-    </div>
-  </div>
-</section>
-
 <section class="portfolio" id="work">
   <div class="container">
     <div class="section-head reveal">
       <div class="tag">Selected Work</div>
       <h2>Recent edits, before → after</h2>
-      <p>Real projects from our editing pipeline.</p>
+      <p>Real projects from our editing pipeline. Click play to see the retention hooks in action.</p>
     </div>
     <div class="portfolio-grid">
-      <!-- WHEN YOU HAVE REAL CLIPS: add data-video="https://player.vimeo.com/XXXX" and the play button + click-to-watch activates automatically -->
-      <article class="work reveal" data-video="">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80')"></div>
-        <span class="work-badge">Before → After</span>
-        <div class="play-btn" aria-hidden="true"></div>
-        <div class="work-info"><div class="work-cat">Business Coach</div><div class="work-title">Talking-head hook restructure</div></div>
-      </article>
-      <article class="work reveal" data-video="">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80')"></div>
-        <span class="work-badge">Before → After</span>
-        <div class="play-btn" aria-hidden="true"></div>
-        <div class="work-info"><div class="work-cat">Fitness Brand</div><div class="work-title">Seamless loop transition edit</div></div>
-      </article>
-      <article class="work reveal" data-video="">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80')"></div>
-        <span class="work-badge">Before → After</span>
-        <div class="play-btn" aria-hidden="true"></div>
-        <div class="work-info"><div class="work-cat">E-commerce</div><div class="work-title">Product showcase reel</div></div>
-      </article>
-      <article class="work reveal" data-video="">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80')"></div>
-        <span class="work-badge">Before → After</span>
-        <div class="play-btn" aria-hidden="true"></div>
-        <div class="work-info"><div class="work-cat">Real Estate</div><div class="work-title">Property tour hook edit</div></div>
-      </article>
+      
+      <!-- VIDEO 1 -->
+      <div class="work reveal">
+        <!-- REPLACE THE SRC BELOW WITH YOUR VIMEO EMBED LINK -->
+        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_1?h=YOUR_HASH&autoplay=0&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div class="work-info">
+          <div class="work-cat">Business Coach</div>
+          <div class="work-title">Talking-head hook restructure</div>
+        </div>
+      </div>
+
+      <!-- VIDEO 2 -->
+      <div class="work reveal">
+        <!-- REPLACE THE SRC BELOW WITH YOUR VIMEO EMBED LINK -->
+        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_2?h=YOUR_HASH&autoplay=0&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div class="work-info">
+          <div class="work-cat">Fitness Brand</div>
+          <div class="work-title">Seamless loop transition edit</div>
+        </div>
+      </div>
+
+      <!-- VIDEO 3 -->
+      <div class="work reveal">
+        <!-- REPLACE THE SRC BELOW WITH YOUR VIMEO EMBED LINK -->
+        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_3?h=YOUR_HASH&autoplay=0&muted=1&loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div class="work-info">
+          <div class="work-cat">E-commerce</div>
+          <div class="work-title">Product showcase reel</div>
+        </div>
+      </div>
+
     </div>
-    <p class="portfolio-note">Full case-study reels are shared with clients during onboarding. Public reel available on request.</p>
   </div>
 </section>
 
-<div class="modal" id="videoModal" role="dialog" aria-modal="true">
-  <button class="modal-close" id="modalClose" aria-label="Close video">×</button>
-  <iframe id="modalFrame" src="" title="FocalCut project video" allowfullscreen></iframe>
-</div>
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag">How It Works</div>
+      <h2>From Raw Footage to Posted in 3 Steps</h2>
+    </div>
+    <div class="process-grid">
+      <div class="sys reveal"><h4>01. Send Footage</h4><p>Upload your raw clips to Drive or Dropbox and paste the link in your portal. No file size limits.</p></div>
+      <div class="sys reveal"><h4>02. We Edit</h4><p>We apply our retention system (hooks, captions, sound) and deliver a draft in 24-48 hours.</p></div>
+      <div class="sys reveal"><h4>03. Approve & Post</h4><p>Review the video in your portal. Request revisions if needed, or approve and download.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag">Client Results</div>
+      <h2>Edits that actually perform</h2>
+    </div>
+    <div class="guarantee-grid">
+      <div class="g-card reveal"><div class="ic"></div><h3>1.2M Views</h3><p>"We took a raw, 20-minute podcast and FocalCut turned it into 5 Reels. One of them hit 1.2 million views on TikTok within a week. The hook restructuring is real."</p><p style="color: var(--accent-primary); font-weight: 600; margin-top: 16px;">— Sarah K., Fitness Creator</p></div>
+      <div class="g-card reveal"><div class="ic">⏱️</div><h3>10 Hours Saved</h3><p>"I used to spend every Sunday trying to edit my own videos. FocalCut's portal makes it so easy to just dump my Drive link and get them back on Tuesday. Game changer."</p><p style="color: var(--accent-primary); font-weight: 600; margin-top: 16px;">— Marcus R., Business Coach</p></div>
+      <div class="g-card reveal"><div class="ic"></div><h3>3x Retention</h3><p>"My average view duration went from 4 seconds to 12 seconds after switching to FocalCut. They actually understand how the algorithm works."</p><p style="color: var(--accent-primary); font-weight: 600; margin-top: 16px;">— James T., Real Estate Agent</p></div>
+    </div>
+  </div>
+</section>
 
 <section class="pricing" id="pricing">
   <div class="container">
@@ -395,87 +359,56 @@
       <p>No subscriptions. Buy a bundle of video credits and submit footage whenever you're ready.</p>
     </div>
     <div class="pricing-grid">
+      
+      <!-- PLAN 1: STARTER -->
       <div class="plan reveal">
         <div class="plan-name">The Starter</div>
-        <div class="plan-best">Best for: testing our editing quality</div>
+        <div class="plan-best">Best for: Testing our quality</div>
         <div class="plan-price"><span class="amt">$149</span><span class="per">one-time</span></div>
-        <div class="plan-desc">Essential editing for creators beginning a consistent posting workflow.</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">approx. $37.25 per video</div>
         <ul>
           <li>4 short-form videos (15–30s each)</li>
           <li>Essential captions & hook optimization</li>
           <li>48-hour first-draft turnaround</li>
-          <li>Platform-ready 9:16 export</li>
         </ul>
         <a href="https://buy.stripe.com/9B65kv1RNgAsdmR4UZaMU03" class="btn btn-ghost">Get The Starter</a>
       </div>
-      <div class="plan featured reveal">
-        <div class="plan-name">The Growth Engine</div>
-        <div class="plan-best">Best for: full content engine + fastest delivery</div>
-        <div class="plan-price"><span class="amt">$399</span><span class="per">one-time</span></div>
-        <div class="plan-desc">Everything in Consistency Builder, plus advanced retention editing, a full brand system, 24h drafts and 2 revision rounds per video.</div>
-        <ul>
-          <li>15 short-form videos (15–30s each)</li>
-          <li>Advanced hook, pacing & retention editing</li>
-          <li>Custom brand styling & sound design</li>
-          <li>24-hour first-draft turnaround</li>
-          <li>2 revision rounds per video</li>
-        </ul>
-        <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary">Get The Growth Engine</a>
-      </div>
+
+      <!-- PLAN 2: CONSISTENCY -->
       <div class="plan reveal">
         <div class="plan-name">Consistency Builder</div>
-        <div class="plan-best">Best for: dependable weekly output</div>
+        <div class="plan-best">Best for: Weekly posters</div>
         <div class="plan-price"><span class="amt">$299</span><span class="per">one-time</span></div>
-        <div class="plan-desc">More volume with advanced retention editing for brands posting every week.</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">approx. $29.90 per video</div>
         <ul>
           <li>10 short-form videos (15–30s each)</li>
           <li>Advanced hook, pacing & retention editing</li>
-          <li>Custom brand styling & sound design</li>
-          <li>48-hour first-draft turnaround</li>
           <li>1 revision round per video</li>
         </ul>
         <a href="https://buy.stripe.com/4gM7sDcwrdogdmR3QVaMU00" class="btn btn-ghost">Get Consistency Builder</a>
       </div>
+
+      <!-- PLAN 3: GROWTH (FEATURED) -->
+      <div class="plan featured reveal">
+        <div class="plan-name">The Growth Engine</div>
+        <div class="plan-best">Most Popular · Best Value</div>
+        <div class="plan-price"><span class="amt">$399</span><span class="per">one-time</span></div>
+        <div style="color: var(--accent-primary); font-size: 13px; font-weight: 600; margin-bottom: 20px;">only $26.60 per video</div>
+        <ul>
+          <li>15 short-form videos (15–30s each)</li>
+          <li>Custom brand styling & sound design</li>
+          <li>24-hour turnaround + 2 revisions</li>
+        </ul>
+        <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary">Get The Growth Engine</a>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">🛡️ Protected by Brief-Match Guarantee</p>
+      </div>
+
     </div>
     <p class="pricing-notes">
       Turnaround is measured from receipt of complete footage, instructions and references, to delivery of the <strong>first draft</strong>.<br>
       A revision = changes to an existing edit based on the original brief. New concepts, new footage or a different creative direction are treated as new edits.<br>
       Unused videos remain on your account. Reorder any package at any time.
     </p>
-  </div>
-</section>
-
-<section class="after" id="after">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="tag">After Checkout</div>
-      <h2>Exactly what happens after you pay</h2>
-      <p>No mystery. This is the full journey from checkout to published content.</p>
-    </div>
-    <div class="after-grid">
-      <div class="af reveal"><h4>Payment confirmed</h4><p>Secure Stripe checkout.</p></div>
-      <div class="af reveal"><h4>Welcome email</h4><p>Your private dashboard link arrives.</p></div>
-      <div class="af reveal"><h4>Submit footage</h4><p>Paste your Drive/Dropbox link.</p></div>
-      <div class="af reveal"><h4>We edit</h4><p>The FocalCut System is applied.</p></div>
-      <div class="af reveal"><h4>Review</h4><p>Watch your draft in the dashboard.</p></div>
-      <div class="af reveal"><h4>Approve / revise</h4><p>One click, with clear notes.</p></div>
-      <div class="af reveal"><h4>Final files</h4><p>Platform-ready MP4s delivered.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="guarantee" id="guarantee">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="tag">Why FocalCut</div>
-      <h2>Built on guarantees, not hype</h2>
-    </div>
-    <div class="guarantee-grid">
-      <div class="g-card reveal"><div class="ic">🎯</div><h3>Brief-Match Guarantee</h3><p>If a first draft misses your submitted brief, we re-edit it at no cost within your included revision allowance.</p></div>
-      <div class="g-card reveal"><div class="ic">🔒</div><h3>Your Credits, Your Pace</h3><p>Unused videos stay on your account. Submit one video today and the rest whenever your footage is ready.</p></div>
-      <div class="g-card reveal"><div class="ic">🤝</div><h3>Human, 1-on-1</h3><p>No ticket queues, no rotating account managers. You communicate directly with the editor cutting your videos.</p></div>
-    </div>
-    <!-- PASTE REAL TESTIMONIALS HERE ONCE YOU HAVE CLIENTS. Never publish fabricated quotes. -->
   </div>
 </section>
 
@@ -491,8 +424,6 @@
       <div class="faq-item"><button class="faq-q" aria-expanded="false">What does "24–48h turnaround" mean exactly?</button><div class="faq-a"><p>It is the time from receiving complete footage, instructions and references to delivery of your first draft. Growth Engine drafts arrive within 24 hours; Starter and Consistency Builder within 48 hours.</p></div></div>
       <div class="faq-item"><button class="faq-q" aria-expanded="false">What counts as a revision?</button><div class="faq-a"><p>A revision is a change to an existing edit based on your original brief (pacing, caption tweaks, music swap, trim). A new concept, new footage or a different creative direction is treated as a new edit.</p></div></div>
       <div class="faq-item"><button class="faq-q" aria-expanded="false">I bought 10 videos but only have footage for 1. Is that okay?</button><div class="faq-a"><p>Completely. Submit one project now; your remaining credits stay on your account dashboard and you can submit the rest whenever you're ready.</p></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">How do I receive the final videos?</button><div class="faq-a"><p>Final platform-ready MP4s are delivered to your Google Drive folder and linked in your dashboard, with an email notification when they're ready for review.</p></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Who owns the finished edits?</button><div class="faq-a"><p>You do, upon full payment. We may ask permission to feature work in our portfolio; you can opt out at any time. You remain responsible for rights to source footage and any licensed music you provide.</p></div></div>
     </div>
   </div>
 </section>
@@ -501,7 +432,7 @@
   <div class="container cta-inner reveal">
     <h2>Ready to stop scrolling and start growing?</h2>
     <p>Secure your package today. First drafts back in 24–48 hours.</p>
-    <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary btn-lg">Get 15 Videos for $399 →</a>
+    <a href="#pricing" class="btn btn-primary btn-lg">View Packages & Pricing →</a>
   </div>
 </section>
 
@@ -511,7 +442,7 @@
       <div class="contact-info reveal">
         <div class="tag" style="color:var(--accent-primary);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px">Get In Touch</div>
         <h3>Questions before you buy?</h3>
-        <p>Tell us about your channel and goals. We reply within 24 hours with an honest recommendation — even if it's a smaller package.</p>
+        <p>Tell us about your channel and goals. We reply within 24 hours with an honest recommendation.</p>
         <ul class="contact-list">
           <li><span class="ic">✉</span> hello@focalcut.com</li>
           <li><span class="ic">⏱</span> Reply within 24 hours</li>
@@ -521,34 +452,12 @@
       <form class="form reveal" id="contactForm">
         <div class="field"><label for="c-name">Your name</label><input id="c-name" type="text" name="name" placeholder="Jane Doe" required></div>
         <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" name="email" placeholder="jane@brand.com" required></div>
-        <div class="field"><label for="c-social">Instagram / TikTok URL</label><input id="c-social" type="url" name="social_url" placeholder="https://instagram.com/yourhandle"></div>
-        <div class="field"><label for="c-type">What do you create?</label>
-          <select id="c-type" name="creator_type">
-            <option>Creator / Influencer</option><option>Podcast</option><option>Coach / Consultant</option>
-            <option>Business / Agency</option><option>E-commerce</option><option>Real Estate</option><option>Other</option>
+        <div class="field"><label for="c-need">What do you need?</label>
+          <select id="c-need" name="creator_type">
+            <option>Video Editing Package</option><option>Custom Quote</option><option>General Question</option>
           </select>
         </div>
-        <div class="field"><label for="c-platform">Where do you post?</label>
-          <select id="c-platform" name="platforms">
-            <option>TikTok</option><option>Instagram Reels</option><option>YouTube Shorts</option><option>Multiple platforms</option>
-          </select>
-        </div>
-        <div class="field"><label for="c-footage">What needs editing?</label>
-          <select id="c-footage" name="footage_type">
-            <option>Talking head</option><option>Podcast recordings</option><option>UGC / raw phone footage</option>
-            <option>Ads / promos</option><option>Interviews</option><option>Other</option>
-          </select>
-        </div>
-        <div class="field"><label for="c-package">Which package interests you?</label>
-          <select id="c-package" name="package">
-            <option>Growth Engine — $399 (15 videos)</option>
-            <option>Consistency Builder — $299 (10 videos)</option>
-            <option>The Starter — $149 (4 videos)</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div class="field"><label for="c-message">Tell us about your project</label><textarea id="c-message" name="message" placeholder="What is your niche? How often do you currently post?"></textarea></div>
-        <div class="hp-field" aria-hidden="true"><label>Leave this empty</label><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="field"><label for="c-message">Message</label><textarea id="c-message" name="message" placeholder="Tell us about your project..." required></textarea></div>
         <button type="submit" class="btn btn-primary btn-lg" id="contactBtn">Send Message →</button>
         <p class="form-status" id="formStatus"></p>
       </form>
@@ -563,7 +472,7 @@
         <a href="#" class="logo"><img src="logo.png" alt="FocalCut"></a>
         <p>Premium short-form video editing for creators and brands who refuse to compromise on retention.</p>
       </div>
-      <div class="footer-col"><h5>Product</h5><a href="#services">Services</a><a href="#work">Portfolio</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+      <div class="footer-col"><h5>Product</h5><a href="#work">Portfolio</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
       <div class="footer-col"><h5>Company</h5><a href="#contact">Contact</a><a href="portal.html">Client Portal</a></div>
       <div class="footer-col"><h5>Legal</h5><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="refunds.html">Refund Policy</a></div>
     </div>
@@ -574,7 +483,6 @@
 </footer>
 
 <script>
-  // Mobile menu
   const nav = document.getElementById('nav');
   const toggle = document.getElementById('menuToggle');
   toggle.addEventListener('click', () => {
@@ -586,7 +494,6 @@
     nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.textContent='☰';
   }));
 
-  // Accessible FAQ
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.parentElement;
@@ -595,36 +502,16 @@
     });
   });
 
-  // Portfolio modal (activates only when data-video is filled)
-  const modal = document.getElementById('videoModal');
-  const frame = document.getElementById('modalFrame');
-  document.querySelectorAll('.work').forEach(card => {
-    const url = card.getAttribute('data-video');
-    if (url) {
-      card.classList.add('clickable');
-      card.setAttribute('role','button'); card.setAttribute('tabindex','0');
-      const open = () => { frame.src = url; modal.classList.add('open'); };
-      card.addEventListener('click', open);
-      card.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); open(); } });
-    }
-  });
-  document.getElementById('modalClose').addEventListener('click', () => { modal.classList.remove('open'); frame.src=''; });
-  modal.addEventListener('click', e => { if (e.target===modal) { modal.classList.remove('open'); frame.src=''; } });
-
-  // Contact form -> your Apps Script (branded email via Resend)
   const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
   document.getElementById('contactForm').addEventListener('submit', async e => {
     e.preventDefault();
     const btn = document.getElementById('contactBtn');
     const status = document.getElementById('formStatus');
-    if (e.target.website.value) return; // honeypot: silent drop bots
     btn.disabled = true; btn.textContent = 'Sending...';
     const payload = {
       action: 'contact',
       name: e.target.name.value, email: e.target.email.value,
-      social: e.target.social_url.value, creatorType: e.target.creator_type.value,
-      platforms: e.target.platforms.value, footageType: e.target.footage_type.value,
-      package: e.target.package.value, message: e.target.message.value
+      package: e.target.creator_type.value, message: e.target.message.value
     };
     try {
       await fetch(API_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) });
@@ -638,7 +525,6 @@
     btn.disabled = false; btn.textContent = 'Send Message →';
   });
 
-  // Reveal on scroll
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } }), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
