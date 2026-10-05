@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful | FocalCut</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary:#0A0A0A; --bg-surface:#121212;
+    --border-default:#262626;
+    --text-primary:#FAFAFA; --text-secondary:#A3A3A3; --text-muted:#737373;
+    --accent-primary:#A3E635; --accent-hover:#BEF264; --accent-text:#0A0A0A;
+    --success:#22C55E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .container{max-width:600px;width:100%}
+  .card{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:48px 40px;text-align:center}
+  .logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:40px}
+  .logo img{height:32px;width:auto}
+  .success-icon{width:80px;height:80px;border-radius:50%;background:rgba(34,197,94,0.1);border:2px solid var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:40px}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:32px;margin-bottom:16px;color:var(--text-primary)}
+  .subtitle{color:var(--text-secondary);font-size:16px;margin-bottom:32px;line-height:1.6}
+  .steps{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:12px;padding:24px;margin-bottom:32px;text-align:left}
+  .step{display:flex;gap:16px;margin-bottom:20px}
+  .step:last-child{margin-bottom:0}
+  .step-num{width:32px;height:32px;border-radius:50%;background:var(--accent-primary);color:var(--accent-text);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+  .step-content h3{font-size:15px;font-weight:600;margin-bottom:4px;color:var(--text-primary)}
+  .step-content p{font-size:14px;color:var(--text-secondary);margin:0}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 32px;border-radius:8px;font-weight:600;font-size:15px;font-family:'Inter',sans-serif;cursor:pointer;border:none;transition:all .2s ease;text-decoration:none}
+  .btn-primary{background:var(--accent-primary);color:var(--accent-text)!important}
+  .btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--text-primary);border:1px solid var(--border-default);margin-top:12px}
+  .btn-ghost:hover{border-color:var(--text-muted);background:var(--bg-surface)}
+  .note{margin-top:24px;padding-top:24px;border-top:1px solid var(--border-default);font-size:13px;color:var(--text-muted)}
+  .note a{color:var(--accent-primary);text-decoration:none}
+  .note a:hover{text-decoration:underline}
+  @media(max-width:640px){
+    .card{padding:32px 24px}
+    h1{font-size:26px}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="logo">
+        <img src="logo.png" alt="FocalCut">
+      </div>
+      
+      <div class="success-icon">✓</div>
+      
+      <h1>Payment Successful!</h1>
+      <p class="subtitle">Thank you for choosing FocalCut. Your package is now active and we're ready to start editing your videos.</p>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Check Your Email</h3>
+            <p>We've sent your portal login credentials to your email address. Look for an email from <strong style="color:var(--accent-primary)">hello@focalcut.com</strong></p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Access Your Portal</h3>
+            <p>Click the link in the email to access your private client dashboard where you can submit footage and track your projects.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Submit Your Footage</h3>
+            <p>Upload your raw videos to Google Drive or Dropbox, then paste the link in your portal to get started.</p>
+          </div>
+        </div>
+      </div>
+      
+      <a href="portal.html" class="btn btn-primary">Go to Client Portal →</a>
+      <br>
+      <a href="index.html" class="btn btn-ghost">Back to Homepage</a>
+      
+      <div class="note">
+        <p>Didn't receive the email? Check your spam folder or contact us at <a href="mailto:support@focalcut.com">support@focalcut.com</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
