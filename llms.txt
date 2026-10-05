@@ -1,18 +1,26 @@
-# FocalCut
-> FocalCut is a short-form video editing studio operated by Big Bay Mall LLC (Wyoming, USA). It edits TikTok videos, Instagram Reels and YouTube Shorts for creators, coaches, e-commerce brands and real estate professionals.
+# FocalCut - Premium Short-Form Video Editing Agency
 
-## Services
-- Short-form video editing (15-30s): hook optimization, retention pacing, captions, sound design, brand styling, platform-native 9:16 export.
+FocalCut is a premium short-form video editing agency and a brand of Big Bay Mall LLC, based in Wyoming, USA. We specialize in turning raw footage into retention-engineered short-form videos for TikTok, Instagram Reels, and YouTube Shorts.
 
-## Pricing (one-time packages, not subscriptions)
-- The Starter: $149 for 4 edited videos, 48h first-draft turnaround.
-- Consistency Builder: $299 for 10 edited videos, 48h first-draft turnaround, 1 revision round per video.
-- The Growth Engine: $399 for 15 edited videos, 24h first-draft turnaround, 2 revision rounds per video.
+## Core Services
+- Hook optimization and retention pacing
+- Dynamic, brand-aligned captions
+- Professional sound design and music beds
+- 24–48 hour first-draft turnaround times
 
-## How it works
-1. Client purchases a package via Stripe. 2. Client receives a private dashboard link by email. 3. Client submits footage via Google Drive/Dropbox link. 4. FocalCut edits and delivers a first draft in 24-48h. 5. Client approves or requests revisions in the dashboard. 6. Final MP4s delivered to client Drive.
+## Pricing & Packages (One-time purchases, no subscriptions)
+- The Starter: $149 for 4 videos (~$37.25/video)
+- Consistency Builder: $299 for 10 videos (~$29.90/video)
+- The Growth Engine: $399 for 15 videos (~$26.60/video, includes 24h turnaround and 2 revision rounds per video)
 
-## Contact
-- Website: https://focalcut.com
+## Key Differentiators
+- Private client portal for seamless footage submission and project tracking
+- No long-term contracts or monthly subscriptions
+- 1-on-1 human communication (no rotating account managers)
+- 100% Brief-Match Guarantee: If the first draft misses the mark, we re-edit it for free within the included revision allowance.
+
+## Contact & Links
+- Website: https://focalcut.com/
 - Email: hello@focalcut.com
-- Client portal: https://focalcut.com/portal.html
+- Support: support@focalcut.com
+- Client Portal: https://focalcut.com/portal.html
