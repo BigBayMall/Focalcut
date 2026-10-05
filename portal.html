@@ -154,13 +154,18 @@
         .then(res => res.json())
         .then(data => {
           document.getElementById('loadingSpinner').classList.add('hidden');
+          
+          // If the token is invalid, clear the browser memory and show login
           if (data.error) { 
             localStorage.clear();
             document.getElementById('loginView').classList.remove('hidden');
             document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('errorMsg').innerText = 'Session expired. Please log in again.';
             document.getElementById('errorMsg').style.display = 'block';
             return; 
           }
+          
+          // Success: Show dashboard
           document.getElementById('loginView').classList.add('hidden');
           document.getElementById('dashboardView').classList.remove('hidden');
           document.getElementById('logoutBtn').classList.remove('hidden');
@@ -196,8 +201,6 @@
               
               if (p.status === 'Ready for Review') {
                 const revRemaining = p.revRounds - p.revUsed;
-                
-                // PROFESSIONAL LOGIC: If revisions are exhausted, clicking "Watch Final" auto-approves
                 if (revRemaining <= 0) {
                   actionBtns += `<button onclick="watchAndAutoApprove('${p.projectId}', '${p.deliveryLink}')" class="btn btn-approve btn-small">Watch Final Video</button>`;
                 } else {
@@ -228,6 +231,14 @@
                 </div>`;
             });
           }
+        })
+        .catch(err => {
+          // THIS IS THE FIX! If the network fails, stop the spinner and show login.
+          console.error('Login fetch failed:', err);
+          document.getElementById('loadingSpinner').classList.add('hidden');
+          document.getElementById('loginView').classList.remove('hidden');
+          document.getElementById('errorMsg').innerText = 'Connection error. Please check your internet and try again.';
+          document.getElementById('errorMsg').style.display = 'block';
         });
     }
 
