@@ -110,7 +110,6 @@
   .hero p{font-size:clamp(16px,1.5vw,19px);color:var(--text-secondary);max-width:640px;margin:0 auto 40px}
   .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
   
-  /* PREMIUM HERO META GRID */
   .hero-meta{margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid var(--border-default)}
   .hero-meta div{display:flex;flex-direction:column;align-items:center;gap:4px}
   .hero-meta .num{font-family:'Space Grotesk';font-size:22px;font-weight:700}
@@ -122,7 +121,6 @@
   .section-head h2{font-size:clamp(30px,4vw,44px);margin-bottom:16px}
   .section-head p{color:var(--text-secondary);font-size:17px}
 
-  /* PREMIUM TRUST STRIP */
   .trust-strip{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default);padding:28px 0}
   .trust-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;align-items:center;font-size:13.5px;color:var(--text-secondary)}
   .trust-inner strong{color:var(--text-primary);font-weight:600}
@@ -142,7 +140,6 @@
   .work-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent-primary);text-transform:uppercase;margin-bottom:6px}
   .work-title{font-family:'Space Grotesk';font-size:15px;font-weight:600}
 
-  /* PREMIUM TESTIMONIALS WITH AVATARS */
   .testimonials{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
   .guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .testi-card{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:16px;padding:32px;display:flex;flex-direction:column}
@@ -154,30 +151,32 @@
   .testi-result{display:inline-block;background:rgba(163,230,53,0.1);color:var(--accent-primary);padding:4px 12px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:16px}
   .testi-card blockquote{font-size:14.5px;color:var(--text-secondary);line-height:1.7;font-style:italic;flex:1;margin:0}
 
-  /* NEW PRICING IMAGE STYLES */
+  /* NEW TRANSPARENT SQUARE IMAGE STYLES */
   .plan-image-container {
     width: 100%;
-    aspect-ratio: 4/3;
-    background: #000;
+    aspect-ratio: 1/1; /* Perfect 1:1 Square */
+    background: transparent; /* Transparent to blend with card */
     border-radius: 12px;
     margin-bottom: 24px;
-    overflow: hidden;
     position: relative;
-    border: 1px solid var(--border-default);
+    border: none; /* Removed border so it blends seamlessly */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Breathing room for the PNG */
   }
   .plan-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Fits entire image inside without cropping */
     transition: transform 0.6s ease;
   }
   .plan:hover .plan-image {
-    transform: scale(1.08);
+    transform: scale(1.05); /* Subtle zoom on hover */
   }
 
-  /* UPDATED PLAN STYLES */
   .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-  .plan{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:24px 30px 36px 30px;display:flex;flex-direction:column;transition:all .25s ease;overflow:hidden}
+  .plan{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:24px 30px 36px 30px;display:flex;flex-direction:column;transition:all .25s ease;overflow:visible}
   .plan:hover{transform:translateY(-4px);border-color:var(--text-muted)}
   
   .plan.featured{border-color:var(--accent-primary);background:linear-gradient(180deg,rgba(163,230,53,.04),var(--bg-surface));position:relative;transform:scale(1.05);z-index:2;box-shadow:0 20px 40px rgba(0,0,0,0.4)}
@@ -228,7 +227,6 @@
   .form-status.ok{display:block;color:var(--success)}
   .form-status.err{display:block;color:var(--error)}
 
-  /* PREMIUM FOOTER */
   footer{background:var(--bg-primary);border-top:1px solid var(--border-default);padding:60px 0 30px}
   .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
   .footer-brand p{color:var(--text-secondary);font-size:14px;margin-top:16px;max-width:320px}
@@ -253,18 +251,23 @@
     .hero{padding:130px 0 70px}
     section{padding:70px 0}
     
-    /* Hero Meta 2x2 Grid */
     .hero-meta{grid-template-columns:repeat(2,1fr);gap:24px}
     .hero-meta .num{font-size:26px}
     
-    /* Trust Strip Vertical */
     .trust-inner{flex-direction:column;gap:12px;text-align:center}
     .trust-inner .sep{display:none}
     
-    /* Testimonials 1 Column */
     .guarantee-grid{grid-template-columns:1fr}
     
-    /* Premium Mobile Footer */
+    /* Mobile Image Container Adjustments */
+    .plan-image-container {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .plan:hover .plan-image {
+      transform: none; /* Disable hover zoom on mobile */
+    }
+
     .footer-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
     .footer-brand{grid-column:1 / -1;text-align:center;margin-bottom:16px}
     .footer-brand p{max-width:100%;margin:16px auto 0}
@@ -370,7 +373,6 @@
     </div>
     <div class="guarantee-grid">
       
-      <!-- TESTIMONIAL 1 -->
       <div class="testi-card reveal">
         <div class="testi-header">
           <div class="testi-avatar">
@@ -385,7 +387,6 @@
         <blockquote>"We took a raw, 20-minute podcast and FocalCut turned it into 5 Reels. One of them hit 1.2 million views within a week. The hook restructuring is real."</blockquote>
       </div>
 
-      <!-- TESTIMONIAL 2 -->
       <div class="testi-card reveal">
         <div class="testi-header">
           <div class="testi-avatar">
@@ -396,11 +397,10 @@
             <p>Business Coach · 85K followers</p>
           </div>
         </div>
-        <div class="testi-result">️ 10 Hours Saved Weekly</div>
+        <div class="testi-result">⏱️ 10 Hours Saved Weekly</div>
         <blockquote>"I used to spend every Sunday trying to edit my own videos. FocalCut's portal makes it so easy — I just dump my Drive link and get them back on Tuesday. Absolute game changer."</blockquote>
       </div>
 
-      <!-- TESTIMONIAL 3 -->
       <div class="testi-card reveal">
         <div class="testi-header">
           <div class="testi-avatar">
@@ -411,7 +411,7 @@
             <p>Real Estate Agent · 42K followers</p>
           </div>
         </div>
-        <div class="testi-result"> 3x Average View Duration</div>
+        <div class="testi-result">🎯 3x Average View Duration</div>
         <blockquote>"My average view duration went from 4 seconds to 12 seconds after switching to FocalCut. They don't just cut clips — they engineer them to keep people watching."</blockquote>
       </div>
 
