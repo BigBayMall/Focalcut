@@ -93,7 +93,7 @@
     </div>
 
     <div id="dashboardView" class="hidden">
-      <h1>Welcome back, <span id="clientName">Client</span> 👋</h1>
+      <h1>Welcome back, <span id="clientName">Client</span> </h1>
       <p style="color:var(--muted); margin-bottom:32px;">Manage your packages and submit new footage below.</p>
       <div class="pkg-grid" id="pkgGrid"></div>
 
@@ -122,7 +122,7 @@
   </footer>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec'; // <-- ENSURE THIS IS CORRECT
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
     const urlParams = new URLSearchParams(window.location.search);
     let cid = urlParams.get('cid') || localStorage.getItem('focalcut_cid');
     let token = urlParams.get('token') || localStorage.getItem('focalcut_token');
@@ -155,7 +155,6 @@
         .then(data => {
           document.getElementById('loadingSpinner').classList.add('hidden');
           
-          // If the token is invalid, clear the browser memory and show login
           if (data.error) { 
             localStorage.clear();
             document.getElementById('loginView').classList.remove('hidden');
@@ -165,7 +164,6 @@
             return; 
           }
           
-          // Success: Show dashboard
           document.getElementById('loginView').classList.add('hidden');
           document.getElementById('dashboardView').classList.remove('hidden');
           document.getElementById('logoutBtn').classList.remove('hidden');
@@ -173,18 +171,40 @@
 
           const pkgGrid = document.getElementById('pkgGrid');
           pkgGrid.innerHTML = '';
+          
+          let activePackagesHtml = '';
+          let completedPackagesHtml = '';
+
           data.packages.forEach(pkg => {
-            if (pkg.status === 'Active') {
-              const remaining = pkg.total - pkg.used;
-              const pct = (pkg.used / pkg.total) * 100;
-              pkgGrid.innerHTML += `
-                <div class="pkg-card">
-                  <div class="pkg-name">${pkg.name}</div>
-                  <div class="pkg-credits">${pkg.used} / ${pkg.total} Used <span>(${remaining} Remaining)</span></div>
-                  <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-                </div>`;
+            const remaining = pkg.total - pkg.used;
+            const pct = (pkg.used / pkg.total) * 100;
+            
+            // Check if package is exhausted
+            const isCompleted = pkg.status === 'Completed' || remaining <= 0;
+            
+            // Style it differently if completed
+            const cardStyle = isCompleted ? 'opacity: 0.5; border-color: #333;' : '';
+            const badge = isCompleted ? '<span style="color:#737373; font-size:10px; margin-left:8px; background:#262626; padding:2px 6px; border-radius:4px;">COMPLETED</span>' : '';
+
+            const cardHtml = `
+              <div class="pkg-card" style="${cardStyle}">
+                <div class="pkg-name">${pkg.name}${badge}</div>
+                <div class="pkg-credits">${pkg.used} / ${pkg.total} Used <span>(${remaining} Remaining)</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+              </div>`;
+
+            if (isCompleted) {
+              completedPackagesHtml += cardHtml;
+            } else {
+              activePackagesHtml += cardHtml;
             }
           });
+
+          // Render active packages first, then completed ones below
+          pkgGrid.innerHTML = activePackagesHtml;
+          if (completedPackagesHtml) {
+            pkgGrid.innerHTML += `<h3 style="grid-column: 1/-1; margin-top:10px; font-size:14px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;">Completed Packages</h3>${completedPackagesHtml}`;
+          }
 
           const projList = document.getElementById('projectsList');
           projList.innerHTML = '';
@@ -233,7 +253,6 @@
           }
         })
         .catch(err => {
-          // THIS IS THE FIX! If the network fails, stop the spinner and show login.
           console.error('Login fetch failed:', err);
           document.getElementById('loadingSpinner').classList.add('hidden');
           document.getElementById('loginView').classList.remove('hidden');
@@ -242,13 +261,9 @@
         });
     }
 
-    // NEW FUNCTION: Opens video AND silently approves it in the database
     function watchAndAutoApprove(projectId, link) {
       if (link) window.open(link, '_blank');
-      
-      // Send autoApproved flag so backend sends the "Final Video Delivered" email
       const payload = { action: 'approveProject', projectId: projectId, autoApproved: true };
-      
       fetch(API_URL, {
         method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
