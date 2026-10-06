@@ -87,13 +87,11 @@
   img{max-width:100%;display:block}
   .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-  /* Accessibility: Focus States for Keyboard Navigation */
   :focus-visible {
     outline: 2px solid var(--accent-primary);
     outline-offset: 3px;
   }
 
-  /* Accessibility: Reduced Motion Support */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -101,6 +99,26 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  /* NEW: Floating animation for package images */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .plan-image {
+    animation: float 5s ease-in-out infinite;
+  }
+  .plan:nth-child(2) .plan-image { animation-delay: -1.5s; }
+  .plan:nth-child(3) .plan-image { animation-delay: -3s; }
+
+  /* NEW: Pulse animation for primary CTA buttons */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(163,230,53,.2); }
+    50% { box-shadow: 0 0 35px rgba(163,230,53,.5); }
+  }
+  .btn-primary-pulse {
+    animation: pulse-glow 2.5s ease-in-out infinite;
   }
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:8px;font-weight:600;font-size:15px;font-family:'Inter',sans-serif;cursor:pointer;border:none;transition:all .2s ease}
@@ -136,7 +154,13 @@
   .hero p{font-size:clamp(16px,1.5vw,19px);color:var(--text-secondary);max-width:640px;margin:0 auto 40px}
   .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
   
-  .hero-meta{margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid var(--border-default)}
+  /* NEW: Energetic stats block */
+  .hero-stats{display:flex;gap:32px;justify-content:center;margin:40px 0 24px;flex-wrap:wrap}
+  .hero-stat{text-align:center}
+  .hero-stat .stat-num{font-family:'Space Grotesk';font-size:36px;font-weight:700;color:var(--accent-primary);line-height:1}
+  .hero-stat .stat-lbl{font-size:12px;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase;margin-top:6px}
+
+  .hero-meta{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid var(--border-default)}
   .hero-meta div{display:flex;flex-direction:column;align-items:center;gap:4px}
   .hero-meta .num{font-family:'Space Grotesk';font-size:22px;font-weight:700}
   .hero-meta .lbl{font-size:12px;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase}
@@ -165,6 +189,11 @@
   .work-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2;background:linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%)}
   .work-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent-primary);text-transform:uppercase;margin-bottom:6px}
   .work-title{font-family:'Space Grotesk';font-size:15px;font-weight:600}
+  
+  /* NEW: Performance badge on portfolio */
+  .work-badge{position:absolute;top:16px;left:16px;z-index:3;background:rgba(10,10,10,0.85);backdrop-filter:blur(8px);border:1px solid rgba(163,230,53,0.3);border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:6px}
+  .work-badge .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 6px var(--success)}
+  .work-badge .badge-text{font-size:11px;font-weight:700;color:var(--accent-primary);letter-spacing:.02em}
 
   .testimonials{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
   .guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -275,6 +304,9 @@
     .hero{padding:130px 0 70px}
     section{padding:70px 0}
     
+    .hero-stats{gap:20px}
+    .hero-stat .stat-num{font-size:28px}
+    
     .hero-meta{grid-template-columns:repeat(2,1fr);gap:24px}
     .hero-meta .num{font-size:26px}
     
@@ -289,6 +321,9 @@
     }
     .plan:hover .plan-image {
       transform: none;
+    }
+    .plan-image {
+      animation: none;
     }
 
     .footer-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
@@ -321,10 +356,27 @@
 <section class="hero">
   <div class="container hero-inner">
     <div class="eyebrow"><span class="dot"></span> Accepting new clients for Q4</div>
-    <h1>Transform Raw Footage Into <span class="hl">Content That Converts.</span></h1>
-    <p>Send us your raw footage via Drive or Dropbox. Get ready-to-post, retention-engineered Reels delivered in 24–48 hours.</p>
+    <h1>15 Professional Videos in 24 Hours. <span class="hl">Zero Editing Required.</span></h1>
+    <p>Send us your raw footage via Drive or Dropbox. Get ready-to-post, retention-engineered Reels delivered in 24–48 hours. No subscriptions, no hassle.</p>
+    
+    <!-- NEW: Energetic stats block -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-num">24h</div>
+        <div class="stat-lbl">Turnaround</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">15</div>
+        <div class="stat-lbl">Videos / Package</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl">Revision Rounds</div>
+      </div>
+    </div>
+
     <div class="hero-cta">
-      <a href="#pricing" class="btn btn-primary btn-lg">View Packages & Pricing →</a>
+      <a href="#pricing" class="btn btn-primary btn-lg btn-primary-pulse">Get Your First Video in 24h →</a>
       <a href="#work" class="btn btn-ghost btn-lg">See Recent Work</a>
     </div>
     <p style="margin-top: 20px; font-size: 13px; color: var(--text-muted);">
@@ -358,14 +410,17 @@
     </div>
     <div class="portfolio-grid">
       <div class="work reveal">
+        <div class="work-badge"><span class="badge-dot"></span><span class="badge-text">1.2M Views</span></div>
         <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_1?h=YOUR_HASH&autoplay=0&muted=1&loop=1" title="FocalCut Portfolio: Business Coach Talking-head hook restructure" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         <div class="work-info"><div class="work-cat">Business Coach</div><div class="work-title">Talking-head hook restructure</div></div>
       </div>
       <div class="work reveal">
+        <div class="work-badge"><span class="badge-dot"></span><span class="badge-text">3x Retention</span></div>
         <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_2?h=YOUR_HASH&autoplay=0&muted=1&loop=1" title="FocalCut Portfolio: Fitness Brand Seamless loop transition edit" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         <div class="work-info"><div class="work-cat">Fitness Brand</div><div class="work-title">Seamless loop transition edit</div></div>
       </div>
       <div class="work reveal">
+        <div class="work-badge"><span class="badge-dot"></span><span class="badge-text">840K Views</span></div>
         <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_3?h=YOUR_HASH&autoplay=0&muted=1&loop=1" title="FocalCut Portfolio: E-commerce Product showcase reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         <div class="work-info"><div class="work-cat">E-commerce</div><div class="work-title">Product showcase reel</div></div>
       </div>
@@ -493,7 +548,7 @@
           <li>Custom brand styling & sound design</li>
           <li>24-hour turnaround + 2 revisions/video</li>
         </ul>
-        <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary" style="margin-top: auto;">Get The Growth Engine</a>
+        <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary btn-primary-pulse" style="margin-top: auto;">Get The Growth Engine</a>
         <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">🛡️ Protected by Brief-Match Guarantee</p>
       </div>
     </div>
@@ -525,7 +580,7 @@
   <div class="container cta-inner reveal">
     <h2>Ready to stop scrolling and start growing?</h2>
     <p>Secure your package today. First drafts back in 24–48 hours.</p>
-    <a href="#pricing" class="btn btn-primary btn-lg">View Packages & Pricing →</a>
+    <a href="#pricing" class="btn btn-primary btn-lg btn-primary-pulse">Get Your First Video in 24h →</a>
   </div>
 </section>
 
@@ -584,7 +639,7 @@
     toggle.textContent = open ? '×' : '☰';
   });
   document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
-    nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.textContent='☰';
+    nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.textContent='';
   }));
 
   document.querySelectorAll('.faq-q').forEach(btn => {
@@ -621,7 +676,6 @@
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } }), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Check if user is already logged in to update the Home Page Nav
   const portalLink = document.querySelector('.portal-link');
   if (localStorage.getItem('focalcut_cid') && portalLink) {
     portalLink.textContent = 'Dashboard';
