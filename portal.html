@@ -93,7 +93,7 @@
     </div>
 
     <div id="dashboardView" class="hidden">
-      <h1>Welcome back, <span id="clientName">Client</span> </h1>
+      <h1>Welcome back, <span id="clientName">Client</span> 👋</h1>
       <p style="color:var(--muted); margin-bottom:32px;">Manage your packages and submit new footage below.</p>
       <div class="pkg-grid" id="pkgGrid"></div>
 
@@ -179,10 +179,7 @@
             const remaining = pkg.total - pkg.used;
             const pct = (pkg.used / pkg.total) * 100;
             
-            // Check if package is exhausted
             const isCompleted = pkg.status === 'Completed' || remaining <= 0;
-            
-            // Style it differently if completed
             const cardStyle = isCompleted ? 'opacity: 0.5; border-color: #333;' : '';
             const badge = isCompleted ? '<span style="color:#737373; font-size:10px; margin-left:8px; background:#262626; padding:2px 6px; border-radius:4px;">COMPLETED</span>' : '';
 
@@ -200,7 +197,6 @@
             }
           });
 
-          // Render active packages first, then completed ones below
           pkgGrid.innerHTML = activePackagesHtml;
           if (completedPackagesHtml) {
             pkgGrid.innerHTML += `<h3 style="grid-column: 1/-1; margin-top:10px; font-size:14px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;">Completed Packages</h3>${completedPackagesHtml}`;
@@ -235,14 +231,15 @@
                 actionBtns += `<span class="btn btn-disabled btn-small" style="cursor:default;">Completed</span>`;
               }
 
+              // FIX: Removed 'timeZone: America/New_York' so it shows in the CLIENT'S local time
               const etaDate = new Date(p.eta);
-              const etaString = etaDate.toLocaleString('en-US', { timeZone: 'America/New_York', dateStyle: 'medium', timeStyle: 'short' });
+              const etaString = etaDate.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
               
               projList.innerHTML += `
                 <div class="project-item">
                   <div class="project-info">
                     <div style="font-weight:600; font-size:16px;">${p.title}</div>
-                    <div class="eta-text">Estimated Delivery: ${etaString} (ET)</div>
+                    <div class="eta-text">Estimated Delivery: ${etaString} (Local Time)</div>
                     <span class="status-badge ${badgeClass}">${p.status}</span>
                   </div>
                   <div class="project-actions">
