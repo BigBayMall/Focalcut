@@ -56,7 +56,6 @@
   html{scroll-behavior:smooth}
   body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   
-  /* FIX: Remove all underlines from links */
   a { text-decoration: none !important; color: inherit; transition: color 0.2s ease; }
   a:hover { color: var(--accent-primary); }
   
@@ -64,7 +63,51 @@
   img{max-width:100%;display:block}
   .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-  /* URGENCY BANNER (Updated) */
+  /* LOADING SCREEN */
+  .loading-screen{
+    position:fixed;inset:0;
+    background:var(--bg-primary);
+    z-index:10000;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    transition:opacity 0.6s ease, visibility 0.6s ease;
+  }
+  .loading-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+  .loading-logo{
+    width:60px;height:60px;
+    background:var(--accent-primary);
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent-text);font-size:28px;
+    margin-bottom:24px;
+    box-shadow:0 0 40px rgba(163,230,53,0.3);
+    animation:logoPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes logoPulse{0%,100%{box-shadow:0 0 20px rgba(163,230,53,0.3)}50%{box-shadow:0 0 50px rgba(163,230,53,0.6)}}
+  .loading-text{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-primary);
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+  }
+  .loading-bar{
+    width:200px;height:2px;
+    background:var(--border-default);
+    border-radius:2px;
+    margin-top:20px;
+    overflow:hidden;
+  }
+  .loading-bar-fill{
+    height:100%;
+    background:var(--accent-primary);
+    border-radius:2px;
+    width:0%;
+    animation:loadBar 2s ease-in-out forwards;
+  }
+  @keyframes loadBar{0%{width:0%}30%{width:40%}60%{width:70%}100%{width:100%}}
+
+  /* URGENCY BANNER */
   .urgency-banner{
     background:linear-gradient(90deg, rgba(163,230,53,0.08) 0%, rgba(6,182,212,0.05) 50%, rgba(139,92,246,0.08) 100%);
     border-bottom:1px solid rgba(163,230,53,0.15);
@@ -95,7 +138,7 @@
   .logo-text{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--text-primary)}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500}
-  .nav-links a:hover{color:var(--text-primary)}
+  .nav-links a:hover{color:var(--accent-primary) !important}
   .nav-links .btn{padding:10px 22px;font-size:14px}
   .menu-toggle{display:none;background:none;border:none;color:var(--text-primary);font-size:24px;cursor:pointer;line-height:1}
   @media(max-width:960px){
@@ -196,34 +239,95 @@
   .trust-item{font-size:15px;font-weight:600;color:var(--text-secondary);transition:all .2s}
   .trust-item:hover{color:var(--text-primary);opacity:1}
 
-  /* BEFORE/AFTER */
+  /* BEFORE/AFTER - SIDE BY SIDE FIX */
   .before-after{background:var(--bg-surface)}
-  .ba-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1000px;margin:0 auto}
-  .ba-wrapper{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--border-default)}
-  .ba-container{position:relative;width:100%;aspect-ratio:9/16;max-height:500px;overflow:hidden;cursor:col-resize}
-  .ba-image{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
-  .ba-image.before{background:linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);z-index:1}
-  .ba-image.after{background:linear-gradient(135deg, #0f3443 0%, #16c79a 100%);z-index:2;clip-path:inset(0 50% 0 0)}
-  .ba-image-text{font-size:13px;line-height:1.6}
-  .ba-image.before .ba-image-text{color:rgba(255,255,255,0.6)}
-  .ba-image.after .ba-image-text{color:rgba(255,255,255,0.9)}
-  .ba-slider{position:absolute;top:0;left:50%;width:3px;height:100%;background:var(--accent-primary);z-index:10;pointer-events:none;box-shadow:0 0 15px rgba(163,230,53,0.5)}
+  .ba-layout{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .ba-wrapper{
+    position:relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+    aspect-ratio: 9/16;
+    background: #000;
+  }
+  .ba-container{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    cursor:col-resize;
+  }
+  .ba-image{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+  .ba-image.before{z-index:1}
+  .ba-image.after{z-index:2;clip-path:inset(0 50% 0 0)}
+  
+  .ba-slider{
+    position:absolute;
+    top:0;
+    left:50%;
+    width:3px;
+    height:100%;
+    background:var(--accent-primary);
+    z-index:10;
+    pointer-events:none;
+    box-shadow:0 0 15px rgba(163,230,53,0.5);
+  }
   .ba-slider::after{
-    content:'⟨⟩';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:44px;height:44px;
+    content:'⟩';
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:44px;
+    height:44px;
     background:var(--bg-primary);
     border:2px solid var(--accent-primary);
     border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:12px;font-weight:bold;color:var(--accent-primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:bold;
+    color:var(--accent-primary);
     font-family:var(--font-mono);
     box-shadow:0 4px 15px rgba(0,0,0,0.5);
   }
-  .ba-label{position:absolute;bottom:16px;padding:6px 14px;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);border:1px solid var(--border-default);border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;z-index:5;font-family:var(--font-mono)}
+  .ba-label{
+    position:absolute;
+    top:16px;
+    padding:6px 14px;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(10px);
+    border:1px solid var(--border-default);
+    border-radius:100px;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    z-index:5;
+    font-family:var(--font-mono);
+  }
   .ba-label.before{left:16px;color:var(--error)}
   .ba-label.after{right:16px;color:var(--accent-primary)}
 
-  .comparison-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .comparison-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:500px;margin:0 auto}
   .comp-stat{background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:12px;padding:20px;text-align:center}
   .comp-stat.before{border-color:rgba(239,68,68,0.2)}
   .comp-stat.after{border-color:rgba(163,230,53,0.2)}
@@ -232,24 +336,23 @@
   .comp-stat.after .comp-value{color:var(--accent-primary)}
   .comp-label{font-size:10px;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;font-family:var(--font-mono)}
 
-  /* EDITING STYLES (Updated to match reference) */
+  /* EDITING STYLES */
   .styles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
   .style-card{
     background:var(--bg-elevated);
     border:1px solid var(--border-default);
     border-radius:16px;
-    padding:24px;
+    padding:0;
     position:relative;
     overflow:hidden;
     transition:all .3s;
     aspect-ratio:3/4;
     display:flex;
     flex-direction:column;
-    justify-content:flex-end;
   }
   .style-card:hover{transform:translateY(-6px);border-color:rgba(163,230,53,0.3)}
-  .style-card.popular{border-color:rgba(163,230,53,0.4);background:linear-gradient(180deg, rgba(163,230,53,0.04) 0%, var(--bg-elevated) 100%)}
-  .style-card.trending{border-color:rgba(139,92,246,0.4);background:linear-gradient(180deg, rgba(139,92,246,0.04) 0%, var(--bg-elevated) 100%)}
+  .style-card.popular{border-color:rgba(163,230,53,0.4)}
+  .style-card.trending{border-color:rgba(139,92,246,0.4)}
   .style-badge{
     position:absolute;
     top:16px;right:16px;
@@ -262,19 +365,37 @@
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:0.05em;
+    z-index:3;
   }
   .style-card.popular .style-badge{color:var(--accent-primary);border-color:rgba(163,230,53,0.3);background:rgba(163,230,53,0.1)}
   .style-card.trending .style-badge{color:var(--gradient-3);border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.1)}
   
-  .style-content-bottom{display:flex;flex-direction:column;gap:8px}
-  .style-icon-box{
-    width:36px;height:36px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:8px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:18px;
-    margin-bottom:4px;
+  .style-image-container{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(180deg, rgba(163,230,53,0.02) 0%, transparent 100%);
+  }
+  .style-card.popular .style-image-container{background:linear-gradient(180deg, rgba(163,230,53,0.06) 0%, transparent 100%)}
+  .style-card.trending .style-image-container{background:linear-gradient(180deg, rgba(139,92,246,0.06) 0%, transparent 100%)}
+  
+  .style-image{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    animation:float 5s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}
+  .style-card:nth-child(1) .style-image{animation-delay:0s}
+  .style-card:nth-child(2) .style-image{animation-delay:-1.5s}
+  .style-card:nth-child(3) .style-image{animation-delay:-3s}
+  .style-card:nth-child(4) .style-image{animation-delay:-4.5s}
+  
+  .style-content{
+    padding:20px;
+    border-top:1px solid var(--border-default);
   }
   .style-card h3{font-size:16px;margin-bottom:4px;font-weight:600}
   .style-card p{font-size:12px;color:var(--text-muted);line-height:1.4}
@@ -315,7 +436,7 @@
   .terminal-dot.yellow{background:#FFBD2E}
   .terminal-dot.green{background:#27C93F}
   .terminal-title{margin-left:14px;color:var(--text-muted);font-size:12px}
-  .terminal-line{margin-bottom:4px}
+  .terminal-line{margin-bottom:4px; min-height: 1.8em; white-space: pre-wrap;}
   .terminal-line.success{color:var(--success)}
   .terminal-line.command{color:var(--gradient-1)}
   .terminal-line.info{color:var(--text-secondary)}
@@ -421,7 +542,6 @@
 
   .plan-image-container{width:100%;aspect-ratio:1/1;background:transparent;border-radius:12px;margin-bottom:20px;position:relative;display:flex;align-items:center;justify-content:center;padding:16px}
   .plan-image{width:100%;height:100%;object-fit:contain;animation:float 5s ease-in-out infinite}
-  @keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}
   .plan:nth-child(1) .plan-image{animation-delay:0s}
   .plan:nth-child(2) .plan-image{animation-delay:-1.5s}
   .plan:nth-child(3) .plan-image{animation-delay:-3s}
@@ -468,7 +588,7 @@
   }
   .faq-item.open .faq-a{max-height:200px;padding:0 24px 20px}
 
-  /* CONTACT (Updated Icons) */
+  /* CONTACT */
   .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
   .contact-info h3{font-size:26px;margin-bottom:14px;letter-spacing:-0.01em}
   .contact-info > p{color:var(--text-secondary);margin-bottom:32px;line-height:1.7;font-size:15px}
@@ -556,6 +676,8 @@
     .styles-grid{grid-template-columns:repeat(2,1fr)}
     .platform-grid{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:900px){
     .ba-layout{grid-template-columns:1fr;gap:32px}
   }
   @media(max-width:768px){
@@ -581,6 +703,7 @@
     .form{padding:24px}
     .trust-grid{gap:20px}
     .trust-item{font-size:13px}
+    .ba-wrapper{max-width:100%}
   }
   @media(max-width:480px){
     .stats-grid{grid-template-columns:1fr 1fr}
@@ -592,7 +715,14 @@
 </head>
 <body>
 
-<!-- URGENCY BANNER (Updated) -->
+<!-- LOADING SCREEN -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-logo">▶</div>
+  <div class="loading-text" id="loadingText">INITIALIZING FOCALCUT...</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+</div>
+
+<!-- URGENCY BANNER -->
 <div class="urgency-banner">
   <div class="container">
     <div class="urgency-text">
@@ -610,13 +740,13 @@
     <div class="nav-links" id="navLinks">
       <a href="#before-after">Before/After</a>
       <a href="#work">Work</a>
-      <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
       <a href="#calculator">ROI Calc</a>
       <a href="#faq">FAQ</a>
+      <a href="portal.html" class="portal-link">Login</a>
       <a href="#pricing" class="btn btn-primary">Get Started →</a>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"></button>
   </div>
 </nav>
 
@@ -689,12 +819,9 @@
         <div class="ba-container" id="baSlider">
           <div class="ba-label before">Before</div>
           <div class="ba-label after">After</div>
-          <div class="ba-image before">
-            <div class="ba-image-text">Raw footage • No captions<br>• No hooks • No pacing</div>
-          </div>
-          <div class="ba-image after" id="baAfter">
-            <div class="ba-image-text">Hook optimized • Dynamic<br>captions • Sound design •<br>Brand styling</div>
-          </div>
+          <!-- Replace src with your actual images -->
+          <img src="before-edit.png" alt="Before Edit" class="ba-image before" onerror="this.style.background='linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'">
+          <img src="after-edit.png" alt="After Edit" class="ba-image after" id="baAfter" onerror="this.style.background='linear-gradient(135deg, #0f3443 0%, #16c79a 100%)'">
           <div class="ba-slider" id="baHandle"></div>
         </div>
       </div>
@@ -729,7 +856,7 @@
   </div>
 </section>
 
-<!-- EDITING STYLES (Updated Design) -->
+<!-- EDITING STYLES -->
 <section id="styles">
   <div class="container">
     <span class="section-label">// EDITING STYLES</span>
@@ -740,30 +867,38 @@
     <div class="styles-grid">
       <div class="style-card popular">
         <div class="style-badge">POPULAR</div>
-        <div class="style-content-bottom">
-          <div class="style-icon-box">🎙️</div>
+        <div class="style-image-container">
+          <img src="img-talking-head.png" alt="Talking Head Editing" class="style-image" onerror="this.style.display='none'">
+        </div>
+        <div class="style-content">
           <h3>Talking Head</h3>
           <p>Hook-first edits with dynamic captions</p>
         </div>
       </div>
       <div class="style-card trending">
         <div class="style-badge">TRENDING</div>
-        <div class="style-content-bottom">
-          <div class="style-icon-box">🎧</div>
+        <div class="style-image-container">
+          <img src="img-podcast.png" alt="Podcast Clips Editing" class="style-image" onerror="this.style.display='none'">
+        </div>
+        <div class="style-content">
           <h3>Podcast Clips</h3>
           <p>Multi-cam + viral moment extraction</p>
         </div>
       </div>
       <div class="style-card">
-        <div class="style-content-bottom">
-          <div class="style-icon-box">🛒</div>
+        <div class="style-image-container">
+          <img src="img-product.png" alt="Product Showcase Editing" class="style-image" onerror="this.style.display='none'">
+        </div>
+        <div class="style-content">
           <h3>Product Showcase</h3>
           <p>Cinematic product reels for e-com</p>
         </div>
       </div>
       <div class="style-card">
-        <div class="style-content-bottom">
-          <div class="style-icon-box">☕️</div>
+        <div class="style-image-container">
+          <img src="img-vlog.png" alt="B-Roll Vlog Editing" class="style-image" onerror="this.style.display='none'">
+        </div>
+        <div class="style-content">
           <h3>B-Roll + Vlog</h3>
           <p>Story-driven lifestyle content</p>
         </div>
@@ -838,7 +973,7 @@
     <div class="section-head">
       <h2>How a video goes from <span style="color:var(--gradient-1)">raw</span> to <span class="gradient-text">viral</span></h2>
     </div>
-    <div class="terminal">
+    <div class="terminal" id="terminal">
       <div class="terminal-header">
         <div class="terminal-dot red"></div>
         <div class="terminal-dot yellow"></div>
@@ -856,7 +991,7 @@
       <div class="terminal-line info">  → Color grade: brand-matched LUT applied...</div>
       <div class="terminal-line info">  → Export: 1080x1920, H.264, 60fps...</div>
       <div class="terminal-line highlight">✓ 5 videos delivered in 18h 42m</div>
-      <div class="terminal-line">$ <span class="cursor"></span></div>
+      <div class="terminal-line">$ </div>
     </div>
   </div>
 </section>
@@ -876,13 +1011,13 @@
         </thead>
         <tbody>
           <tr><td>Turnaround time</td><td>3–7 days</td><td>24–48 hours</td></tr>
-          <tr><td>Hook optimization</td><td></td><td>✓ Data-driven</td></tr>
+          <tr><td>Hook optimization</td><td>✕</td><td>✓ Data-driven</td></tr>
           <tr><td>Retention editing</td><td>✕</td><td>✓ Engineered</td></tr>
           <tr><td>Dynamic captions</td><td>Basic</td><td>✓ Animated + branded</td></tr>
           <tr><td>Sound design</td><td>✕</td><td>✓ Custom</td></tr>
           <tr><td>Revision rounds</td><td>1 (extra $)</td><td>✓ 2 included</td></tr>
           <tr><td>Consistent brand style</td><td>✕</td><td>✓ Locked-in</td></tr>
-          <tr><td>Portal + tracking</td><td>✕</td><td>✓ Real-time</td></tr>
+          <tr><td>Portal + tracking</td><td></td><td>✓ Real-time</td></tr>
           <tr><td>Monthly cost</td><td>$500–2000+</td><td>$26.60/video</td></tr>
           <tr><td>Contracts</td><td>Often required</td><td>✓ Zero — one-time</td></tr>
         </tbody>
@@ -1142,7 +1277,7 @@
   </div>
 </section>
 
-<!-- CONTACT (Updated Icons) -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="contact-grid">
@@ -1226,6 +1361,29 @@
 </footer>
 
 <script>
+  // LOADING SCREEN ANIMATION
+  const loadingMessages = [
+    'INITIALIZING FOCALCUT...',
+    'LOADING RETENTION ENGINE...',
+    'CONNECTING TO PIPELINE...',
+    'SYSTEM READY ✓'
+  ];
+  let msgIndex = 0;
+  const loadingText = document.getElementById('loadingText');
+  const loadingInterval = setInterval(() => {
+    msgIndex++;
+    if (msgIndex < loadingMessages.length) {
+      loadingText.textContent = loadingMessages[msgIndex];
+    }
+  }, 600);
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      clearInterval(loadingInterval);
+      document.getElementById('loadingScreen').classList.add('hidden');
+    }, 2200);
+  });
+
   // RANDOM SPOTS COUNT (3-8)
   const spotsCount = Math.floor(Math.random() * 6) + 3;
   document.getElementById('spotsCount').textContent = spotsCount;
@@ -1281,6 +1439,54 @@
   
   const statsGrid = document.querySelector('.stats-grid');
   if (statsGrid) statsObserver.observe(statsGrid);
+
+  // TERMINAL TYPING ANIMATION (Character by character, cursor only at the end)
+  const terminalObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const lines = entry.target.querySelectorAll('.terminal-line');
+        
+        // Store original text and clear lines
+        lines.forEach(line => {
+          const text = line.textContent.trim();
+          line.setAttribute('data-text', text);
+          line.textContent = '';
+        });
+
+        let lineIndex = 0;
+
+        function typeLine() {
+          if (lineIndex >= lines.length) return;
+          const line = lines[lineIndex];
+          const text = line.getAttribute('data-text');
+          let charIndex = 0;
+
+          function typeChar() {
+            if (charIndex < text.length) {
+              line.textContent += text.charAt(charIndex);
+              charIndex++;
+              setTimeout(typeChar, 15); // Typing speed per character
+            } else {
+              lineIndex++;
+              if (lineIndex === lines.length) {
+                // All lines finished, add blinking cursor to the very last line
+                const lastLine = lines[lines.length - 1];
+                lastLine.innerHTML += '<span class="cursor"></span>';
+              } else {
+                setTimeout(typeLine, 200); // Pause between lines
+              }
+            }
+          }
+          typeChar();
+        }
+        typeLine();
+        terminalObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const terminal = document.getElementById('terminal');
+  if (terminal) terminalObserver.observe(terminal);
 
   // BEFORE/AFTER SLIDER
   const baContainer = document.getElementById('baSlider');
