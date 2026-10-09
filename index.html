@@ -54,69 +54,17 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:default}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  
+  /* FIX: Remove all underlines from links */
+  a { text-decoration: none !important; color: inherit; transition: color 0.2s ease; }
+  a:hover { color: var(--accent-primary); }
+  
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;line-height:1.1;color:var(--text-primary)}
+  img{max-width:100%;display:block}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-  /* CURSOR FOLLOWER */
-  .cursor-follower{
-    position:fixed;
-    width:20px;height:20px;
-    border:2px solid var(--accent-primary);
-    border-radius:50%;
-    pointer-events:none;
-    z-index:9999;
-    transition:transform 0.15s ease, opacity 0.3s ease;
-    opacity:0;
-    mix-blend-mode:difference;
-  }
-  .cursor-follower.visible{opacity:1}
-  .cursor-follower.hovering{transform:scale(2.5);opacity:0.5}
-  @media(max-width:768px){.cursor-follower{display:none}}
-
-  /* LOADING SCREEN */
-  .loading-screen{
-    position:fixed;inset:0;
-    background:var(--bg-primary);
-    z-index:10000;
-    display:flex;flex-direction:column;
-    align-items:center;justify-content:center;
-    transition:opacity 0.6s ease, visibility 0.6s ease;
-  }
-  .loading-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
-  .loading-logo{
-    width:60px;height:60px;
-    background:var(--accent-primary);
-    border-radius:14px;
-    display:flex;align-items:center;justify-content:center;
-    color:var(--accent-text);font-size:28px;
-    margin-bottom:24px;
-    box-shadow:0 0 40px rgba(163,230,53,0.3);
-    animation:logoPulse 1.5s ease-in-out infinite;
-  }
-  @keyframes logoPulse{0%,100%{box-shadow:0 0 20px rgba(163,230,53,0.3)}50%{box-shadow:0 0 50px rgba(163,230,53,0.6)}}
-  .loading-text{
-    font-family:var(--font-mono);
-    font-size:13px;
-    color:var(--accent-primary);
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-  }
-  .loading-bar{
-    width:200px;height:2px;
-    background:var(--border-default);
-    border-radius:2px;
-    margin-top:20px;
-    overflow:hidden;
-  }
-  .loading-bar-fill{
-    height:100%;
-    background:var(--accent-primary);
-    border-radius:2px;
-    width:0%;
-    animation:loadBar 2s ease-in-out forwards;
-  }
-  @keyframes loadBar{0%{width:0%}30%{width:40%}60%{width:70%}100%{width:100%}}
-
-  /* URGENCY BANNER */
+  /* URGENCY BANNER (Updated) */
   .urgency-banner{
     background:linear-gradient(90deg, rgba(163,230,53,0.08) 0%, rgba(6,182,212,0.05) 50%, rgba(139,92,246,0.08) 100%);
     border-bottom:1px solid rgba(163,230,53,0.15);
@@ -129,7 +77,6 @@
   }
   .urgency-text{font-size:14px;color:var(--text-secondary)}
   .urgency-text strong{color:var(--accent-primary);font-weight:600}
-  .urgency-text .countdown{color:var(--gradient-2);font-family:var(--font-mono);font-weight:700;font-size:15px;letter-spacing:0.05em}
 
   /* NAVIGATION */
   .nav{
@@ -147,7 +94,7 @@
   .logo img{height:36px;width:auto}
   .logo-text{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--text-primary)}
   .nav-links{display:flex;gap:28px;align-items:center}
-  .nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500}
   .nav-links a:hover{color:var(--text-primary)}
   .nav-links .btn{padding:10px 22px;font-size:14px}
   .menu-toggle{display:none;background:none;border:none;color:var(--text-primary);font-size:24px;cursor:pointer;line-height:1}
@@ -285,27 +232,52 @@
   .comp-stat.after .comp-value{color:var(--accent-primary)}
   .comp-label{font-size:10px;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;font-family:var(--font-mono)}
 
-  /* EDITING STYLES */
+  /* EDITING STYLES (Updated to match reference) */
   .styles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
   .style-card{
     background:var(--bg-elevated);
     border:1px solid var(--border-default);
     border-radius:16px;
-    padding:28px 22px;
+    padding:24px;
     position:relative;
     overflow:hidden;
     transition:all .3s;
     aspect-ratio:3/4;
-    display:flex;flex-direction:column;justify-content:flex-end;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
   }
-  .style-card:hover{transform:translateY(-6px);border-color:var(--accent-primary)}
-  .style-card.popular{border-color:rgba(163,230,53,0.4);background:linear-gradient(180deg, rgba(163,230,53,0.06) 0%, var(--bg-elevated) 100%)}
-  .style-card.trending{border-color:rgba(139,92,246,0.4);background:linear-gradient(180deg, rgba(139,92,246,0.06) 0%, var(--bg-elevated) 100%)}
-  .style-badge{position:absolute;top:14px;right:14px;background:var(--accent-primary);color:var(--accent-text);padding:4px 10px;border-radius:100px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em}
-  .style-card.trending .style-badge{background:var(--gradient-3);color:white}
-  .style-icon{width:40px;height:40px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
-  .style-card h3{font-size:17px;margin-bottom:6px}
-  .style-card p{font-size:13px;color:var(--text-secondary);line-height:1.5}
+  .style-card:hover{transform:translateY(-6px);border-color:rgba(163,230,53,0.3)}
+  .style-card.popular{border-color:rgba(163,230,53,0.4);background:linear-gradient(180deg, rgba(163,230,53,0.04) 0%, var(--bg-elevated) 100%)}
+  .style-card.trending{border-color:rgba(139,92,246,0.4);background:linear-gradient(180deg, rgba(139,92,246,0.04) 0%, var(--bg-elevated) 100%)}
+  .style-badge{
+    position:absolute;
+    top:16px;right:16px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    color:var(--text-secondary);
+    padding:4px 10px;
+    border-radius:6px;
+    font-size:9px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .style-card.popular .style-badge{color:var(--accent-primary);border-color:rgba(163,230,53,0.3);background:rgba(163,230,53,0.1)}
+  .style-card.trending .style-badge{color:var(--gradient-3);border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.1)}
+  
+  .style-content-bottom{display:flex;flex-direction:column;gap:8px}
+  .style-icon-box{
+    width:36px;height:36px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;
+    margin-bottom:4px;
+  }
+  .style-card h3{font-size:16px;margin-bottom:4px;font-weight:600}
+  .style-card p{font-size:12px;color:var(--text-muted);line-height:1.4}
 
   /* PORTFOLIO */
   .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -496,20 +468,22 @@
   }
   .faq-item.open .faq-a{max-height:200px;padding:0 24px 20px}
 
-  /* CONTACT */
+  /* CONTACT (Updated Icons) */
   .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
   .contact-info h3{font-size:26px;margin-bottom:14px;letter-spacing:-0.01em}
-  .contact-info > p{color:var(--text-secondary);margin-bottom:28px;line-height:1.7;font-size:15px}
-  .contact-list{list-style:none}
-  .contact-list li{display:flex;gap:14px;align-items:center;padding:14px 0;font-size:14px;color:var(--text-secondary)}
+  .contact-info > p{color:var(--text-secondary);margin-bottom:32px;line-height:1.7;font-size:15px}
+  .contact-list{list-style:none;display:flex;flex-direction:column;gap:20px}
+  .contact-list li{display:flex;gap:16px;align-items:center;font-size:15px;color:var(--text-secondary)}
   .contact-list .ic{
-    width:42px;height:42px;
-    background:rgba(163,230,53,0.08);
+    width:48px;height:48px;
+    background:rgba(163,230,53,0.05);
     border:1px solid rgba(163,230,53,0.2);
-    border-radius:10px;
+    border-radius:12px;
     display:flex;align-items:center;justify-content:center;
-    color:var(--accent-primary);font-size:18px;flex-shrink:0;
+    flex-shrink:0;
   }
+  .contact-list .ic svg{width:22px;height:22px;stroke:var(--accent-primary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  
   .form{
     background:var(--bg-elevated);
     border:1px solid var(--border-default);
@@ -565,8 +539,7 @@
   .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
   .footer-brand p{color:var(--text-secondary);font-size:13px;margin-top:14px;line-height:1.7;max-width:280px}
   .footer-col h4{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:18px;color:var(--text-primary);font-family:var(--font-mono)}
-  .footer-col a{display:block;color:var(--text-secondary);font-size:13px;padding:6px 0;transition:color .2s}
-  .footer-col a:hover{color:var(--accent-primary)}
+  .footer-col a{display:block;color:var(--text-secondary);font-size:13px;padding:6px 0}
   .footer-bottom{padding-top:24px;border-top:1px solid var(--border-default);text-align:center;color:var(--text-muted);font-size:12px}
 
   /* BUTTONS */
@@ -619,21 +592,11 @@
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
-<div class="loading-screen" id="loadingScreen">
-  <div class="loading-logo">▶</div>
-  <div class="loading-text" id="loadingText">INITIALIZING FOCALCUT...</div>
-  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
-</div>
-
-<!-- CURSOR FOLLOWER -->
-<div class="cursor-follower" id="cursorFollower"></div>
-
-<!-- URGENCY BANNER -->
+<!-- URGENCY BANNER (Updated) -->
 <div class="urgency-banner">
   <div class="container">
     <div class="urgency-text">
-      ⚡ <strong>Limited:</strong> Only <span id="spotsCount">7</span> spots left this month · Offer expires in <span class="countdown" id="countdown-timer">23:59:42</span>
+      ⚡ <strong>Limited:</strong> Only <span id="spotsCount">7</span> spots left this month
     </div>
   </div>
 </div>
@@ -766,7 +729,7 @@
   </div>
 </section>
 
-<!-- EDITING STYLES -->
+<!-- EDITING STYLES (Updated Design) -->
 <section id="styles">
   <div class="container">
     <span class="section-label">// EDITING STYLES</span>
@@ -776,26 +739,34 @@
     </div>
     <div class="styles-grid">
       <div class="style-card popular">
-        <div class="style-badge">Popular</div>
-        <div class="style-icon">🎙️</div>
-        <h3>Talking Head</h3>
-        <p>Hook-first edits with dynamic captions</p>
+        <div class="style-badge">POPULAR</div>
+        <div class="style-content-bottom">
+          <div class="style-icon-box">🎙️</div>
+          <h3>Talking Head</h3>
+          <p>Hook-first edits with dynamic captions</p>
+        </div>
       </div>
       <div class="style-card trending">
-        <div class="style-badge">Trending</div>
-        <div class="style-icon">🎧</div>
-        <h3>Podcast Clips</h3>
-        <p>Multi-cam + viral moment extraction</p>
+        <div class="style-badge">TRENDING</div>
+        <div class="style-content-bottom">
+          <div class="style-icon-box">🎧</div>
+          <h3>Podcast Clips</h3>
+          <p>Multi-cam + viral moment extraction</p>
+        </div>
       </div>
       <div class="style-card">
-        <div class="style-icon">🛒</div>
-        <h3>Product Showcase</h3>
-        <p>Cinematic product reels for e-com</p>
+        <div class="style-content-bottom">
+          <div class="style-icon-box">🛒</div>
+          <h3>Product Showcase</h3>
+          <p>Cinematic product reels for e-com</p>
+        </div>
       </div>
       <div class="style-card">
-        <div class="style-icon"></div>
-        <h3>B-Roll + Vlog</h3>
-        <p>Story-driven lifestyle content</p>
+        <div class="style-content-bottom">
+          <div class="style-icon-box"></div>
+          <h3>B-Roll + Vlog</h3>
+          <p>Story-driven lifestyle content</p>
+        </div>
       </div>
     </div>
   </div>
@@ -905,12 +876,12 @@
         </thead>
         <tbody>
           <tr><td>Turnaround time</td><td>3–7 days</td><td>24–48 hours</td></tr>
-          <tr><td>Hook optimization</td><td>✕</td><td>✓ Data-driven</td></tr>
+          <tr><td>Hook optimization</td><td></td><td>✓ Data-driven</td></tr>
           <tr><td>Retention editing</td><td>✕</td><td>✓ Engineered</td></tr>
           <tr><td>Dynamic captions</td><td>Basic</td><td>✓ Animated + branded</td></tr>
           <tr><td>Sound design</td><td>✕</td><td>✓ Custom</td></tr>
           <tr><td>Revision rounds</td><td>1 (extra $)</td><td>✓ 2 included</td></tr>
-          <tr><td>Consistent brand style</td><td></td><td>✓ Locked-in</td></tr>
+          <tr><td>Consistent brand style</td><td>✕</td><td>✓ Locked-in</td></tr>
           <tr><td>Portal + tracking</td><td>✕</td><td>✓ Real-time</td></tr>
           <tr><td>Monthly cost</td><td>$500–2000+</td><td>$26.60/video</td></tr>
           <tr><td>Contracts</td><td>Often required</td><td>✓ Zero — one-time</td></tr>
@@ -1020,7 +991,7 @@
           <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Marcus R."></div>
           <div class="testi-info"><h4>Marcus R.</h4><p>Business Coach · 85K</p></div>
         </div>
-        <div class="testi-result">️ 10 Hours Saved Weekly</div>
+        <div class="testi-result">⏱️ 10 Hours Saved Weekly</div>
         <blockquote>"I just dump my Drive link and get them back on Tuesday. Absolute game changer for my content workflow."</blockquote>
       </div>
       <div class="testi-card">
@@ -1028,7 +999,7 @@
           <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="James T."></div>
           <div class="testi-info"><h4>James T.</h4><p>Real Estate · 42K</p></div>
         </div>
-        <div class="testi-result">🎯 3x Avg View Duration</div>
+        <div class="testi-result"> 3x Avg View Duration</div>
         <blockquote>"AVD went from 4s to 12s. They don't just cut clips — they engineer them to keep people watching."</blockquote>
       </div>
     </div>
@@ -1171,7 +1142,7 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT (Updated Icons) -->
 <section id="contact">
   <div class="container">
     <div class="contact-grid">
@@ -1180,9 +1151,24 @@
         <h3>Questions before you buy?</h3>
         <p>Tell us about your channel and goals. We reply within 24 hours with an honest recommendation.</p>
         <ul class="contact-list">
-          <li><span class="ic">✉</span>hello@focalcut.com</li>
-          <li><span class="ic"></span>Reply within 24 hours</li>
-          <li><span class="ic">🌍</span>Remote · Worldwide clients</li>
+          <li>
+            <div class="ic">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            hello@focalcut.com
+          </li>
+          <li>
+            <div class="ic">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            Reply within 24 hours
+          </li>
+          <li>
+            <div class="ic">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            Remote · Worldwide clients
+          </li>
         </ul>
       </div>
       <form class="form" id="contactForm">
@@ -1240,72 +1226,9 @@
 </footer>
 
 <script>
-  // LOADING SCREEN ANIMATION
-  const loadingMessages = [
-    'INITIALIZING FOCALCUT...',
-    'LOADING RETENTION ENGINE...',
-    'CONNECTING TO PIPELINE...',
-    'SYSTEM READY ✓'
-  ];
-  let msgIndex = 0;
-  const loadingText = document.getElementById('loadingText');
-  const loadingInterval = setInterval(() => {
-    msgIndex++;
-    if (msgIndex < loadingMessages.length) {
-      loadingText.textContent = loadingMessages[msgIndex];
-    }
-  }, 600);
-
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      clearInterval(loadingInterval);
-      document.getElementById('loadingScreen').classList.add('hidden');
-    }, 2200);
-  });
-
-  // CURSOR FOLLOWER
-  const cursor = document.getElementById('cursorFollower');
-  let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-  
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.classList.add('visible');
-  });
-  
-  document.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
-  
-  function animateCursor() {
-    cursorX += (mouseX - cursorX) * 0.15;
-    cursorY += (mouseY - cursorY) * 0.15;
-    cursor.style.left = cursorX - 10 + 'px';
-    cursor.style.top = cursorY - 10 + 'px';
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  document.querySelectorAll('a, button, .btn, .plan, .style-card, .work').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-  });
-
   // RANDOM SPOTS COUNT (3-8)
   const spotsCount = Math.floor(Math.random() * 6) + 3;
   document.getElementById('spotsCount').textContent = spotsCount;
-
-  // COUNTDOWN TIMER
-  function updateCountdown() {
-    const now = new Date();
-    const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
-    const diff = endOfDay - now;
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-    document.getElementById('countdown-timer').textContent = 
-      `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
 
   // LIVE TICKER
   const tickerMessages = [
@@ -1359,7 +1282,7 @@
   const statsGrid = document.querySelector('.stats-grid');
   if (statsGrid) statsObserver.observe(statsGrid);
 
-  // BEFORE/AFTER SLIDER - FIXED
+  // BEFORE/AFTER SLIDER
   const baContainer = document.getElementById('baSlider');
   const baHandle = document.getElementById('baHandle');
   const baAfter = document.getElementById('baAfter');
@@ -1374,7 +1297,6 @@
     baAfter.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
   }
 
-  // Mouse events
   baContainer.addEventListener('mousedown', (e) => {
     isDragging = true;
     updateSliderPosition(e.clientX);
@@ -1384,7 +1306,6 @@
     if (isDragging) updateSliderPosition(e.clientX);
   });
 
-  // Touch events
   baContainer.addEventListener('touchstart', (e) => {
     isDragging = true;
     updateSliderPosition(e.touches[0].clientX);
