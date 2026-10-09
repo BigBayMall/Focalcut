@@ -101,7 +101,13 @@
     }
   }
 
-  /* NEW: Floating animation for package images */
+  /* PREMIUM CUSTOM SCROLLBAR */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+  /* FLOATING ANIMATION FOR PACKAGE IMAGES */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-8px); }
@@ -112,7 +118,7 @@
   .plan:nth-child(2) .plan-image { animation-delay: -1.5s; }
   .plan:nth-child(3) .plan-image { animation-delay: -3s; }
 
-  /* NEW: Pulse animation for primary CTA buttons */
+  /* PULSE ANIMATION FOR PRIMARY CTA BUTTONS */
   @keyframes pulse-glow {
     0%, 100% { box-shadow: 0 0 20px rgba(163,230,53,.2); }
     50% { box-shadow: 0 0 35px rgba(163,230,53,.5); }
@@ -128,7 +134,14 @@
   .btn-ghost:hover{border-color:var(--text-muted);background:var(--bg-surface)}
   .btn-lg{padding:16px 32px;font-size:16px}
 
-  .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-default)}
+  /* ENHANCED GLASSMORPHISM NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
   .logo{display:flex;align-items:center;gap:10px}
   .logo img{height:32px;width:auto}
@@ -144,7 +157,15 @@
     .nav.open .nav-links{display:flex}
   }
 
-  .hero{position:relative;padding:170px 0 100px;background:radial-gradient(circle at 50% 0%,rgba(163,230,53,.05),transparent 55%),var(--bg-primary);border-bottom:1px solid var(--border-default)}
+  /* PREMIUM HERO BACKGROUND DEPTH */
+  .hero{
+    position:relative;padding:170px 0 100px;
+    background: 
+      radial-gradient(circle at 15% 50%, rgba(163, 230, 53, 0.04) 0%, transparent 30%),
+      radial-gradient(circle at 85% 30%, rgba(163, 230, 53, 0.03) 0%, transparent 30%),
+      var(--bg-primary);
+    border-bottom:1px solid var(--border-default);
+  }
   .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%)}
   .hero-inner{position:relative;z-index:2;text-align:center;max-width:820px;margin:0 auto}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(163,230,53,.08);border:1px solid rgba(163,230,53,.25);color:var(--accent-primary);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px}
@@ -154,7 +175,6 @@
   .hero p{font-size:clamp(16px,1.5vw,19px);color:var(--text-secondary);max-width:640px;margin:0 auto 40px}
   .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
   
-  /* NEW: Energetic stats block */
   .hero-stats{display:flex;gap:32px;justify-content:center;margin:40px 0 24px;flex-wrap:wrap}
   .hero-stat{text-align:center}
   .hero-stat .stat-num{font-family:'Space Grotesk';font-size:36px;font-weight:700;color:var(--accent-primary);line-height:1}
@@ -190,7 +210,6 @@
   .work-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent-primary);text-transform:uppercase;margin-bottom:6px}
   .work-title{font-family:'Space Grotesk';font-size:15px;font-weight:600}
   
-  /* NEW: Performance badge on portfolio */
   .work-badge{position:absolute;top:16px;left:16px;z-index:3;background:rgba(10,10,10,0.85);backdrop-filter:blur(8px);border:1px solid rgba(163,230,53,0.3);border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:6px}
   .work-badge .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 6px var(--success)}
   .work-badge .badge-text{font-size:11px;font-weight:700;color:var(--accent-primary);letter-spacing:.02em}
@@ -230,11 +249,23 @@
   }
 
   .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-  .plan{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:24px 30px 36px 30px;display:flex;flex-direction:column;transition:all .25s ease;overflow:visible}
-  .plan:hover{transform:translateY(-4px);border-color:var(--text-muted)}
+  
+  /* PREMIUM CARD HOVER STATES */
+  .plan, .testi-card, .sys {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.3s ease;
+  }
+  .plan:hover, .testi-card:hover, .sys:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(163, 230, 53, 0.3);
+  }
+
+  .plan{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:24px 30px 36px 30px;display:flex;flex-direction:column;overflow:visible}
   
   .plan.featured{border-color:var(--accent-primary);background:linear-gradient(180deg,rgba(163,230,53,.04),var(--bg-surface));position:relative;transform:scale(1.05);z-index:2;box-shadow:0 20px 40px rgba(0,0,0,0.4)}
-  .plan.featured:hover{transform:scale(1.05) translateY(-4px);border-color:var(--accent-hover)}
+  .plan.featured:hover{transform:scale(1.05) translateY(-6px);border-color:var(--accent-hover)}
   
   .plan.featured::before{content:"MOST POPULAR";position:absolute;top:16px;right:16px;background:var(--accent-primary);color:var(--accent-text);padding:6px 12px;border-radius:100px;font-size:10px;font-weight:800;letter-spacing:.05em;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
   
@@ -297,7 +328,7 @@
     .process-grid{grid-template-columns:repeat(2,1fr)}
     .contact-grid{grid-template-columns:1fr;gap:40px}
     .plan.featured{transform:none}
-    .plan.featured:hover{transform:translateY(-4px)}
+    .plan.featured:hover{transform:translateY(-6px)}
   }
   @media(max-width:640px){
     .portfolio-grid,.pricing-grid,.process-grid{grid-template-columns:1fr}
@@ -359,7 +390,6 @@
     <h1>15 Professional Videos in 24 Hours. <span class="hl">Zero Editing Required.</span></h1>
     <p>Send us your raw footage via Drive or Dropbox. Get ready-to-post, retention-engineered Reels delivered in 24–48 hours. No subscriptions, no hassle.</p>
     
-    <!-- NEW: Energetic stats block -->
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="stat-num">24h</div>
@@ -639,7 +669,7 @@
     toggle.textContent = open ? '×' : '☰';
   });
   document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
-    nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.textContent='';
+    nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.textContent='☰';
   }));
 
   document.querySelectorAll('.faq-q').forEach(btn => {
