@@ -4,375 +4,380 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>FocalCut | Premium Short-Form Video Editing & Retention Agency</title>
-<meta name="description" content="FocalCut (a Big Bay Mall LLC brand) turns raw footage into retention-engineered short-form video. One-time packages of 4, 10 or 15 edits. 24–48h first-draft turnaround. Secure Stripe checkout.">
-<meta name="keywords" content="short form video editing agency, tiktok video editor, reels editing service, youtube shorts editor, retention editing, hook optimization, video editing packages">
-<meta name="author" content="Big Bay Mall LLC">
-<meta name="robots" content="index, follow">
+<meta name="description" content="FocalCut turns raw footage into retention-engineered short-form video. One-time packages. 24–48h turnaround.">
 <link rel="canonical" href="https://focalcut.com/">
 <meta name="theme-color" content="#0A0A0A">
 
-<meta property="og:site_name" content="FocalCut">
-<meta property="og:title" content="FocalCut | Premium Short-Form Video Editing">
-<meta property="og:description" content="One-time video editing packages. Retention-engineered hooks, pacing, captions and sound. 24–48h first-draft turnaround.">
-<meta property="og:image" content="https://focalcut.com/og-image.jpg">
-<meta property="og:url" content="https://focalcut.com/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FocalCut | Premium Short-Form Video Editing">
-<meta name="twitter:description" content="One-time video editing packages with 24–48h first-draft turnaround.">
-<meta name="twitter:image" content="https://focalcut.com/og-image.jpg">
-
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
-
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@graph":[
-    {
-      "@type":"Organization",
-      "@id":"https://focalcut.com/#org",
-      "name":"Big Bay Mall LLC",
-      "alternateName":"FocalCut",
-      "url":"https://focalcut.com/",
-      "logo":"https://focalcut.com/logo.png",
-      "email":"hello@focalcut.com",
-      "address":{"@type":"PostalAddress","streetAddress":"30 N Gould St, Ste R","addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801","addressCountry":"US"}
-    },
-    {
-      "@type":"WebSite","@id":"https://focalcut.com/#site","url":"https://focalcut.com/","name":"FocalCut","publisher":{"@id":"https://focalcut.com/#org"}
-    },
-    {
-      "@type":"ProfessionalService",
-      "@id":"https://focalcut.com/#service",
-      "name":"FocalCut Video Editing",
-      "parentOrganization":{"@id":"https://focalcut.com/#org"},
-      "url":"https://focalcut.com/",
-      "description":"Short-form video editing service: hook optimization, retention pacing, captions, sound design and brand-consistent motion for TikTok, Instagram Reels and YouTube Shorts.",
-      "areaServed":"Worldwide",
-      "priceRange":"$149 - $399"
-    },
-    {
-      "@type":"FAQPage",
-      "mainEntity":[
-        {"@type":"Question","name":"How do I send my raw footage?","acceptedAnswer":{"@type":"Answer","text":"After purchase you receive a private dashboard link. You paste a Google Drive, Dropbox or Frame.io link for your footage — you never upload large files to our website."}},
-        {"@type":"Question","name":"Is this a monthly subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Every package is a one-time purchase of video credits. Use them at your own pace and reorder only when you need more."}},
-        {"@type":"Question","name":"What does 24–48h turnaround mean exactly?","acceptedAnswer":{"@type":"Answer","text":"It is the time from receiving complete footage, instructions and references to delivery of your first draft. Growth Engine drafts arrive within 24 hours; Starter and Consistency Builder within 48 hours."}},
-        {"@type":"Question","name":"What counts as a revision?","acceptedAnswer":{"@type":"Answer","text":"A revision is a change to an existing edit based on your original brief (pacing, caption tweaks, music swap, trim). A new concept, new footage or a different creative direction is treated as a new edit."}},
-        {"@type":"Question","name":"I bought 10 videos but only have footage for 1. Is that okay?","acceptedAnswer":{"@type":"Answer","text":"Completely. Submit one project now; your remaining credits stay on your account dashboard and you can submit the rest whenever you're ready."}}
-      ]
-    }
-  ]
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
+  /* --- CORE VARIABLES --- */
   :root {
-    --bg-primary:#0A0A0A; --bg-surface:#121212; --bg-elevated:#1A1A1A;
-    --border-default:#262626; --border-focus:#A3E635;
-    --text-primary:#FAFAFA; --text-secondary:#A3A3A3; --text-muted:#737373;
-    --accent-primary:#A3E635; --accent-hover:#BEF264; --accent-text:#0A0A0A;
-    --success:#22C55E; --warning:#F59E0B; --error:#EF4444;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.03em;line-height:1.1;color:var(--text-primary)}
-  a{color:inherit;text-decoration:none;transition:color .2s}
-  img{max-width:100%;display:block}
-  .container{max-width:1200px;margin:0 auto;padding:0 24px}
-
-  :focus-visible {
-    outline: 2px solid var(--accent-primary);
-    outline-offset: 3px;
+    --bg-primary: #050505; --bg-surface: #0A0A0A; --bg-elevated: #121212;
+    --border-default: #1F1F1F; --border-focus: #A3E635;
+    --text-primary: #FAFAFA; --text-secondary: #A3A3A3; --text-muted: #666666;
+    --accent-primary: #A3E635; --accent-hover: #BEF264; --accent-text: #050505;
+    --neon-glow: 0 0 20px rgba(163, 230, 53, 0.4), 0 0 40px rgba(163, 230, 53, 0.2);
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none; /* Hide default cursor for custom one */
+  }
+  @media (max-width: 768px) { body { cursor: auto; } .custom-cursor { display: none; } }
+
+  a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* --- FUTURISTIC OVERLAYS --- */
+  .scanlines {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+    background-size: 100% 4px;
+    pointer-events: none; z-index: 9998; opacity: 0.3;
+  }
+  .custom-cursor {
+    position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+    border: 2px solid var(--accent-primary); border-radius: 50%;
+    pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: difference;
+  }
+  .custom-cursor.hovering { width: 40px; height: 40px; background: rgba(163, 230, 53, 0.2); }
+  #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+  /* --- LOADING SCREEN --- */
+  #loader {
+    position: fixed; inset: 0; background: var(--bg-primary); z-index: 10000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.5s ease;
+  }
+  .loader-text { font-family: var(--font-mono); color: var(--accent-primary); font-size: 14px; letter-spacing: 2px; }
+  .loader-bar { width: 200px; height: 2px; background: var(--border-default); margin-top: 20px; position: relative; overflow: hidden; }
+  .loader-bar::after {
+    content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0%;
+    background: var(--accent-primary); animation: load 1.5s ease-in-out forwards;
+  }
+  @keyframes load { to { width: 100%; } }
+
+  /* --- URGENCY BAR --- */
+  .urgency-bar {
+    background: rgba(163, 230, 53, 0.05); border-bottom: 1px solid rgba(163, 230, 53, 0.2);
+    padding: 10px 0; text-align: center; font-size: 13px; font-family: var(--font-mono);
+    color: var(--accent-primary); position: relative; z-index: 50;
+  }
+  .urgency-bar span { color: var(--text-primary); font-weight: 600; }
+
+  /* --- NAVIGATION --- */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-top: 38px; /* Space for urgency bar */
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+  .logo-icon { width: 32px; height: 32px; background: var(--accent-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-text); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; position: relative; }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+    background: var(--accent-primary); transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.portal-link { color: var(--accent-primary); }
+  .menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
+  @media(max-width: 900px) {
+    .menu-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--bg-surface); flex-direction: column; padding: 20px; border-bottom: 1px solid var(--border-default); }
+    .nav.open .nav-links { display: flex; }
   }
 
-  /* PREMIUM CUSTOM SCROLLBAR */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--bg-primary); }
-  ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+  /* --- BUTTONS --- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    cursor: pointer; border: none; transition: all 0.3s ease; position: relative; overflow: hidden;
+  }
+  .btn-primary {
+    background: var(--accent-primary); color: var(--accent-text);
+    box-shadow: var(--neon-glow);
+  }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 30px rgba(163,230,53,0.6); }
+  .btn-ghost { background: transparent; color: var(--text-primary); border: 1px solid var(--border-default); }
+  .btn-ghost:hover { border-color: var(--accent-primary); color: var(--accent-primary); background: rgba(163,230,53,0.05); }
+  .btn-lg { padding: 16px 32px; font-size: 16px; }
 
-  /* FLOATING ANIMATION FOR PACKAGE IMAGES */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
+  /* --- HUD CORNERS --- */
+  .hud-frame { position: relative; }
+  .hud-frame::before, .hud-frame::after {
+    content: ''; position: absolute; width: 20px; height: 20px;
+    border-color: var(--accent-primary); border-style: solid; transition: all 0.3s ease;
   }
-  .plan-image {
-    animation: float 5s ease-in-out infinite;
-  }
-  .plan:nth-child(2) .plan-image { animation-delay: -1.5s; }
-  .plan:nth-child(3) .plan-image { animation-delay: -3s; }
+  .hud-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .hud-frame::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+  .hud-frame:hover::before, .hud-frame:hover::after { width: 30px; height: 30px; }
 
-  /* PULSE ANIMATION FOR PRIMARY CTA BUTTONS */
-  @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(163,230,53,.2); }
-    50% { box-shadow: 0 0 35px rgba(163,230,53,.5); }
+  /* --- HERO SECTION --- */
+  .hero { position: relative; padding: 180px 0 100px; text-align: center; overflow: hidden; }
+  .hero-bg-orb {
+    position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; z-index: -1;
+    animation: float 10s ease-in-out infinite;
   }
-  .btn-primary-pulse {
-    animation: pulse-glow 2.5s ease-in-out infinite;
-  }
-
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:8px;font-weight:600;font-size:15px;font-family:'Inter',sans-serif;cursor:pointer;border:none;transition:all .2s ease}
-  .btn-primary{background:var(--accent-primary);color:var(--accent-text)!important;box-shadow:0 0 20px rgba(163,230,53,.15)}
-  .btn-primary:hover{background:var(--accent-hover);color:var(--accent-text)!important;transform:translateY(-2px);box-shadow:0 0 30px rgba(163,230,53,.3)}
-  .btn-ghost{background:transparent;color:var(--text-primary);border:1px solid var(--border-default)}
-  .btn-ghost:hover{border-color:var(--text-muted);background:var(--bg-surface)}
-  .btn-lg{padding:16px 32px;font-size:16px}
-
-  /* ENHANCED GLASSMORPHISM NAV */
-  .nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .logo{display:flex;align-items:center;gap:10px}
-  .logo img{height:32px;width:auto}
-  .nav-links{display:flex;gap:28px;align-items:center}
-  .nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500}
-  .nav-links a:hover{color:var(--text-primary)}
-  .nav-links a.portal-link{color:var(--accent-primary);font-weight:600}
-  .menu-toggle{display:none;background:none;border:none;color:var(--text-primary);font-size:26px;cursor:pointer;line-height:1}
-  @media(max-width:900px){
-    .menu-toggle{display:block}
-    .nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:var(--bg-surface);border-bottom:1px solid var(--border-default);flex-direction:column;align-items:stretch;padding:16px 24px;gap:4px}
-    .nav-links a{padding:12px 0;font-size:16px}
-    .nav.open .nav-links{display:flex}
-  }
-
-  /* PREMIUM HERO BACKGROUND DEPTH */
-  .hero{
-    position:relative;padding:170px 0 100px;
-    background: 
-      radial-gradient(circle at 15% 50%, rgba(163, 230, 53, 0.04) 0%, transparent 30%),
-      radial-gradient(circle at 85% 30%, rgba(163, 230, 53, 0.03) 0%, transparent 30%),
-      var(--bg-primary);
-    border-bottom:1px solid var(--border-default);
-  }
-  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 20%,transparent 70%)}
-  .hero-inner{position:relative;z-index:2;text-align:center;max-width:820px;margin:0 auto}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(163,230,53,.08);border:1px solid rgba(163,230,53,.25);color:var(--accent-primary);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px}
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success)}
-  h1{font-size:clamp(40px,6vw,64px);margin-bottom:24px}
-  h1 .hl{color:var(--accent-primary)}
-  .hero p{font-size:clamp(16px,1.5vw,19px);color:var(--text-secondary);max-width:640px;margin:0 auto 40px}
-  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  @keyframes float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.1); } }
   
-  .hero-stats{display:flex;gap:32px;justify-content:center;margin:40px 0 24px;flex-wrap:wrap}
-  .hero-stat{text-align:center}
-  .hero-stat .stat-num{font-family:'Space Grotesk';font-size:36px;font-weight:700;color:var(--accent-primary);line-height:1}
-  .hero-stat .stat-lbl{font-size:12px;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase;margin-top:6px}
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
+    border-radius: 100px; background: rgba(163,230,53,0.1); border: 1px solid rgba(163,230,53,0.3);
+    color: var(--accent-primary); font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 32px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-primary); box-shadow: 0 0 10px var(--accent-primary); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-  .hero-meta{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid var(--border-default)}
-  .hero-meta div{display:flex;flex-direction:column;align-items:center;gap:4px}
-  .hero-meta .num{font-family:'Space Grotesk';font-size:22px;font-weight:700}
-  .hero-meta .lbl{font-size:12px;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase}
+  h1 {
+    font-family: var(--font-display); font-size: clamp(40px, 6vw, 72px); font-weight: 700;
+    line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px;
+  }
+  .neon-text {
+    background: linear-gradient(90deg, var(--accent-primary), #fff, var(--accent-primary));
+    background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shine 3s linear infinite;
+  }
+  @keyframes shine { to { background-position: 200% center; } }
 
-  section{padding:100px 0;position:relative}
-  .section-head{text-align:center;max-width:640px;margin:0 auto 64px}
-  .section-head .tag{color:var(--accent-primary);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px}
-  .section-head h2{font-size:clamp(30px,4vw,44px);margin-bottom:16px}
-  .section-head p{color:var(--text-secondary);font-size:17px}
-
-  .trust-strip{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default);padding:28px 0}
-  .trust-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;align-items:center;font-size:13.5px;color:var(--text-secondary)}
-  .trust-inner strong{color:var(--text-primary);font-weight:600}
-  .trust-inner .sep{color:var(--accent-primary);font-size:10px;opacity:0.6}
-
-  .process{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
-  .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:sys}
-  .sys{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:16px;padding:26px 22px;counter-increment:sys}
-  .sys::before{content:"0" counter(sys);font-family:'Space Grotesk';font-size:13px;font-weight:700;color:var(--accent-primary);display:block;margin-bottom:12px}
-  .sys h4{font-size:16px;margin-bottom:8px}
-  .sys p{color:var(--text-secondary);font-size:13.5px}
-
-  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .work{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid var(--border-default);background:#000}
-  .work iframe{width:100%;height:100%;border:none}
-  .work-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2;background:linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%)}
-  .work-cat{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent-primary);text-transform:uppercase;margin-bottom:6px}
-  .work-title{font-family:'Space Grotesk';font-size:15px;font-weight:600}
+  .hero p { font-size: clamp(16px, 1.5vw, 19px); color: var(--text-secondary); max-width: 640px; margin: 0 auto 40px; }
+  .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
   
-  .work-badge{position:absolute;top:16px;left:16px;z-index:3;background:rgba(10,10,10,0.85);backdrop-filter:blur(8px);border:1px solid rgba(163,230,53,0.3);border-radius:8px;padding:6px 10px;display:flex;align-items:center;gap:6px}
-  .work-badge .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 6px var(--success)}
-  .work-badge .badge-text{font-size:11px;font-weight:700;color:var(--accent-primary);letter-spacing:.02em}
+  .hero-stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-family: var(--font-display); font-size: 36px; font-weight: 700; color: var(--accent-primary); line-height: 1; }
+  .hero-stat .lbl { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 8px; }
 
-  .testimonials{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default)}
-  .guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .testi-card{background:var(--bg-primary);border:1px solid var(--border-default);border-radius:16px;padding:32px;display:flex;flex-direction:column}
-  .testi-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-  .testi-avatar{width:48px;height:48px;border-radius:50%;background:var(--bg-elevated);border:2px solid var(--accent-primary);overflow:hidden;flex-shrink:0}
-  .testi-avatar img{width:100%;height:100%;object-fit:cover}
-  .testi-info h4{font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:2px}
-  .testi-info p{font-size:12px;color:var(--text-muted)}
-  .testi-result{display:inline-block;background:rgba(163,230,53,0.1);color:var(--accent-primary);padding:4px 12px;border-radius:100px;font-size:12px;font-weight:700;margin-bottom:16px}
-  .testi-card blockquote{font-size:14.5px;color:var(--text-secondary);line-height:1.7;font-style:italic;flex:1;margin:0}
+  /* --- SECTIONS GENERAL --- */
+  section { padding: 100px 0; position: relative; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+  .section-tag { font-family: var(--font-mono); color: var(--accent-primary); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; display: block; }
+  .section-head h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); margin-bottom: 16px; }
+  .section-head p { color: var(--text-secondary); font-size: 17px; }
 
-  .plan-image-container {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background: transparent;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    position: relative;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+  /* --- EDITING STYLES (3D TILT) --- */
+  .styles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+  .style-card {
+    background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 16px;
+    padding: 32px; position: relative; overflow: hidden; transition: transform 0.1s ease;
+    transform-style: preserve-3d; perspective: 1000px;
   }
-  .plan-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.6s ease;
+  .style-card:hover { border-color: rgba(163,230,53,0.3); }
+  .style-card .badge {
+    position: absolute; top: 16px; right: 16px; background: var(--accent-primary); color: var(--accent-text);
+    font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 100px; letter-spacing: 0.05em;
   }
-  .plan:hover .plan-image {
-    transform: scale(1.05);
+  .style-card h4 { font-family: var(--font-display); font-size: 20px; margin-bottom: 12px; transform: translateZ(20px); }
+  .style-card p { color: var(--text-secondary); font-size: 14px; transform: translateZ(10px); }
+  .style-card .icon { font-size: 24px; margin-bottom: 20px; color: var(--accent-primary); transform: translateZ(30px); }
+
+  /* --- BEFORE / AFTER --- */
+  .ba-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width: 768px) { .ba-container { grid-template-columns: 1fr; } }
+  .ba-card {
+    background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 16px;
+    padding: 32px; position: relative; transition: all 0.3s ease;
   }
-
-  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-  
-  /* PREMIUM CARD HOVER STATES */
-  .plan, .testi-card, .sys {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                border-color 0.3s ease;
+  .ba-card.before { border-color: rgba(239, 68, 68, 0.3); }
+  .ba-card.after { border-color: rgba(163, 230, 53, 0.3); box-shadow: 0 0 30px rgba(163,230,53,0.05); }
+  .ba-label {
+    position: absolute; top: 16px; right: 16px; padding: 4px 12px; border-radius: 100px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
   }
-  .plan:hover, .testi-card:hover, .sys:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-    border-color: rgba(163, 230, 53, 0.3);
+  .ba-card.before .ba-label { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+  .ba-card.after .ba-label { background: rgba(163, 230, 53, 0.1); color: var(--accent-primary); }
+  .ba-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .ba-stat-item { background: var(--bg-elevated); padding: 16px; border-radius: 8px; text-align: center; }
+  .ba-stat-item .val { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--text-primary); }
+  .ba-card.after .ba-stat-item .val { color: var(--accent-primary); }
+  .ba-stat-item .lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+
+  /* --- TERMINAL --- */
+  .terminal {
+    background: #000; border: 1px solid var(--border-default); border-radius: 12px;
+    padding: 32px; font-family: var(--font-mono); font-size: 14px; color: var(--text-secondary);
+    max-width: 800px; margin: 0 auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; overflow: hidden;
   }
-
-  .plan{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:24px 30px 36px 30px;display:flex;flex-direction:column;overflow:visible}
-  
-  .plan.featured{border-color:var(--accent-primary);background:linear-gradient(180deg,rgba(163,230,53,.04),var(--bg-surface));position:relative;transform:scale(1.05);z-index:2;box-shadow:0 20px 40px rgba(0,0,0,0.4)}
-  .plan.featured:hover{transform:scale(1.05) translateY(-6px);border-color:var(--accent-hover)}
-  
-  .plan.featured::before{content:"MOST POPULAR";position:absolute;top:16px;right:16px;background:var(--accent-primary);color:var(--accent-text);padding:6px 12px;border-radius:100px;font-size:10px;font-weight:800;letter-spacing:.05em;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-  
-  .plan-name{color:var(--text-secondary);font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-  .plan-best{color:var(--accent-primary);font-size:12.5px;font-weight:600;margin-bottom:16px}
-  .plan-price{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
-  .plan-price .amt{font-family:'Space Grotesk';font-size:46px;font-weight:700}
-  .plan-price .per{color:var(--text-muted);font-size:15px}
-  .plan ul{list-style:none;margin-bottom:28px;flex:1}
-  .plan li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:14.5px}
-  .plan li::before{content:"";width:18px;height:18px;flex-shrink:0;margin-top:2px;background:var(--accent-primary);mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.4-1.4z'/></svg>");-webkit-mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.4-1.4z'/></svg>");mask-size:contain}
-  .plan .btn{width:100%}
-  .pricing-notes{max-width:760px;margin:36px auto 0;color:var(--text-muted);font-size:13px;line-height:1.7;text-align:center}
-
-  .faq-list{max-width:720px;margin:0 auto}
-  .faq-item{border-bottom:1px solid var(--border-default)}
-  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:20px;width:100%;background:none;border:none;color:var(--text-primary);font-weight:600;font-size:16px;font-family:'Inter',sans-serif;text-align:left;padding:22px 0;cursor:pointer}
-  .faq-q::after{content:"+";color:var(--accent-primary);font-size:22px;font-weight:400;transition:transform .25s}
-  .faq-item.open .faq-q::after{transform:rotate(45deg)}
-  .faq-a{max-height:0;overflow:hidden;color:var(--text-secondary);font-size:14.5px;transition:max-height .3s ease,padding .3s ease}
-  .faq-item.open .faq-a{max-height:260px;padding-bottom:22px}
-
-  .cta-banner{background:var(--bg-surface);border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default);position:relative;overflow:hidden}
-  .cta-banner::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(163,230,53,.06),transparent 60%);pointer-events:none}
-  .cta-inner{text-align:center;max-width:620px;margin:0 auto;position:relative;z-index:2}
-  .cta-inner h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px}
-  .cta-inner p{color:var(--text-secondary);font-size:17px;margin-bottom:32px}
-
-  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
-  .contact-info h3{font-size:24px;margin-bottom:16px}
-  .contact-info p{color:var(--text-secondary);margin-bottom:28px}
-  .contact-list{list-style:none}
-  .contact-list li{display:flex;gap:14px;align-items:center;padding:12px 0;font-size:14.5px}
-  .contact-list .ic{width:38px;height:38px;border-radius:10px;background:rgba(163,230,53,.1);color:var(--accent-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
-  .form{background:var(--bg-surface);border:1px solid var(--border-default);border-radius:18px;padding:36px}
-  .field{margin-bottom:18px}
-  .field label{display:block;font-size:13px;font-weight:500;margin-bottom:8px}
-  .field input,.field select,.field textarea{width:100%;background:var(--bg-primary);border:1px solid var(--border-default);border-radius:10px;padding:13px 15px;color:var(--text-primary);font-size:14.5px;font-family:inherit;transition:all .2s}
-  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--border-focus);box-shadow:0 0 0 3px rgba(163,230,53,.1)}
-  .field textarea{resize:vertical;min-height:100px}
-  .field input::placeholder,.field textarea::placeholder{color:var(--text-muted)}
-  .form .btn{width:100%;margin-top:8px}
-  .form-status{margin-top:14px;font-size:14px;display:none}
-  .form-status.ok{display:block;color:var(--success)}
-  .form-status.err{display:block;color:var(--error)}
-
-  footer{background:var(--bg-primary);border-top:1px solid var(--border-default);padding:60px 0 30px}
-  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-  .footer-brand p{color:var(--text-secondary);font-size:14px;margin-top:16px;max-width:320px}
-  .footer-col h4{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px}
-  .footer-col a{display:block;color:var(--text-secondary);font-size:14px;padding:5px 0}
-  .footer-col a:hover{color:var(--accent-primary)}
-  .footer-bottom{padding-top:24px;border-top:1px solid var(--border-default);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;color:var(--text-muted);font-size:13px}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:all .7s ease}
-  .reveal.visible{opacity:1;transform:none}
-
-  @media(max-width:960px){
-    .portfolio-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
-    .process-grid{grid-template-columns:repeat(2,1fr)}
-    .contact-grid{grid-template-columns:1fr;gap:40px}
-    .plan.featured{transform:none}
-    .plan.featured:hover{transform:translateY(-6px)}
+  .terminal::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 30px;
+    background: var(--bg-elevated); border-bottom: 1px solid var(--border-default);
   }
-  @media(max-width:640px){
-    .portfolio-grid,.pricing-grid,.process-grid{grid-template-columns:1fr}
-    .hero{padding:130px 0 70px}
-    section{padding:70px 0}
-    
-    .hero-stats{gap:20px}
-    .hero-stat .stat-num{font-size:28px}
-    
-    .hero-meta{grid-template-columns:repeat(2,1fr);gap:24px}
-    .hero-meta .num{font-size:26px}
-    
-    .trust-inner{flex-direction:column;gap:12px;text-align:center}
-    .trust-inner .sep{display:none}
-    
-    .guarantee-grid{grid-template-columns:1fr}
-    
-    .plan-image-container {
-      padding: 15px;
-      margin-bottom: 20px;
-    }
-    .plan:hover .plan-image {
-      transform: none;
-    }
-    .plan-image {
-      animation: none;
-    }
+  .terminal-dots { position: absolute; top: 10px; left: 16px; display: flex; gap: 6px; z-index: 2; }
+  .terminal-dots span { width: 10px; height: 10px; border-radius: 50%; }
+  .terminal-dots span:nth-child(1) { background: #EF4444; }
+  .terminal-dots span:nth-child(2) { background: #F59E0B; }
+  .terminal-dots span:nth-child(3) { background: #22C55E; }
+  .terminal-content { margin-top: 20px; }
+  .terminal-line { margin-bottom: 12px; opacity: 0; animation: fadeIn 0.3s forwards; }
+  .terminal-line .prompt { color: var(--accent-primary); }
+  .terminal-line .cmd { color: var(--text-primary); }
+  .terminal-line .success { color: #22C55E; }
+  .terminal-line .info { color: var(--text-muted); padding-left: 20px; }
+  @keyframes fadeIn { to { opacity: 1; } }
 
-    .footer-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
-    .footer-brand{grid-column:1 / -1;text-align:center;margin-bottom:16px}
-    .footer-brand p{max-width:100%;margin:16px auto 0}
-    .footer-col{text-align:center}
-    .footer-bottom{flex-direction:column;text-align:center;gap:16px}
+  /* --- COMPARISON TABLE --- */
+  .comparison-table { width: 100%; border-collapse: collapse; margin-top: 40px; font-size: 15px; }
+  .comparison-table th, .comparison-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border-default); }
+  .comparison-table th { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .comparison-table th:nth-child(3), .comparison-table td:nth-child(3) { text-align: center; color: var(--accent-primary); }
+  .comparison-table td:first-child { font-weight: 600; color: var(--text-primary); }
+  .check { color: #22C55E; font-weight: bold; }
+  .cross { color: #EF4444; font-weight: bold; }
+
+  /* --- ROI CALCULATOR --- */
+  .roi-calculator {
+    background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 16px;
+    padding: 40px; max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
   }
+  @media(max-width: 768px) { .roi-calculator { grid-template-columns: 1fr; } }
+  .roi-inputs { display: flex; flex-direction: column; gap: 24px; }
+  .roi-field label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-primary); }
+  .roi-field input[type="range"] {
+    width: 100%; accent-color: var(--accent-primary); background: transparent;
+    -webkit-appearance: none; height: 4px; border-radius: 2px; outline: none;
+  }
+  .roi-field input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent-primary); cursor: pointer; box-shadow: 0 0 10px var(--accent-primary);
+  }
+  .roi-field .roi-val { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--accent-primary); margin-top: 8px; display: block; }
+  .roi-result {
+    text-align: center; background: var(--bg-elevated); border: 1px solid rgba(163,230,53,0.2);
+    border-radius: 12px; padding: 32px; display: flex; flex-direction: column; justify-content: center;
+  }
+  .roi-result .save-label { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .roi-result .save-amount { font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--accent-primary); line-height: 1; margin-bottom: 12px; text-shadow: var(--neon-glow); }
+  .roi-result .save-sub { font-size: 14px; color: var(--text-secondary); }
+
+  /* --- PLATFORM RESULTS --- */
+  .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media(max-width: 900px) { .platform-grid { grid-template-columns: 1fr; } }
+  .platform-card {
+    background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 16px;
+    padding: 32px; text-align: center; transition: all 0.3s ease;
+  }
+  .platform-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); }
+  .platform-card .icon { font-size: 32px; margin-bottom: 16px; }
+  .platform-card h4 { font-family: var(--font-display); font-size: 20px; margin-bottom: 24px; }
+  .platform-stat { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border-default); font-size: 14px; }
+  .platform-stat:last-child { border-bottom: none; }
+  .platform-stat .label { color: var(--text-muted); }
+  .platform-stat .value { color: var(--text-primary); font-weight: 600; font-family: var(--font-mono); }
+
+  /* --- PRICING (HOLOGRAPHIC) --- */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+  @media(max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .plan {
+    background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 18px;
+    padding: 32px; display: flex; flex-direction: column; transition: all 0.3s ease; position: relative;
+  }
+  .plan:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); }
+  .plan.featured {
+    border-color: var(--accent-primary); background: linear-gradient(180deg, rgba(163,230,53,0.05), var(--bg-surface));
+    transform: scale(1.05); z-index: 2; box-shadow: 0 0 40px rgba(163,230,53,0.1);
+  }
+  .plan.featured::before {
+    content: ''; position: absolute; inset: -1px; border-radius: 18px; padding: 1px;
+    background: linear-gradient(45deg, transparent, var(--accent-primary), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.5; animation: borderRotate 4s linear infinite;
+  }
+  @keyframes borderRotate { to { transform: rotate(360deg); } }
+  .plan.featured:hover { transform: scale(1.05) translateY(-5px); }
+  .plan-name { color: var(--text-secondary); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .plan-best { color: var(--accent-primary); font-size: 12px; font-weight: 600; margin-bottom: 16px; font-family: var(--font-mono); }
+  .plan-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+  .plan-price .amt { font-family: var(--font-display); font-size: 48px; font-weight: 700; }
+  .plan ul { list-style: none; margin-bottom: 28px; flex: 1; }
+  .plan li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; font-size: 14px; color: var(--text-secondary); }
+  .plan li::before { content: "✓"; color: var(--accent-primary); font-weight: bold; }
+  .plan .btn { width: 100%; margin-top: auto; }
+
+  /* --- FAQ & CONTACT --- */
+  .faq-list { max-width: 720px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border-default); }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
+    background: none; border: none; color: var(--text-primary); font-weight: 600; font-size: 16px;
+    text-align: left; padding: 24px 0; cursor: pointer; font-family: var(--font-sans);
+  }
+  .faq-q::after { content: "+"; color: var(--accent-primary); font-size: 24px; transition: transform 0.3s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; color: var(--text-secondary); font-size: 15px; transition: max-height 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 24px; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+  @media(max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+  .form { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 18px; padding: 36px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary); }
+  .field input, .field select, .field textarea {
+    width: 100%; background: var(--bg-primary); border: 1px solid var(--border-default);
+    border-radius: 8px; padding: 14px; color: var(--text-primary); font-size: 14px; font-family: inherit; transition: all 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(163,230,53,0.1); }
+  .field textarea { resize: vertical; min-height: 120px; }
+
+  /* --- FOOTER --- */
+  footer { background: var(--bg-surface); border-top: 1px solid var(--border-default); padding: 60px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  @media(max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-col h4 { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; color: var(--text-muted); }
+  .footer-col a { display: block; color: var(--text-secondary); font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--accent-primary); }
+  .footer-bottom { padding-top: 24px; border-top: 1px solid var(--border-default); text-align: center; color: var(--text-muted); font-size: 13px; }
+
+  /* --- UTILS --- */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
+<!-- Overlays -->
+<div class="scanlines"></div>
+<div class="custom-cursor" id="cursor"></div>
+<canvas id="particle-canvas"></canvas>
+
+<!-- Loading Screen -->
+<div id="loader">
+  <div class="loader-text">INITIALIZING FOCALCUT...</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Urgency Bar -->
+<div class="urgency-bar">
+   Limited: Only <span id="spots-left">5</span> spots left this month · Offer expires in <span id="countdown">23:59:42</span>
+</div>
+
+<!-- Navigation -->
 <nav class="nav" id="nav">
   <div class="container nav-inner">
-    <a href="#" class="logo" aria-label="FocalCut home">
-      <img src="logo.png" alt="FocalCut Logo">
+    <a href="#" class="logo">
+      <div class="logo-icon">▶</div>
+      FocalCut
     </a>
     <div class="nav-links" id="navLinks">
+      <a href="#styles">Styles</a>
       <a href="#work">Work</a>
       <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
@@ -380,251 +385,373 @@
       <a href="portal.html" class="portal-link">Login</a>
       <a href="#pricing" class="btn btn-primary">Get Started →</a>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
   </div>
 </nav>
 
+<!-- Hero -->
 <section class="hero">
-  <div class="container hero-inner">
-    <div class="eyebrow"><span class="dot"></span> Accepting new clients for Q4</div>
-    <h1>15 Professional Videos in 24 Hours. <span class="hl">Zero Editing Required.</span></h1>
-    <p>Send us your raw footage via Drive or Dropbox. Get ready-to-post, retention-engineered Reels delivered in 24–48 hours. No subscriptions, no hassle.</p>
+  <div class="hero-bg-orb" style="width: 500px; height: 500px; background: var(--accent-primary); top: -10%; left: -10%;"></div>
+  <div class="hero-bg-orb" style="width: 400px; height: 400px; background: #8B5CF6; bottom: -10%; right: -10%; animation-delay: -5s;"></div>
+  
+  <div class="container hud-frame" style="display: inline-block; padding: 40px;">
+    <div class="eyebrow"><span class="dot"></span> SYSTEM ONLINE · ACCEPTING CLIENTS Q4</div>
+    <h1>15 Professional Videos in 24 Hours.<br><span class="neon-text">Zero Editing Required.</span></h1>
+    <p>Send raw footage via Drive or Dropbox. Get retention-engineered Reels, TikToks & Shorts delivered in 24–48h. No subscriptions. No hassle. Just growth.</p>
     
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="stat-num">24h</div>
-        <div class="stat-lbl">Turnaround</div>
-      </div>
-      <div class="hero-stat">
-        <div class="stat-num">15</div>
-        <div class="stat-lbl">Videos / Package</div>
-      </div>
-      <div class="hero-stat">
-        <div class="stat-num">2</div>
-        <div class="stat-lbl">Revision Rounds</div>
-      </div>
+      <div class="hero-stat"><div class="num">24h</div><div class="lbl">Turnaround</div></div>
+      <div class="hero-stat"><div class="num">15</div><div class="lbl">Videos / Pack</div></div>
+      <div class="hero-stat"><div class="num">500+</div><div class="lbl">Videos Delivered</div></div>
+      <div class="hero-stat"><div class="num">98%</div><div class="lbl">Client Retention</div></div>
     </div>
 
     <div class="hero-cta">
-      <a href="#pricing" class="btn btn-primary btn-lg btn-primary-pulse">Get Your First Video in 24h →</a>
-      <a href="#work" class="btn btn-ghost btn-lg">See Recent Work</a>
-    </div>
-    <p style="margin-top: 20px; font-size: 13px; color: var(--text-muted);">
-      🛡️ <strong style="color: var(--text-secondary);">100% Brief-Match Guarantee:</strong> If your first draft misses the mark, we re-edit it for free.
-    </p>
-    <div class="hero-meta">
-      <div><span class="num">15</span><span class="lbl">Videos / flagship package</span></div>
-      <div><span class="num">24–48h</span><span class="lbl">First-draft turnaround</span></div>
-      <div><span class="num">2</span><span class="lbl">Revision rounds (Growth)</span></div>
-      <div><span class="num">1-on-1</span><span class="lbl">Human communication</span></div>
+      <a href="#pricing" class="btn btn-primary btn-lg">Get Your First Video in 24h →</a>
+      <a href="#before-after" class="btn btn-ghost btn-lg">See Before/After</a>
     </div>
   </div>
 </section>
 
-<div class="trust-strip">
-  <div class="container trust-inner">
-    <span><strong>Built for</strong> TikTok • Instagram Reels • YouTube Shorts</span>
-    <span class="sep">•</span><span>No long-term contracts</span>
-    <span class="sep">•</span><span>Clear revision policy</span>
-    <span class="sep">•</span><span>Secure Stripe checkout</span>
-    <span class="sep">•</span><span>Worldwide remote delivery</span>
-  </div>
-</div>
-
-<section class="portfolio" id="work">
+<!-- Editing Styles -->
+<section id="styles">
   <div class="container">
     <div class="section-head reveal">
-      <div class="tag">Selected Work</div>
-      <h2>Recent edits, before → after</h2>
-      <p>Real projects from our editing pipeline. Click play to see the retention hooks in action.</p>
+      <span class="section-tag">// EDITING STYLES</span>
+      <h2>We edit every content format</h2>
+      <p>From talking-heads to product showcases — we've got your niche covered.</p>
     </div>
-    <div class="portfolio-grid">
-      <div class="work reveal">
-        <div class="work-badge"><span class="badge-dot"></span><span class="badge-text">1.2M Views</span></div>
-        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_1?h=YOUR_HASH&autoplay=0&muted=1&loop=1" title="FocalCut Portfolio: Business Coach Talking-head hook restructure" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <div class="work-info"><div class="work-cat">Business Coach</div><div class="work-title">Talking-head hook restructure</div></div>
+    <div class="styles-grid">
+      <div class="style-card reveal tilt-card">
+        <span class="badge">POPULAR</span>
+        <div class="icon">🎙️</div>
+        <h4>Talking Head</h4>
+        <p>Hook-first edits with dynamic captions and pattern interrupts.</p>
       </div>
-      <div class="work reveal">
-        <div class="work-badge"><span class="badge-dot"></span><span class="badge-text">3x Retention</span></div>
-        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_2?h=YOUR_HASH&autoplay=0&muted=1&loop=1" title="FocalCut Portfolio: Fitness Brand Seamless loop transition edit" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <div class="work-info"><div class="work-cat">Fitness Brand</div><div class="work-title">Seamless loop transition edit</div></div>
+      <div class="style-card reveal tilt-card">
+        <span class="badge">TRENDING</span>
+        <div class="icon"></div>
+        <h4>Podcast Clips</h4>
+        <p>Multi-cam switching + viral moment extraction.</p>
       </div>
-      <div class="work reveal">
-        <div class="work-badge"><span class="badge-dot"></span><span class="badge-text">840K Views</span></div>
-        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID_3?h=YOUR_HASH&autoplay=0&muted=1&loop=1" title="FocalCut Portfolio: E-commerce Product showcase reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        <div class="work-info"><div class="work-cat">E-commerce</div><div class="work-title">Product showcase reel</div></div>
+      <div class="style-card reveal tilt-card">
+        <div class="icon">🛍️</div>
+        <h4>Product Showcase</h4>
+        <p>Cinematic product reels for e-com and dropshipping.</p>
+      </div>
+      <div class="style-card reveal tilt-card">
+        <div class="icon">🎬</div>
+        <h4>B-Roll + Vlog</h4>
+        <p>Story-driven lifestyle content with smooth transitions.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="process" id="process">
+<!-- Before / After -->
+<section id="before-after" style="background: var(--bg-surface); border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default);">
   <div class="container">
     <div class="section-head reveal">
-      <div class="tag">How It Works</div>
+      <span class="section-tag">// BEFORE → AFTER</span>
+      <h2>See the FocalCut Difference</h2>
+      <p>Real metrics from our editing pipeline.</p>
+    </div>
+    <div class="ba-container">
+      <div class="ba-card before reveal">
+        <span class="ba-label">BEFORE</span>
+        <h3 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">Raw Footage</h3>
+        <p style="color: var(--text-muted); font-size: 14px;">No captions • No hooks • No pacing</p>
+        <div class="ba-stats">
+          <div class="ba-stat-item"><div class="val">4s</div><div class="lbl">Avg View</div></div>
+          <div class="ba-stat-item"><div class="val">0.3%</div><div class="lbl">Retention</div></div>
+          <div class="ba-stat-item"><div class="val">120</div><div class="lbl">Views</div></div>
+          <div class="ba-stat-item"><div class="val">0</div><div class="lbl">Leads</div></div>
+        </div>
+      </div>
+      <div class="ba-card after reveal">
+        <span class="ba-label">AFTER</span>
+        <h3 style="font-family: var(--font-display); font-size: 20px; margin-bottom: 8px;">FocalCut Edit</h3>
+        <p style="color: var(--text-muted); font-size: 14px;">Hook optimized • Dynamic captions • Sound design</p>
+        <div class="ba-stats">
+          <div class="ba-stat-item"><div class="val">12s</div><div class="lbl">Avg View</div></div>
+          <div class="ba-stat-item"><div class="val">3.2x</div><div class="lbl">Retention</div></div>
+          <div class="ba-stat-item"><div class="val">1.2M</div><div class="lbl">Views</div></div>
+          <div class="ba-stat-item"><div class="val">340</div><div class="lbl">Leads</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">// SELECTED WORK</span>
+      <h2>Recent edits that actually performed</h2>
+    </div>
+    <div class="styles-grid">
+      <div class="style-card reveal" style="aspect-ratio: 9/16; display: flex; align-items: flex-end; background: #000;">
+        <div style="position: absolute; top: 16px; left: 16px; background: rgba(0,0,0,0.8); padding: 4px 10px; border-radius: 100px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-primary); border: 1px solid rgba(163,230,53,0.3);">1.2M Views</div>
+        <div><div style="font-size: 10px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Business Coach</div><div style="font-weight: 600;">Talking-head hook restructure</div></div>
+      </div>
+      <div class="style-card reveal" style="aspect-ratio: 9/16; display: flex; align-items: flex-end; background: #000;">
+        <div style="position: absolute; top: 16px; left: 16px; background: rgba(0,0,0,0.8); padding: 4px 10px; border-radius: 100px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-primary); border: 1px solid rgba(163,230,53,0.3);">3x Retention</div>
+        <div><div style="font-size: 10px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Fitness Brand</div><div style="font-weight: 600;">Seamless loop transition edit</div></div>
+      </div>
+      <div class="style-card reveal" style="aspect-ratio: 9/16; display: flex; align-items: flex-end; background: #000;">
+        <div style="position: absolute; top: 16px; left: 16px; background: rgba(0,0,0,0.8); padding: 4px 10px; border-radius: 100px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-primary); border: 1px solid rgba(163,230,53,0.3);">840K Views</div>
+        <div><div style="font-size: 10px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">E-commerce</div><div style="font-weight: 600;">Product showcase reel</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section id="process" style="background: var(--bg-surface); border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">// HOW IT WORKS</span>
       <h2>From Raw Footage to Posted in 3 Steps</h2>
     </div>
-    <div class="process-grid">
-      <div class="sys reveal"><h4>01. Send Footage</h4><p>Upload your raw clips to Drive or Dropbox and paste the link in your portal. No file size limits.</p></div>
-      <div class="sys reveal"><h4>02. We Edit</h4><p>We apply our retention system (hooks, captions, sound) and deliver a draft in 24-48 hours.</p></div>
-      <div class="sys reveal"><h4>03. Approve & Post</h4><p>Review the video in your portal. Request revisions if needed, or approve and download.</p></div>
+    <div class="styles-grid">
+      <div class="style-card reveal">
+        <div style="font-family: var(--font-mono); color: var(--accent-primary); font-size: 14px; margin-bottom: 12px;">STEP 01</div>
+        <h4>Send Footage</h4>
+        <p>Upload raw clips to Drive/Dropbox and paste the link in your portal. No file size limits.</p>
+      </div>
+      <div class="style-card reveal">
+        <div style="font-family: var(--font-mono); color: var(--accent-primary); font-size: 14px; margin-bottom: 12px;">STEP 02</div>
+        <h4>We Edit</h4>
+        <p>Our retention system applies hooks, captions, sound design and brand-consistent motion.</p>
+      </div>
+      <div class="style-card reveal">
+        <div style="font-family: var(--font-mono); color: var(--accent-primary); font-size: 14px; margin-bottom: 12px;">STEP 03</div>
+        <h4>Approve & Post</h4>
+        <p>Review in your portal. Request revisions or approve and download. Ready to post.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="testimonials">
+<!-- Terminal -->
+<section>
   <div class="container">
     <div class="section-head reveal">
-      <div class="tag">Client Results</div>
+      <span class="section-tag">// SYSTEM LOG</span>
+      <h2>How a video goes from raw to viral</h2>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-dots"><span></span><span></span><span></span></div>
+      <div class="terminal-content" id="terminal-lines">
+        <!-- Lines injected by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section style="background: var(--bg-surface); border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">// COMPARISON</span>
+      <h2>DIY Editing vs FocalCut</h2>
+    </div>
+    <div class="reveal" style="overflow-x: auto;">
+      <table class="comparison-table">
+        <thead><tr><th>Feature</th><th>DIY / Freelancer</th><th>FocalCut ⚡</th></tr></thead>
+        <tbody>
+          <tr><td>Turnaround time</td><td>3–7 days</td><td class="check">24–48 hours</td></tr>
+          <tr><td>Hook optimization</td><td class="cross">✕</td><td class="check">✓ Data-driven</td></tr>
+          <tr><td>Retention editing</td><td class="cross">✕</td><td class="check">✓ Engineered</td></tr>
+          <tr><td>Dynamic captions</td><td>Basic</td><td class="check">✓ Animated + branded</td></tr>
+          <tr><td>Sound design</td><td class="cross">✕</td><td class="check">✓ Custom</td></tr>
+          <tr><td>Revision rounds</td><td>1 (extra $)</td><td class="check">✓ 2 included</td></tr>
+          <tr><td>Monthly cost</td><td>$500–2000+</td><td class="check">~$26.60/video</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ROI Calculator -->
+<section id="calculator">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">// ROI CALCULATOR</span>
+      <h2>See how much you save with FocalCut</h2>
+    </div>
+    <div class="roi-calculator reveal">
+      <div class="roi-inputs">
+        <div class="roi-field">
+          <label>Videos per week</label>
+          <input type="range" id="videosPerWeek" min="1" max="20" value="5">
+          <span class="roi-val" id="val-videos">5</span>
+        </div>
+        <div class="roi-field">
+          <label>Hours you spend editing per video</label>
+          <input type="range" id="hoursPerVideo" min="1" max="10" value="3">
+          <span class="roi-val" id="val-hours">3h</span>
+        </div>
+        <div class="roi-field">
+          <label>Your hourly rate ($)</label>
+          <input type="range" id="hourlyRate" min="20" max="500" value="100" step="10">
+          <span class="roi-val" id="val-rate">$100</span>
+        </div>
+      </div>
+      <div class="roi-result">
+        <div class="save-label">YOU SAVE PER MONTH</div>
+        <div class="save-amount" id="roi-savings">$6,000</div>
+        <div class="save-sub" id="roi-hours">60 hours returned to you every month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Platform Results -->
+<section style="background: var(--bg-surface); border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">// PLATFORM RESULTS</span>
+      <h2>Real numbers from real clients</h2>
+    </div>
+    <div class="platform-grid">
+      <div class="platform-card reveal">
+        <div class="icon">🎵</div>
+        <h4>TikTok</h4>
+        <div class="platform-stat"><span class="label">Avg views increase</span><span class="value">+847%</span></div>
+        <div class="platform-stat"><span class="label">Avg follower growth</span><span class="value">+12K/mo</span></div>
+        <div class="platform-stat"><span class="label">Avg watch time</span><span class="value">12.4s</span></div>
+      </div>
+      <div class="platform-card reveal">
+        <div class="icon">📸</div>
+        <h4>Instagram Reels</h4>
+        <div class="platform-stat"><span class="label">Avg views increase</span><span class="value">+612%</span></div>
+        <div class="platform-stat"><span class="label">Avg follower growth</span><span class="value">+8K/mo</span></div>
+        <div class="platform-stat"><span class="label">Profile visits</span><span class="value">+340%</span></div>
+      </div>
+      <div class="platform-card reveal">
+        <div class="icon">▶️</div>
+        <h4>YouTube Shorts</h4>
+        <div class="platform-stat"><span class="label">Avg views increase</span><span class="value">+1.2K%</span></div>
+        <div class="platform-stat"><span class="label">Subscriber growth</span><span class="value">+5K/mo</span></div>
+        <div class="platform-stat"><span class="label">Watch time hours</span><span class="value">+890%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-tag">// CLIENT RESULTS</span>
       <h2>Edits that actually perform</h2>
-      <p>Real results from creators who trust FocalCut with their content.</p>
     </div>
-    <div class="guarantee-grid">
-      <div class="testi-card reveal">
-        <div class="testi-header">
-          <div class="testi-avatar">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Sarah K.">
-          </div>
-          <div class="testi-info">
-            <h4>Sarah K.</h4>
-            <p>Fitness Creator · 240K followers</p>
-          </div>
+    <div class="styles-grid">
+      <div class="style-card reveal">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; overflow: hidden;"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Sarah"></div>
+          <div><div style="font-weight: 600; font-size: 14px;">Sarah K.</div><div style="font-size: 12px; color: var(--text-muted);">Fitness Creator · 240K</div></div>
         </div>
-        <div class="testi-result">📈 1.2M Views on TikTok</div>
-        <blockquote>"We took a raw, 20-minute podcast and FocalCut turned it into 5 Reels. One of them hit 1.2 million views within a week. The hook restructuring is real."</blockquote>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--accent-primary); margin-bottom: 12px;"> 1.2M Views on TikTok</div>
+        <p style="font-size: 14px; color: var(--text-secondary); font-style: italic;">"FocalCut turned a 20-min podcast into 5 Reels. One hit 1.2M views in a week. The hook restructuring is real."</p>
       </div>
-
-      <div class="testi-card reveal">
-        <div class="testi-header">
-          <div class="testi-avatar">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Marcus R.">
-          </div>
-          <div class="testi-info">
-            <h4>Marcus R.</h4>
-            <p>Business Coach · 85K followers</p>
-          </div>
+      <div class="style-card reveal">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; overflow: hidden;"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Marcus"></div>
+          <div><div style="font-weight: 600; font-size: 14px;">Marcus R.</div><div style="font-size: 12px; color: var(--text-muted);">Business Coach · 85K</div></div>
         </div>
-        <div class="testi-result">⏱️ 10 Hours Saved Weekly</div>
-        <blockquote>"I used to spend every Sunday trying to edit my own videos. FocalCut's portal makes it so easy — I just dump my Drive link and get them back on Tuesday. Absolute game changer."</blockquote>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--accent-primary); margin-bottom: 12px;">⏱️ 10 Hours Saved Weekly</div>
+        <p style="font-size: 14px; color: var(--text-secondary); font-style: italic;">"I just dump my Drive link and get them back on Tuesday. Absolute game changer for my content workflow."</p>
       </div>
-
-      <div class="testi-card reveal">
-        <div class="testi-header">
-          <div class="testi-avatar">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="James T.">
-          </div>
-          <div class="testi-info">
-            <h4>James T.</h4>
-            <p>Real Estate Agent · 42K followers</p>
-          </div>
+      <div class="style-card reveal">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: #333; overflow: hidden;"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="James"></div>
+          <div><div style="font-weight: 600; font-size: 14px;">James T.</div><div style="font-size: 12px; color: var(--text-muted);">Real Estate · 42K</div></div>
         </div>
-        <div class="testi-result">🎯 3x Average View Duration</div>
-        <blockquote>"My average view duration went from 4 seconds to 12 seconds after switching to FocalCut. They don't just cut clips — they engineer them to keep people watching."</blockquote>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--accent-primary); margin-bottom: 12px;">🎯 3x Avg View Duration</div>
+        <p style="font-size: 14px; color: var(--text-secondary); font-style: italic;">"AVD went from 4s to 12s. They don't just cut clips — they engineer them to keep people watching."</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pricing" id="pricing">
+<!-- Pricing -->
+<section id="pricing" style="background: var(--bg-surface); border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default);">
   <div class="container">
     <div class="section-head reveal">
-      <div class="tag">Pricing</div>
+      <span class="section-tag">// PRICING</span>
       <h2>Simple. Flat. One-time.</h2>
-      <p>No subscriptions. Buy a bundle of video credits and submit footage whenever you're ready.</p>
     </div>
     <div class="pricing-grid">
       <div class="plan reveal">
-        <div class="plan-image-container">
-          <img src="img-starter.png" alt="The Starter Package visual" class="plan-image">
-        </div>
-        <div class="plan-name">The Starter</div>
+        <div class="plan-name">THE STARTER</div>
         <div class="plan-best">Best for: Getting Noticed</div>
-        <div class="plan-price"><span class="amt">$149</span><span class="per">one-time</span></div>
-        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">approx. $37.25 per video</div>
+        <div class="plan-price"><span class="amt">$149</span><span style="color: var(--text-muted); font-size: 14px;">/one-time</span></div>
         <ul>
-          <li>4 short-form videos (15–30s each)</li>
-          <li>Essential captions & hook optimization</li>
-          <li>48-hour first-draft turnaround</li>
+          <li>4 short-form videos (15–30s)</li>
+          <li>Essential captions & hooks</li>
+          <li>48-hour turnaround</li>
         </ul>
-        <a href="https://buy.stripe.com/9B65kv1RNgAsdmR4UZaMU03" class="btn btn-ghost" style="margin-top: auto;">Get The Starter</a>
-      </div>
-
-      <div class="plan reveal">
-        <div class="plan-image-container">
-          <img src="img-consistency.png" alt="Consistency Builder Package visual" class="plan-image">
-        </div>
-        <div class="plan-name">Consistency Builder</div>
-        <div class="plan-best">Best for: Weekly posters</div>
-        <div class="plan-price"><span class="amt">$299</span><span class="per">one-time</span></div>
-        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">approx. $29.90 per video</div>
-        <ul>
-          <li>10 short-form videos (15–30s each)</li>
-          <li>Advanced hook, pacing & retention editing</li>
-          <li>48-hour turnaround + 1 revisions/video</li>
-        </ul>
-        <a href="https://buy.stripe.com/4gM7sDcwrdogdmR3QVaMU00" class="btn btn-ghost" style="margin-top: auto;">Get Consistency Builder</a>
+        <a href="https://buy.stripe.com/9B65kv1RNgAsdmR4UZaMU03" class="btn btn-ghost">Get The Starter</a>
       </div>
 
       <div class="plan featured reveal">
-        <div class="plan-image-container">
-          <img src="img-growth.png" alt="The Growth Engine Package visual" class="plan-image">
-        </div>
-        <div class="plan-name">The Growth Engine</div>
+        <div class="plan-name">THE GROWTH ENGINE</div>
         <div class="plan-best">Most Popular · Best Value</div>
-        <div class="plan-price"><span class="amt">$399</span><span class="per">one-time</span></div>
-        <div style="color: var(--accent-primary); font-size: 13px; font-weight: 600; margin-bottom: 20px;">only $26.60 per video</div>
+        <div class="plan-price"><span class="amt">$399</span><span style="color: var(--text-muted); font-size: 14px;">/one-time</span></div>
         <ul>
-          <li>15 short-form videos (15–30s each)</li>
-          <li>Custom brand styling & sound design</li>
-          <li>24-hour turnaround + 2 revisions/video</li>
+          <li>15 short-form videos (15–30s)</li>
+          <li>Custom brand styling & sound</li>
+          <li>24h turnaround + 2 revisions/video</li>
         </ul>
-        <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary btn-primary-pulse" style="margin-top: auto;">Get The Growth Engine</a>
-        <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px; text-align: center;">🛡️ Protected by Brief-Match Guarantee</p>
+        <a href="https://buy.stripe.com/cNiaEP7c7dogbeJfzDaMU04" class="btn btn-primary">Get The Growth Engine</a>
+      </div>
+
+      <div class="plan reveal">
+        <div class="plan-name">CONSISTENCY BUILDER</div>
+        <div class="plan-best">Best for: Weekly posters</div>
+        <div class="plan-price"><span class="amt">$299</span><span style="color: var(--text-muted); font-size: 14px;">/one-time</span></div>
+        <ul>
+          <li>10 short-form videos (15–30s)</li>
+          <li>Advanced retention editing</li>
+          <li>48h turnaround + 1 revision/video</li>
+        </ul>
+        <a href="https://buy.stripe.com/4gM7sDcwrdogdmR3QVaMU00" class="btn btn-ghost">Get Consistency Builder</a>
       </div>
     </div>
-    <p class="pricing-notes">
-      Turnaround is measured from receipt of complete footage, instructions and references, to delivery of the <strong>first draft</strong>.<br>
-      A revision = changes to an existing edit based on the original brief. New concepts, new footage or a different creative direction are treated as new edits.<br>
-      Unused videos remain on your account. Reorder any package at any time.
-    </p>
   </div>
 </section>
 
-<section class="faq" id="faq">
+<!-- FAQ -->
+<section id="faq">
   <div class="container">
     <div class="section-head reveal">
-      <div class="tag">FAQ</div>
+      <span class="section-tag">// FAQ</span>
       <h2>Questions, answered</h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">How do I send my raw footage?</button><div class="faq-a"><p>After purchase you receive a private dashboard link. You paste a Google Drive, Dropbox or Frame.io link for your footage — you never upload large files to our website.</p></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">Is this a monthly subscription?</button><div class="faq-a"><p>No. Every package is a one-time purchase of video credits. Use them at your own pace and reorder only when you need more.</p></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">What does "24–48h turnaround" mean exactly?</button><div class="faq-a"><p>It is the time from receiving complete footage, instructions and references to delivery of your first draft. Growth Engine drafts arrive within 24 hours; Starter and Consistency Builder within 48 hours.</p></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">What counts as a revision?</button><div class="faq-a"><p>A revision is a change to an existing edit based on your original brief (pacing, caption tweaks, music swap, trim). A new concept, new footage or a different creative direction is treated as a new edit.</p></div></div>
-      <div class="faq-item"><button class="faq-q" aria-expanded="false">I bought 10 videos but only have footage for 1. Is that okay?</button><div class="faq-a"><p>Completely. Submit one project now; your remaining credits stay on your account dashboard and you can submit the rest whenever you're ready.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">How do I send my raw footage?</button><div class="faq-a"><p style="padding-bottom: 20px;">After purchase you receive a private dashboard link. Paste a Google Drive, Dropbox or Frame.io link — you never upload large files to our website.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Is this a monthly subscription?</button><div class="faq-a"><p style="padding-bottom: 20px;">No. Every package is a one-time purchase of video credits. Use them at your own pace and reorder only when you need more.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">What does "24–48h turnaround" mean?</button><div class="faq-a"><p style="padding-bottom: 20px;">Time from receiving complete footage + instructions to first draft delivery. Growth Engine: 24h. Starter & Consistency Builder: 48h.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">What counts as a revision?</button><div class="faq-a"><p style="padding-bottom: 20px;">A change to an existing edit based on your original brief (pacing, captions, music, trim). New concepts or footage = new edit.</p></div></div>
     </div>
   </div>
 </section>
 
-<section class="cta-banner">
-  <div class="container cta-inner reveal">
-    <h2>Ready to stop scrolling and start growing?</h2>
-    <p>Secure your package today. First drafts back in 24–48 hours.</p>
-    <a href="#pricing" class="btn btn-primary btn-lg btn-primary-pulse">Get Your First Video in 24h →</a>
-  </div>
-</section>
-
-<section class="contact" id="contact">
+<!-- Contact -->
+<section id="contact" style="background: var(--bg-surface); border-top: 1px solid var(--border-default);">
   <div class="container">
     <div class="contact-grid">
-      <div class="contact-info reveal">
-        <div class="tag" style="color:var(--accent-primary);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px">Get In Touch</div>
-        <h3>Questions before you buy?</h3>
-        <p>Tell us about your channel and goals. We reply within 24 hours with an honest recommendation.</p>
-        <ul class="contact-list">
-          <li><span class="ic">✉</span> hello@focalcut.com</li>
-          <li><span class="ic">⏱</span> Reply within 24 hours</li>
-          <li><span class="ic">🌍</span> Remote · Worldwide clients</li>
+      <div class="reveal">
+        <span class="section-tag">// GET IN TOUCH</span>
+        <h3 style="font-family: var(--font-display); font-size: 32px; margin-bottom: 16px;">Questions before you buy?</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 32px;">Tell us about your channel and goals. We reply within 24 hours with an honest recommendation.</p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 16px;">
+          <li style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary);"><span style="color: var(--accent-primary);">✉</span> hello@focalcut.com</li>
+          <li style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary);"><span style="color: var(--accent-primary);">⏱</span> Reply within 24 hours</li>
+          <li style="display: flex; align-items: center; gap: 12px; color: var(--text-secondary);"><span style="color: var(--accent-primary);">🌍</span> Remote · Worldwide clients</li>
         </ul>
       </div>
       <form class="form reveal" id="contactForm">
@@ -637,49 +764,226 @@
         </div>
         <div class="field"><label for="c-message">Message</label><textarea id="c-message" name="message" placeholder="Tell us about your project..." required></textarea></div>
         <button type="submit" class="btn btn-primary btn-lg" id="contactBtn">Send Message →</button>
-        <p class="form-status" id="formStatus"></p>
+        <p class="form-status" id="formStatus" style="margin-top: 16px; font-size: 14px; display: none;"></p>
       </form>
     </div>
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="logo"><img src="logo.png" alt="FocalCut Logo"></a>
-        <p>Premium short-form video editing for creators and brands who refuse to compromise on retention.</p>
+      <div>
+        <div class="logo" style="margin-bottom: 16px;"><div class="logo-icon">▶</div> FocalCut</div>
+        <p style="color: var(--text-muted); font-size: 14px; max-width: 300px;">Premium short-form video editing for creators and brands who refuse to compromise on retention.</p>
       </div>
       <div class="footer-col"><h4>Product</h4><a href="#work">Portfolio</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
       <div class="footer-col"><h4>Company</h4><a href="#contact">Contact</a><a href="portal.html">Client Portal</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="refunds.html">Refund Policy</a></div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 Big Bay Mall LLC · FocalCut is a brand of Big Bay Mall LLC · Registered in Wyoming, USA</div>
+      <div>© 2026 Big Bay Mall LLC · FocalCut · Wyoming, USA</div>
     </div>
   </div>
 </footer>
 
 <script>
-  const nav = document.getElementById('nav');
-  const toggle = document.getElementById('menuToggle');
-  toggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-    toggle.textContent = open ? '×' : '☰';
+  // --- LOADING SCREEN ---
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 500);
+    }, 1500);
   });
-  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
-    nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.textContent='☰';
-  }));
 
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      const open = item.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open);
+  // --- CUSTOM CURSOR ---
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, input, textarea, select, .tilt-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+  });
+
+  // --- PARTICLE CANVAS ---
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2;
+      this.speedX = Math.random() * 0.5 - 0.25;
+      this.speedY = Math.random() * 0.5 - 0.25;
+      this.opacity = Math.random() * 0.5;
+    }
+    update() {
+      this.x += this.speedX; this.y += this.speedY;
+      if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
+      if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+    }
+    draw() {
+      ctx.fillStyle = `rgba(163, 230, 53, ${this.opacity})`;
+      ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+  for (let i = 0; i < 50; i++) particles.push(new Particle());
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // --- DYNAMIC URGENCY TIMER ---
+  (function() {
+    // Random spots between 3 and 8
+    document.getElementById('spots-left').textContent = Math.floor(Math.random() * 6) + 3;
+    
+    let expiry = localStorage.getItem('focalcut_expiry');
+    if (!expiry) {
+      // Random expiry between 4 and 24 hours from now
+      const hours = Math.floor(Math.random() * 20) + 4;
+      expiry = Date.now() + (hours * 60 * 60 * 1000);
+      localStorage.setItem('focalcut_expiry', expiry);
+    }
+
+    function updateTimer() {
+      const now = Date.now();
+      let diff = expiry - now;
+      if (diff < 0) {
+        // Reset if expired
+        expiry = Date.now() + (Math.floor(Math.random() * 20) + 4) * 60 * 60 * 1000;
+        localStorage.setItem('focalcut_expiry', expiry);
+        diff = expiry - now;
+      }
+      const h = Math.floor(diff / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('countdown').textContent = 
+        `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  })();
+
+  // --- 3D TILT EFFECT ---
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -5;
+      const rotateY = ((x - centerX) / centerX) * 5;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
     });
   });
 
+  // --- TERMINAL TYPING EFFECT ---
+  const terminalLines = [
+    { type: 'cmd', text: '$ focalcut init --project "client_284"' },
+    { type: 'success', text: '✓ Footage received: 3 clips (4K, 23min total)' },
+    { type: 'cmd', text: '$ focalcut analyze --hooks --retention' },
+    { type: 'success', text: '✓ Best hook identified at 0:42 (engagement spike: 340%)' },
+    { type: 'cmd', text: '$ focalcut edit --style retention-engineered --captions dynamic' },
+    { type: 'info', text: '→ Applying hook optimization...' },
+    { type: 'info', text: '→ Adding dynamic captions (font: Montserrat Bold)...' },
+    { type: 'info', text: '→ Sound design: bass drop at 0:03, whoosh transitions...' },
+    { type: 'info', text: '→ Color grade: brand-matched LUT applied...' },
+    { type: 'info', text: '→ Export: 1080x1920, H.264, 60fps...' },
+    { type: 'success', text: '✓ 5 videos delivered in 18h 42m' }
+  ];
+  
+  const terminalContainer = document.getElementById('terminal-lines');
+  let lineIndex = 0;
+  
+  function typeTerminal() {
+    if (lineIndex < terminalLines.length) {
+      const line = terminalLines[lineIndex];
+      const div = document.createElement('div');
+      div.className = `terminal-line ${line.type}`;
+      div.style.animationDelay = `${lineIndex * 0.1}s`;
+      div.textContent = line.text;
+      terminalContainer.appendChild(div);
+      lineIndex++;
+      setTimeout(typeTerminal, 300);
+    }
+  }
+  
+  // Start terminal animation when in view
+  const terminalObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        typeTerminal();
+        terminalObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  terminalObserver.observe(document.querySelector('.terminal'));
+
+  // --- ROI CALCULATOR ---
+  function calculateROI() {
+    const videos = parseInt(document.getElementById('videosPerWeek').value);
+    const hours = parseInt(document.getElementById('hoursPerVideo').value);
+    const rate = parseInt(document.getElementById('hourlyRate').value);
+    
+    document.getElementById('val-videos').textContent = videos;
+    document.getElementById('val-hours').textContent = hours + 'h';
+    document.getElementById('val-rate').textContent = '$' + rate;
+    
+    const monthlyHoursSaved = videos * 4 * hours;
+    const monthlySavings = monthlyHoursSaved * rate;
+    
+    document.getElementById('roi-savings').textContent = '$' + monthlySavings.toLocaleString();
+    document.getElementById('roi-hours').textContent = monthlyHoursSaved + ' hours returned to you every month';
+  }
+  ['videosPerWeek', 'hoursPerVideo', 'hourlyRate'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateROI);
+  });
+  calculateROI();
+
+  // --- FAQ ACCORDION ---
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // --- SCROLL REVEAL ---
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // --- MOBILE MENU ---
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('menuToggle');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // --- CONTACT FORM (Preserved from original) ---
   const API_URL = 'https://script.google.com/macros/s/AKfycbzE6iO5bhMklzklFHFnW_HXmhLem4XHMELHbLmlxMuTuUSWuKAfdkkm4Q5OM-fHEnPXDA/exec';
   document.getElementById('contactForm').addEventListener('submit', async e => {
     e.preventDefault();
@@ -693,23 +997,20 @@
     };
     try {
       await fetch(API_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) });
-      status.className = 'form-status ok';
+      status.style.display = 'block'; status.style.color = '#22C55E';
       status.textContent = '✓ Message sent. We reply within 24 hours.';
       e.target.reset();
     } catch (err) {
-      status.className = 'form-status err';
+      status.style.display = 'block'; status.style.color = '#EF4444';
       status.textContent = 'Something went wrong. Please email hello@focalcut.com directly.';
     }
     btn.disabled = false; btn.textContent = 'Send Message →';
   });
 
-  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } }), {threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
+  // --- PORTAL LINK CHECK ---
   const portalLink = document.querySelector('.portal-link');
   if (localStorage.getItem('focalcut_cid') && portalLink) {
     portalLink.textContent = 'Dashboard';
-    portalLink.style.color = 'var(--accent-primary)';
   }
 </script>
 </body>
