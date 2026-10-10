@@ -239,7 +239,7 @@
   .trust-item{font-size:15px;font-weight:600;color:var(--text-secondary);transition:all .2s}
   .trust-item:hover{color:var(--text-primary);opacity:1}
 
-  /* BEFORE/AFTER - SIDE BY SIDE FIX */
+  /* BEFORE/AFTER - UPDATED 1:1 RATIO & PREMIUM DIVIDER */
   .before-after{background:var(--bg-surface)}
   .ba-layout{
     display: grid;
@@ -252,12 +252,12 @@
   .ba-wrapper{
     position:relative;
     width: 100%;
-    max-width: 350px;
+    max-width: 500px; /* Adjusted for 1:1 square look */
     margin: 0 auto;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--border-default);
-    aspect-ratio: 9/16;
+    aspect-ratio: 1/1; /* CHANGED TO 1:1 */
     background: #000;
   }
   .ba-container{
@@ -265,7 +265,10 @@
     width:100%;
     height:100%;
     overflow:hidden;
-    cursor:col-resize;
+    cursor: col-resize; /* Clean resize cursor */
+    user-select: none; /* Prevents text/image selection */
+    -webkit-user-select: none;
+    -webkit-user-drag: none; /* Prevents browser default image dragging */
   }
   .ba-image{
     position:absolute;
@@ -274,41 +277,59 @@
     width:100%;
     height:100%;
     object-fit: cover;
+    pointer-events: none; /* CRITICAL: Prevents the mouse from grabbing the image */
   }
   .ba-image.before{z-index:1}
   .ba-image.after{z-index:2;clip-path:inset(0 50% 0 0)}
   
+  /* 6px High-Contrast Brand Divider */
   .ba-slider{
     position:absolute;
     top:0;
     left:50%;
-    width:3px;
+    width: 6px; /* CHANGED TO 6px */
     height:100%;
-    background:var(--accent-primary);
+    background: var(--accent-primary); /* Brand-specific color */
     z-index:10;
     pointer-events:none;
-    box-shadow:0 0 15px rgba(163,230,53,0.5);
+    box-shadow: 0 0 20px rgba(163,230,53,0.6); /* High-contrast glow */
+    transition: width 0.2s ease, box-shadow 0.2s ease;
   }
+  
+  /* Hover effect for the divider */
+  .ba-container:hover .ba-slider {
+    box-shadow: 0 0 30px rgba(163,230,53,0.9);
+  }
+
   .ba-slider::after{
-    content:'⟩';
+    content:'⟨⟩';
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:44px;
-    height:44px;
+    width:48px;
+    height:48px;
     background:var(--bg-primary);
     border:2px solid var(--accent-primary);
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:12px;
+    font-size:14px;
     font-weight:bold;
     color:var(--accent-primary);
     font-family:var(--font-mono);
     box-shadow:0 4px 15px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
   }
+
+  /* Handle hover scale effect */
+  .ba-container:hover .ba-slider::after {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: var(--accent-primary);
+    color: var(--accent-text);
+  }
+
   .ba-label{
     position:absolute;
     top:16px;
@@ -692,7 +713,7 @@
     .plan.featured:hover{transform:translateY(-6px)}
     .contact-grid{grid-template-columns:1fr;gap:32px}
     .footer-grid{grid-template-columns:1fr;gap:32px}
-    .comparison-stats{grid-template-columns:1fr}
+    .comparison-stats{grid-template-columns:repeat(2, 1fr); gap: 10px;}
     .comparison-table{overflow-x:auto}
     .calc-card{padding:24px}
     .calc-row{flex-direction:column;align-items:flex-start;gap:10px}
@@ -746,7 +767,7 @@
       <a href="portal.html" class="portal-link">Login</a>
       <a href="#pricing" class="btn btn-primary">Get Started →</a>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"></button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
   </div>
 </nav>
 
@@ -1011,13 +1032,13 @@
         </thead>
         <tbody>
           <tr><td>Turnaround time</td><td>3–7 days</td><td>24–48 hours</td></tr>
-          <tr><td>Hook optimization</td><td>✕</td><td>✓ Data-driven</td></tr>
+          <tr><td>Hook optimization</td><td></td><td>✓ Data-driven</td></tr>
           <tr><td>Retention editing</td><td>✕</td><td>✓ Engineered</td></tr>
           <tr><td>Dynamic captions</td><td>Basic</td><td>✓ Animated + branded</td></tr>
           <tr><td>Sound design</td><td>✕</td><td>✓ Custom</td></tr>
           <tr><td>Revision rounds</td><td>1 (extra $)</td><td>✓ 2 included</td></tr>
           <tr><td>Consistent brand style</td><td>✕</td><td>✓ Locked-in</td></tr>
-          <tr><td>Portal + tracking</td><td></td><td>✓ Real-time</td></tr>
+          <tr><td>Portal + tracking</td><td>✕</td><td>✓ Real-time</td></tr>
           <tr><td>Monthly cost</td><td>$500–2000+</td><td>$26.60/video</td></tr>
           <tr><td>Contracts</td><td>Often required</td><td>✓ Zero — one-time</td></tr>
         </tbody>
@@ -1118,7 +1139,7 @@
           <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Sarah K."></div>
           <div class="testi-info"><h4>Sarah K.</h4><p>Fitness Creator · 240K</p></div>
         </div>
-        <div class="testi-result">📈 1.2M Views on TikTok</div>
+        <div class="testi-result"> 1.2M Views on TikTok</div>
         <blockquote>"FocalCut turned a 20-min podcast into 5 Reels. One hit 1.2M views in a week. The hook restructuring is real."</blockquote>
       </div>
       <div class="testi-card">
@@ -1126,7 +1147,7 @@
           <div class="testi-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Marcus R."></div>
           <div class="testi-info"><h4>Marcus R.</h4><p>Business Coach · 85K</p></div>
         </div>
-        <div class="testi-result">⏱️ 10 Hours Saved Weekly</div>
+        <div class="testi-result">️ 10 Hours Saved Weekly</div>
         <blockquote>"I just dump my Drive link and get them back on Tuesday. Absolute game changer for my content workflow."</blockquote>
       </div>
       <div class="testi-card">
