@@ -816,7 +816,7 @@
 
 <!-- LEAD GEN MODAL -->
 <div class="modal-overlay" id="leadModal">
-  <div class="modal-content">
+  <div class="modal-content" style="padding-top: 60px;"> <!-- Increased top padding -->
     <button class="modal-close" id="closeModal">&times;</button>
     <h2>Claim Your <span class="gradient-text">Free Resources</span></h2>
     <p>Get our exclusive <strong>Hook & CTA Ebooks</strong> and a <strong>Free Personalized Hook Audit</strong> of your footage to see exactly how we can 3x your retention.</p>
@@ -826,7 +826,7 @@
       <li>Actionable tips to instantly improve your watch time</li>
     </ul>
     <form class="form" id="leadForm" style="padding: 0; border: none; box-shadow: none;">
-      <div class="field"><label for="l-name">Your Name</label><input id="l-name" type="text" name="name" placeholder="Jane Doe" required></div>
+      <div class="field" style="margin-top: 20px;"><label for="l-name">Your Name</label><input id="l-name" type="text" name="name" placeholder="Jane Doe" required></div>
       <div class="field">
         <label for="l-email">Email Address</label>
         <div class="input-wrapper">
@@ -987,9 +987,10 @@
   const closeBtn = document.getElementById('closeModal');
   const banner = document.getElementById('freeResourceBanner');
   
-  if(banner) banner.addEventListener('click', () => { if(modal) modal.classList.add('active'); });
-  if(closeBtn) closeBtn.addEventListener('click', () => { if(modal) modal.classList.remove('active'); });
-  if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+  if(banner) banner.addEventListener('click', () => modal.classList.add('active'));
+  if(closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+  // Prevent closing when clicking outside - force them to use the close button or download first
+  // if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
   const emailInput = document.getElementById('l-email');
   const emailStatusIcon = document.getElementById('emailStatusIcon');
@@ -1004,23 +1005,17 @@
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       
       clearTimeout(emailCheckTimeout);
-      if(emailStatusIcon) emailStatusIcon.style.display = 'none';
-      if(emailStatusText) {
-        emailStatusText.textContent = '';
-        emailStatusText.className = 'email-status-text';
-      }
+      emailStatusIcon.style.display = 'none';
+      emailStatusText.textContent = '';
+      emailStatusText.className = 'email-status-text';
       isEmailValid = false;
-      if(leadBtn) leadBtn.disabled = false;
+      leadBtn.disabled = false;
 
       if (emailRegex.test(email)) {
-        if(emailStatusIcon) {
-          emailStatusIcon.style.display = 'block';
-          emailStatusIcon.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid var(--border-default);border-top-color:var(--accent-primary);border-radius:50%;animation:spin 0.8s linear infinite;"></span>';
-        }
-        if(emailStatusText) {
-          emailStatusText.textContent = 'Checking availability...';
-          emailStatusText.className = 'email-status-text checking';
-        }
+        emailStatusIcon.style.display = 'block';
+        emailStatusIcon.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid var(--border-default);border-top-color:var(--accent-primary);border-radius:50%;animation:spin 0.8s linear infinite;"></span>';
+        emailStatusText.textContent = 'Checking claim status...'; // Changed message
+        emailStatusText.className = 'email-status-text checking';
 
         emailCheckTimeout = setTimeout(async () => {
           try {
@@ -1032,21 +1027,27 @@
             const data = await res.json();
             
             if (data.exists) {
-              if(emailStatusIcon) { emailStatusIcon.innerHTML = '⚠️'; emailStatusIcon.style.color = 'var(--warning)'; }
-              if(emailStatusText) { emailStatusText.textContent = 'This email has already claimed the offer.'; emailStatusText.className = 'email-status-text error'; }
+              emailStatusIcon.innerHTML = '⚠️';
+              emailStatusIcon.style.color = 'var(--warning)';
+              emailStatusText.textContent = 'This email already claimed the offer.';
+              emailStatusText.className = 'email-status-text error';
               isEmailValid = false;
-              if(leadBtn) leadBtn.disabled = true;
+              leadBtn.disabled = true;
             } else {
-              if(emailStatusIcon) { emailStatusIcon.innerHTML = '✓'; emailStatusIcon.style.color = 'var(--success)'; }
-              if(emailStatusText) { emailStatusText.textContent = 'Email available!'; emailStatusText.className = 'email-status-text success'; }
+              emailStatusIcon.innerHTML = '✓';
+              emailStatusIcon.style.color = 'var(--success)';
+              emailStatusText.textContent = 'Claim available!'; // Changed message
+              emailStatusText.className = 'email-status-text success';
               isEmailValid = true;
-              if(leadBtn) leadBtn.disabled = false;
+              leadBtn.disabled = false;
             }
           } catch (err) {
-            if(emailStatusIcon) { emailStatusIcon.innerHTML = '✓'; emailStatusIcon.style.color = 'var(--success)'; }
-            if(emailStatusText) { emailStatusText.textContent = 'Email available!'; emailStatusText.className = 'email-status-text success'; }
+            emailStatusIcon.innerHTML = '✓';
+            emailStatusIcon.style.color = 'var(--success)';
+            emailStatusText.textContent = 'Claim available!';
+            emailStatusText.className = 'email-status-text success';
             isEmailValid = true;
-            if(leadBtn) leadBtn.disabled = false;
+            leadBtn.disabled = false;
           }
         }, 600);
       }
@@ -1066,21 +1067,33 @@
       }
 
       btn.disabled = true; btn.textContent = 'Processing...';
-      const payload = { action: 'submitLead', name: e.target.name.value, email: e.target.email.value, niche: e.target.niche.value, footageLink: e.target.footageLink.value };
+      const payload = { 
+        action: 'submitLead', 
+        name: e.target.name.value, 
+        email: e.target.email.value, 
+        niche: e.target.niche.value, 
+        footageLink: e.target.footageLink.value 
+      };
       
       try {
-        await fetch(API_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) });
+        await fetch(API_URL, { 
+          method:'POST', 
+          headers:{'Content-Type':'text/plain;charset=utf-8'}, 
+          body: JSON.stringify(payload) 
+        });
         
         status.className = 'form-status ok';
         status.style.display = 'block';
+        // Show download links prominently and keep modal open
         status.innerHTML = `
-          <div style="text-align:center; margin-top:10px;">
-            <p style="margin-bottom:15px; color:var(--success); font-weight:600;">✓ Success! Check your email for the audit details.</p>
-            <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">Or download your free ebooks directly:</p>
+          <div style="text-align:center; margin-top:20px; padding: 20px; background: rgba(163,230,53,0.1); border-radius: 12px; border: 1px solid rgba(163,230,53,0.3);">
+            <p style="margin-bottom:20px; color:var(--success); font-weight:700; font-size: 16px;">✓ Success! Your resources are ready.</p>
+            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:20px;">Download your free ebooks now:</p>
             <div class="ebook-links">
-              <a href="https://github.com/BigBayMall/Focalcut/blob/main/ebook1-hook-bank.pdf" target="_blank" class="ebook-btn">📥 Download Hook Bank Ebook</a>
-              <a href="https://github.com/BigBayMall/Focalcut/blob/main/ebook2-cta-bank.pdf" target="_blank" class="ebook-btn">📥 Download CTA Bank Ebook</a>
+              <a href="https://focalcut.com/ebook1-hook-bank.pdf" target="_blank" class="ebook-btn" style="background: var(--accent-primary); color: var(--accent-text); border: none;">📥 Download Hook Bank Ebook</a>
+              <a href="https://focalcut.com/ebook2-cta-bank.pdf" target="_blank" class="ebook-btn" style="background: var(--accent-primary); color: var(--accent-text); border: none;">📥 Download CTA Bank Ebook</a>
             </div>
+            <p style="font-size:12px; color:var(--text-muted); margin-top:20px; margin-bottom:0;">We've also sent these links to your email along with audit details.</p>
           </div>
         `;
         e.target.reset();
@@ -1088,13 +1101,9 @@
         if(emailStatusText) emailStatusText.textContent = '';
         btn.style.display = 'none';
         
-        setTimeout(() => { 
-          if(modal) modal.classList.remove('active'); 
-          status.style.display = 'none'; 
-          btn.style.display = 'block'; 
-          btn.disabled = false; 
-          btn.textContent = 'Get Free Audit & Ebooks →'; 
-        }, 8000);
+        // DO NOT auto-close modal - let them download first
+        // Remove the setTimeout that was closing it
+        
       } catch (err) {
         status.className = 'form-status err';
         status.textContent = 'Something went wrong. Please email hello@focalcut.com directly.';
