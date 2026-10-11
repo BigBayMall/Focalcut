@@ -880,14 +880,19 @@
   const loadingInterval = setInterval(() => { msgIndex++; if (msgIndex < loadingMessages.length) loadingText.textContent = loadingMessages[msgIndex]; }, 600);
   window.addEventListener('load', () => { setTimeout(() => { clearInterval(loadingInterval); document.getElementById('loadingScreen').classList.add('hidden'); }, 2200); });
 
-  // RANDOM SPOTS COUNT (3-8)
-  document.getElementById('spotsCount').textContent = Math.floor(Math.random() * 6) + 3;
+  // FIX: Added safety check for spotsCount since it was removed from the new banner
+  const spotsCountEl = document.getElementById('spotsCount');
+  if (spotsCountEl) {
+    spotsCountEl.textContent = Math.floor(Math.random() * 6) + 3;
+  }
 
   // LIVE TICKER
   const tickerMessages = ["3 videos being edited right now","2 new clients joined today","14 videos delivered in the last 24h","8 creators active on the portal"];
   let tickerIndex = 0; const tickerElement = document.getElementById('live-text');
-  setInterval(() => { tickerIndex = (tickerIndex + 1) % tickerMessages.length; tickerElement.style.opacity = '0'; setTimeout(() => { tickerElement.textContent = tickerMessages[tickerIndex]; tickerElement.style.opacity = '1'; }, 300); }, 4000);
-  tickerElement.style.transition = 'opacity 0.3s ease';
+  if(tickerElement) {
+    setInterval(() => { tickerIndex = (tickerIndex + 1) % tickerMessages.length; tickerElement.style.opacity = '0'; setTimeout(() => { tickerElement.textContent = tickerMessages[tickerIndex]; tickerElement.style.opacity = '1'; }, 300); }, 4000);
+    tickerElement.style.transition = 'opacity 0.3s ease';
+  }
 
   // NUMBER COUNTING
   function animateNumbers() {
@@ -925,27 +930,35 @@
   // BEFORE/AFTER SLIDER
   const baContainer = document.getElementById('baSlider'); const baHandle = document.getElementById('baHandle'); const baAfter = document.getElementById('baAfter'); let isDragging = false;
   function updateSliderPosition(clientX) { if (!baContainer) return; const rect = baContainer.getBoundingClientRect(); let position = ((clientX - rect.left) / rect.width) * 100; position = Math.max(0, Math.min(100, position)); baHandle.style.left = position + '%'; baAfter.style.clipPath = `inset(0 ${100 - position}% 0 0)`; }
-  baContainer.addEventListener('mousedown', (e) => { isDragging = true; updateSliderPosition(e.clientX); });
+  if(baContainer) {
+    baContainer.addEventListener('mousedown', (e) => { isDragging = true; updateSliderPosition(e.clientX); });
+    baContainer.addEventListener('touchstart', (e) => { isDragging = true; updateSliderPosition(e.touches[0].clientX); }, {passive: true});
+  }
   document.addEventListener('mouseup', () => isDragging = false);
   document.addEventListener('mousemove', (e) => { if (isDragging) updateSliderPosition(e.clientX); });
-  baContainer.addEventListener('touchstart', (e) => { isDragging = true; updateSliderPosition(e.touches[0].clientX); }, {passive: true});
   document.addEventListener('touchend', () => isDragging = false);
   document.addEventListener('touchmove', (e) => { if (isDragging) updateSliderPosition(e.touches[0].clientX); }, {passive: true});
 
   // ROI CALCULATOR
   const calcVideos = document.getElementById('calcVideos'); const calcHours = document.getElementById('calcHours'); const calcRate = document.getElementById('calcRate');
   function updateCalculator() {
+    if(!calcVideos || !calcHours || !calcRate) return;
     const videos = parseInt(calcVideos.value); const hours = parseInt(calcHours.value); const rate = parseInt(calcRate.value);
     document.getElementById('calcVideosVal').textContent = videos; document.getElementById('calcHoursVal').textContent = hours + 'h'; document.getElementById('calcRateVal').textContent = '$' + rate;
     const monthlySavings = videos * hours * rate * 4; const hoursSaved = videos * hours * 4;
     document.getElementById('calcSavings').textContent = '$' + monthlySavings.toLocaleString(); document.getElementById('calcHoursSaved').textContent = hoursSaved + ' hours returned to you every month';
   }
-  calcVideos.addEventListener('input', updateCalculator); calcHours.addEventListener('input', updateCalculator); calcRate.addEventListener('input', updateCalculator); updateCalculator();
+  if(calcVideos) calcVideos.addEventListener('input', updateCalculator);
+  if(calcHours) calcHours.addEventListener('input', updateCalculator);
+  if(calcRate) calcRate.addEventListener('input', updateCalculator);
+  updateCalculator();
 
   // NAVIGATION
   const nav = document.getElementById('nav'); const toggle = document.getElementById('menuToggle');
-  toggle.addEventListener('click', () => { const open = nav.classList.toggle('open'); toggle.setAttribute('aria-expanded', open); toggle.textContent = open ? '×' : '☰'; });
-  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.textContent='☰'; }));
+  if(toggle) {
+    toggle.addEventListener('click', () => { const open = nav.classList.toggle('open'); toggle.setAttribute('aria-expanded', open); toggle.textContent = open ? '×' : '☰'; });
+  }
+  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); if(toggle){toggle.setAttribute('aria-expanded','false'); toggle.textContent='☰';} }));
 
   // FAQ ACCORDION
   document.querySelectorAll('.faq-q').forEach(btn => {
@@ -957,22 +970,25 @@
   });
 
   // CONTACT FORM
-  document.getElementById('contactForm').addEventListener('submit', async e => {
-    e.preventDefault(); const btn = document.getElementById('contactBtn'); const status = document.getElementById('formStatus');
-    btn.disabled = true; btn.textContent = 'Sending...';
-    const payload = { action: 'contact', name: e.target.name.value, email: e.target.email.value, package: e.target.creator_type.value, message: e.target.message.value };
-    try { await fetch(API_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) }); status.className = 'form-status ok'; status.textContent = '✓ Message sent. We reply within 24 hours.'; e.target.reset(); } 
-    catch (err) { status.className = 'form-status err'; status.textContent = 'Something went wrong. Please email hello@focalcut.com directly.'; }
-    btn.disabled = false; btn.textContent = 'Send Message →';
-  });
+  const contactForm = document.getElementById('contactForm');
+  if(contactForm) {
+    contactForm.addEventListener('submit', async e => {
+      e.preventDefault(); const btn = document.getElementById('contactBtn'); const status = document.getElementById('formStatus');
+      btn.disabled = true; btn.textContent = 'Sending...';
+      const payload = { action: 'contact', name: e.target.name.value, email: e.target.email.value, package: e.target.creator_type.value, message: e.target.message.value };
+      try { await fetch(API_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) }); status.className = 'form-status ok'; status.textContent = '✓ Message sent. We reply within 24 hours.'; e.target.reset(); } 
+      catch (err) { status.className = 'form-status err'; status.textContent = 'Something went wrong. Please email hello@focalcut.com directly.'; }
+      btn.disabled = false; btn.textContent = 'Send Message →';
+    });
+  }
 
   // LEAD GEN MODAL & FAST EMAIL CHECK LOGIC
   const modal = document.getElementById('leadModal');
   const closeBtn = document.getElementById('closeModal');
   const banner = document.getElementById('freeResourceBanner');
   
-  if(banner) banner.addEventListener('click', () => modal.classList.add('active'));
-  if(closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+  if(banner) banner.addEventListener('click', () => { if(modal) modal.classList.add('active'); });
+  if(closeBtn) closeBtn.addEventListener('click', () => { if(modal) modal.classList.remove('active'); });
   if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
   const emailInput = document.getElementById('l-email');
@@ -988,19 +1004,24 @@
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       
       clearTimeout(emailCheckTimeout);
-      emailStatusIcon.style.display = 'none';
-      emailStatusText.textContent = '';
-      emailStatusText.className = 'email-status-text';
+      if(emailStatusIcon) emailStatusIcon.style.display = 'none';
+      if(emailStatusText) {
+        emailStatusText.textContent = '';
+        emailStatusText.className = 'email-status-text';
+      }
       isEmailValid = false;
-      leadBtn.disabled = false;
+      if(leadBtn) leadBtn.disabled = false;
 
       if (emailRegex.test(email)) {
-        emailStatusIcon.style.display = 'block';
-        emailStatusIcon.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid var(--border-default);border-top-color:var(--accent-primary);border-radius:50%;animation:spin 0.8s linear infinite;"></span>';
-        emailStatusText.textContent = 'Checking availability...';
-        emailStatusText.className = 'email-status-text checking';
+        if(emailStatusIcon) {
+          emailStatusIcon.style.display = 'block';
+          emailStatusIcon.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid var(--border-default);border-top-color:var(--accent-primary);border-radius:50%;animation:spin 0.8s linear infinite;"></span>';
+        }
+        if(emailStatusText) {
+          emailStatusText.textContent = 'Checking availability...';
+          emailStatusText.className = 'email-status-text checking';
+        }
 
-        // 600ms debounce for fastest possible feel without spamming the server
         emailCheckTimeout = setTimeout(async () => {
           try {
             const res = await fetch(API_URL, {
@@ -1011,28 +1032,21 @@
             const data = await res.json();
             
             if (data.exists) {
-              emailStatusIcon.innerHTML = '⚠️';
-              emailStatusIcon.style.color = 'var(--warning)';
-              emailStatusText.textContent = 'This email has already claimed the offer.';
-              emailStatusText.className = 'email-status-text error';
+              if(emailStatusIcon) { emailStatusIcon.innerHTML = '⚠️'; emailStatusIcon.style.color = 'var(--warning)'; }
+              if(emailStatusText) { emailStatusText.textContent = 'This email has already claimed the offer.'; emailStatusText.className = 'email-status-text error'; }
               isEmailValid = false;
-              leadBtn.disabled = true;
+              if(leadBtn) leadBtn.disabled = true;
             } else {
-              emailStatusIcon.innerHTML = '✓';
-              emailStatusIcon.style.color = 'var(--success)';
-              emailStatusText.textContent = 'Email available!';
-              emailStatusText.className = 'email-status-text success';
+              if(emailStatusIcon) { emailStatusIcon.innerHTML = '✓'; emailStatusIcon.style.color = 'var(--success)'; }
+              if(emailStatusText) { emailStatusText.textContent = 'Email available!'; emailStatusText.className = 'email-status-text success'; }
               isEmailValid = true;
-              leadBtn.disabled = false;
+              if(leadBtn) leadBtn.disabled = false;
             }
           } catch (err) {
-            // Fallback if CORS blocks the read: assume valid, backend will handle duplicate check on submit
-            emailStatusIcon.innerHTML = '✓';
-            emailStatusIcon.style.color = 'var(--success)';
-            emailStatusText.textContent = 'Email available!';
-            emailStatusText.className = 'email-status-text success';
+            if(emailStatusIcon) { emailStatusIcon.innerHTML = '✓'; emailStatusIcon.style.color = 'var(--success)'; }
+            if(emailStatusText) { emailStatusText.textContent = 'Email available!'; emailStatusText.className = 'email-status-text success'; }
             isEmailValid = true;
-            leadBtn.disabled = false;
+            if(leadBtn) leadBtn.disabled = false;
           }
         }, 600);
       }
@@ -1064,8 +1078,8 @@
             <p style="margin-bottom:15px; color:var(--success); font-weight:600;">✓ Success! Check your email for the audit details.</p>
             <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">Or download your free ebooks directly:</p>
             <div class="ebook-links">
-              <a href="https://github.com/BigBayMall/Focalcut/blob/main/ebook1-hook-bank.pdf" target="_blank" class="ebook-btn">📥 Download Hook Bank Ebook</a>
-              <a href="https://github.com/BigBayMall/Focalcut/blob/main/ebook2-cta-bank.pdf" target="_blank" class="ebook-btn">📥 Download CTA Bank Ebook</a>
+              <a href="https://focalcut.com/ebook1-hook-bank.pdf" target="_blank" class="ebook-btn">📥 Download Hook Bank Ebook</a>
+              <a href="https://focalcut.com/ebook2-cta-bank.pdf" target="_blank" class="ebook-btn">📥 Download CTA Bank Ebook</a>
             </div>
           </div>
         `;
@@ -1075,7 +1089,7 @@
         btn.style.display = 'none';
         
         setTimeout(() => { 
-          modal.classList.remove('active'); 
+          if(modal) modal.classList.remove('active'); 
           status.style.display = 'none'; 
           btn.style.display = 'block'; 
           btn.disabled = false; 
